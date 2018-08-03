@@ -1,0 +1,131 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_db2.txt                         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Banco de Dados dos itens customizados.      |
+// \________________________________________________________/
+
+// ID,Nome no Aegis,Nome em Português,Tipo,Preço de Compra,Preço de Venda,Peso,ATQ,DEF,Alcance,Slots,Classe,Upper,Sexo,Loc,Nível da Arma,Nível Requerido,Refinável,View,{ Script },{ Script quando equipar },{ Script quando desequipar }
+
+// Caveira BG
+8965,Crânio_Azul,Crânio Azul,3,,10,0,,,,,,,,,,,,,{},{},{}
+8966,Crânio_Vermelho,Crânio Vermelho,3,,10,0,,,,,,,,,,,,,{},{},{}
+8967,Crânio_Verde,Crânio Verde,3,,10,0,,,,,,,,,,,,,{},{},{}
+
+// Extended Vending System
+8968,Zeny,Zeny,3,,10,0,,,,,,,,,,,,,{},{},{}
+8969,Cash,Cash,3,,10,0,,,,,,,,,,,,,{},{},{}
+
+//Tickets
+
+20000,Vale_VIP_15_dias,Vale VIP 15 dias,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "addpremium15"; },{},{}
+20001,Vale_VIP_30_dias,Vale VIP 30 dias,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "addpremium30"; },{},{}
+20002,Vale_VIP_voto,Vale VIP 1 dia,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "addpremiumvoto"; },{},{}
+20003,Vale_VIP_5_dias,Vale VIP 5 dias,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "addpremium5"; },{},{}
+20004,Dark_Moon,Dark Moon,0,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS,#CASHPOINTS+1000; dispbottom "Você acaba de ganhar 1000 ROPs!"; },{},{}
+20005,Carta_de_Lideranca,Carta de Liderança,6,10,,1,,,,,,,,16,,,,,{ bonus bAllStats,1; bonus2 bSubRace,7,1; bonus2 bAddRace,7,1; },{},{}
+20006,Ticket_Up,Ticket Up,18,10,,1,,,,,,,,16,,,,,{callfunc "OddFuncKalif"; },{},{}
+20007,Ticket Presença,Ticket Presença,0,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "presença"; },{},{}
+20008,Ticket Cash,Ticket Cash,0,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "AddCash"; },{},{}
+
+//Jogos Vorazes
+
+20009,Box AtkM. Congelante,Box AtkM. Congelante,11,2000,0,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "MG_FROSTDIVER",5; },{},{}
+20010,Box Atk. Tyr,Box Atk. Tyr,11,2000,0,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "KN_BOWLINGBASH",5; },{},{}
+20011,Box Vida Extra,Box Vida Extra,11,2000,0,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "SL_KAIZEL",7; },{},{}
+20012,Box Força Extra,Box Força Extra,11,2000,0,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "WS_OVERTHRUSTMAX",1; sc_start SC_STRFOOD, 600000, 1; percentheal 5,0; },{},{}
+20013,Box Velocidade Extra,Box Velocidade Extra,0,2,0,100,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_SpeedUp1,10000,0; },{},{}
+20014,Box Agilidade Extra,Box Agilidade Extra,11,2000,0,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ASPDPOTION0,1800000,0; skilleffect "AL_INCAGI",0; sc_start SC_INCREASEAGI,120000,5; itemskill "AC_CONCENTRATION",1; sc_start SC_ASPDPOTION0,1800000,0; },{},{}
+
+//Leader-RO Stuffs
+
+20015,White_Slim_Potion,Poção Branca Compacta,0,1650,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(325,405),0; },{},{}
+20016,Strawberry,Morango,0,200,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 0,rand(16,28); },{},{}
+20017,Panacea,Panacéia,0,500,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_end SC_Poison; sc_end SC_Silence; sc_end SC_Blind; sc_end SC_Confusion; sc_end SC_Curse; sc_end SC_Hallucination; },{},{}
+20018,Light_Center_Pot,Poção de Concentração Leve,2,800,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ASPDPOTION0,1800000,0; },{},{}
+20019,Ticket_de_Reset,Ticket de Reset,0,0,0,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20020,Inspector_Certificate,Emblema Oficial,2,1450,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_SpeedUp0,180000,0; },{},{}
+20021,Str_Dish05,Panqueca de Lutie,0,10000,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_STRFOOD, 1200000, 5; percentheal 10,0; },{},{}
+20022,Int_Dish05,Vinho de Mastela,0,10000,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INTFOOD, 1200000, 5; percentheal 0,10; },{},{}
+20023,Vit_Dish05,Pão de Carne Picante Frito,0,10000,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_VITFOOD, 1200000, 5; percentheal 10,0; },{},{}
+20024,Agi_Dish05,Asa de Morcego com Abóbora no Vapor,0,10000,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_AGIFOOD, 1200000, 5; percentheal 6,2; },{},{}
+20025,Dex_Dish05,Salada Verde,0,10000,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_DEXFOOD, 1200000, 5; percentheal 5,5; },{},{}
+20026,Luk_Dish05,Caudas de Escorpião Fritas,0,10000,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_LUKFOOD, 1200000, 5; percentheal 5,2; },{},{}
+20027,Presente_LeaderRO,Presente Leader-RO,18,20,0,1,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 20015,100; getitem 20016,100; getitem 20017,20; getitem 20018,20; getitem 20020,20; getitem 20021,10; getitem 20022,10; getitem 20023,10; getitem 20024,10; getitem 20025,10; getitem 20026,10; },{},{}
+
+//Quest Leader-RO
+
+20028,Ticket_quest,Ticket Quest,18,0,0,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+
+//PackGuild
+
+20029,Ticket_vip_gp,[GP]Ticket Vip,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "AddVip",30; },{},{}
+20030,Trevo_Magico_do_Ancião,[GP] Trevo Mágico do Ancião,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20031,Set_valk,[GP] Set Valk,18,20,,1,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 30010,2592000; rentitem 30011,2592000; rentitem 30012,2592000; rentitem 30013,2592000; },{},{}
+20032,Set_satan,[GP] Set Satan,18,20,,1,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 30014,2592000; rentitem 30015,2592000; rentitem 30016,2592000; rentitem 30017,2592000; },{},{}
+20033,Set_Beelzebub,[GP] Set Beelzebub,18,20,,1,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 30018,2592000; rentitem 30019,2592000; rentitem 30020,2592000; rentitem 30021,2592000; },{},{}
+20034,Piece_Of_Angent_Skin,[GP] Pedaço de Pele do Guardião,5,20,,400,,5,,1,0xFFFFFFFE,2,2,4,,90,1,0,{ bonus2 bSubEle,Ele_Neutral,7; bonus2 bSubEle,Ele_Water,7; bonus2 bSubEle,Ele_Earth,7; bonus2 bSubEle,Ele_Fire,7; bonus2 bSubEle,Ele_Wind,7; bonus2 bSubEle,Ele_Poison,7; bonus2 bSubEle,Ele_Holy,7; bonus2 bSubEle,Ele_Dark,7; bonus2 bSubEle,Ele_Ghost,7; bonus2 bSubEle,Ele_Undead,7; bonus bMaxSP,(BaseLevel/3)+(getrefine()*10); bonus3 bSPDrainRate,1,1,0; bonus bMdef,3; },{},{}
+20035,Marcher_Hat,[GP] Chapéu de Parada,5,20,,200,,2,,1,0xFFFFFFFF,7,2,256,,10,1,269,{ bonus bMdef,2; bonus bStr,2; bonus3 bAutoSpell,"AL_ANGELUS",5,30; },{},{}
+20036,4Leaf_Clover_In_Mouth,[GP] Trevo_de_4_Folhas,5,20,,0,,2,,0,0xFFFFFFFF,7,2,1,,1,0,571,{ bonus bMdef,2; },{},{}
+20037,Combat_Knife,[GP] Faca de Combate,4,20,,400,80,,1,0,0x028F5EEE,7,2,2,4,36,1,1,{ bonus bIgnoreDefRace,RC_DemiHuman; bonus2 bSubRace,RC_DemiHuman,10; bonus2 bSubRace,RC_Demon,-10; },{},{}
+20038,Valkyrie_Armor,[GP] Armadura das Valquírias,5,0,,2800,,6,,1,0xFFFFFFFE,2,2,16,,1,1,0,{ bonus bAllStats,1; bonus bUnbreakableArmor,0; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus2 bResEff,Eff_Silence,5000; else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus2 bResEff,Eff_Stun,5000; },{},{}
+20039,Valkyrie_Shoes,[GP] Sapatos das Valquírias,5,0,,500,,4,,1,0xFFFFFFFE,2,2,64,,1,1,0,{ bonus bUnbreakableShoes,0; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus bMaxHP,(BaseLevel*5); else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus bMaxSP,(JobLevel*2); },{},{}
+20040,Valkyrie_Manteau,[GP] Manto das Valquírias,5,0,,500,,3,,1,0xFFFFFFFE,2,2,4,,1,1,0,{ bonus bUnbreakableGarment,0; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus bFlee2,5+(getequiprefinerycnt(EQI_GARMENT)*2); else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus bShortWeaponDamageReturn,5+(getequiprefinerycnt(EQI_GARMENT)*2); },{},{}
+20041,Valkyrja's_Shield,[GP] Escudo da Valquíria,5,30000,,500,,3,,1,0xFFFFFFFE,7,2,32,,65,1,4,{ bonus2 bSubEle,Ele_Water,20; bonus2 bSubEle,Ele_Fire,20; bonus2 bSubEle,Ele_Dark,20; bonus2 bSubEle,Ele_Undead,20; bonus bMdef,5; if(isequipped(2353,5124)) { bonus bDef,2-getrefine()-getequiprefinerycnt(EQI_HEAD_TOP); bonus bMdef,5+getrefine()+getequiprefinerycnt(EQI_HEAD_TOP); } },{},{}
+20042,Diabolus_Helmet,[GP] Elmo de Diabolus,5,20,,250,,5,,1,0x000FDF80,2,2,769,,0,1,364,{ bonus2 bResEff,Eff_Stone,2000+(getrefine()*200); bonus2 bResEff,Eff_Freeze,2000+(getrefine()*200); bonus2 bResEff,Eff_Stun,2000+(getrefine()*200); },{},{}
+20043,Diabolus_Armor,[GP] Armadura de Diabolus,5,20,,600,,7,,1,0x000654E2,2,2,16,,55,1,0,{ bonus bStr,2; bonus bDex,1; bonus bMaxHP,150; bonus2 bResEff,Eff_Stun,500; bonus2 bResEff,Eff_Stone,500; if (isequipped(2729)) { bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; bonus bMatkRate,3; } },{},{}
+20044,Diabolus_Robe,[GP] Manto de Diabolus,5,20,,300,,6,,1,0x00098B1C,2,2,16,,55,1,0,{ bonus bMaxSP,150; bonus bMdef,5; bonus bHealPower,6; bonus bDelayRate,-10; if (isequipped(2729)) { bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; bonus bMatkRate,3; } },{},{}
+20045,Diabolus_Boots,[GP] Botas de Diabolus,5,20,,250,,4,,1,0x00CFFF80,2,2,64,,0,1,0,{ bonus bMaxHP,(BaseLevel*10); },{},{}
+20046,Destruction_Rod,[GP] Bastão da Destruição,4,20,,2500,130,,1,1,0x00000200,2,2,34,4,80,1,23,{ bonus bMatkRate,25+getrefine()/2; bonus bInt,3; bonus bAgi,10; bonus bUseSPrate,(getrefine()*2); bonus3 bAutoSpellWhenHit,"WZ_JUPITEL",5,(getrefine()*20); bonus2 bCastrate,366,-50; },{},{}
+20047,Variant_Shoes,[GP] Sapatos Divergentes,5,20,,500,,3,,0,0xFFFFFFFE,2,2,64,,85,1,0,{ bonus bMaxHPRate,20-getrefine(); bonus bMaxSPRate,20-getrefine(); bonus bDef,getrefine()/2; },{},{}
+20048,Bison_Horn,[GP] Chifre de Bisão,5,20,,100,,0,,1,0xFFFFFFFE,2,2,136,,90,0,0,{ bonus bAgi,2; },{},{}
+20049,Death_Note_M,[GP] Death Note,4,20,,1000,137,,1,2,0x00410100,7,2,2,4,85,1,15,{ bonus bMatkRate,15; bonus bStr,3; bonus bInt,3; bonus bLuk,-20; bonus2 bWeaponComaRace,RC_DemiHuman,10; bonus bAspdRate,getrefine(); if(BaseJob == Job_Sage) bonus3 bAutoSpell,"NPC_HELLJUDGEMENT",5,20; },{},{}
+20050,Pack_lider,[GP] Pack Lider,18,20,,1,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 30003,2;getitem 30004,1;getitem 30005,1;getitem 30001,10;rentitem 30006,2592000;rentitem 30007,2592000;rentitem 30008,2592000;rentitem 30009,2592000; },{},{}
+20051,Pack_player,[GP] Pack Player,18,20,,1,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 30024,2592000; rentitem 30025,2592000; rentitem 30026,2592000; rentitem 30025,2592000; rentitem 30026,2592000; getitem 30001,3; },{},{}
+20052,Sunglasses_,[GP] Óculos Escuros,5,5000,,100,,0,,1,0xFFFFFFFF,7,2,512,,0,0,12,{ bonus2 bResEff,Eff_Blind,500; },{},{}
+20053,Orleans_Glove,[GP] Luvas de Orleans,5,20,,100,,0,,1,0xFFFFFFFE,2,2,136,,90,0,0,{ bonus bDex,2; bonus bMatkRate,3; },{},{}
+20054,Diabolus_Ring,[GP] Anel de Diabolus,5,20,,50,,0,,1,0x00CFFF80,2,2,136,,0,0,0,{ bonus bMaxHP,100; bonus bMaxSP,100; bonus bHealPower,5; bonus2 bAddDamageClass,1916,10; bonus2 bAddDamageClass,1917,10; },{},{}
+20055,War_Badge,Emblema do Heroi,3,0,,0,,,,,,,,,,,,,{},{},{}
+20056,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20057,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20058,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20059,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20060,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20061,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20062,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20063,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20064,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+
+//Novos Rops Leader-RO
+20065,Super Sayajin,Super Sayajin,5,20,,800,,5,,0,0xFFFFFFFF,7,2,256,,1,1,1006,{  bonus bAllStats,3; bonus bAspdRate,5; bonus2 bAddRace,7,10; },{},{}
+20066,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20067,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20068,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20069,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20070,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20071,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20072,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20073,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20074,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20075,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20076,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20077,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20078,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20079,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20080,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20081,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20082,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20083,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20084,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20085,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+20086,Breve,Breve,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}

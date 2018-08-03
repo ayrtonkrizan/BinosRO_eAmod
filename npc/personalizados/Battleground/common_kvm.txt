@@ -1,0 +1,173 @@
+// *********************************************************************
+// KvM B - Join Battle NPC's
+// *********************************************************************
+
+bat_room,160,140,3	script	Batalha KVM#1	418,{
+	mes "^FF1493[ KVM Officer ]^000000";
+	mes (gettime(3)>= 6&&gettime(3)<= 12?"Bom-dia":(gettime(3)>=13&&gettime(3)<=18?"Boa-tarde":"Boa-noite"))+", ^008aff"+strcharinfo(0)+"^000000 !";
+	mes "Vamos mostrar o poder do Exército Guillaume para estes Croixs estúpidos!";
+	next;
+	switch( select("^0084ff[ • ]^000000 Quero entrar em seu exército!:^0084ff[ • ]^000000 Sobre KvM:^ff0000[ • ]^000000 Terminar Conversa") )
+	{
+	case 1:
+		mes "^FF1493[ KVM Officer ]^000000";
+		if( BaseLevel < 80 )
+		{
+			mes "Estou muito agredecido que você queria se juntar ao nosso exército, but I'm sorry: This arena is for players with baselevel from 80 to 99.";
+			close;
+		}
+		// Delay Check ============================================================
+		if( checkquest(8506,PLAYTIME) == 2 ) erasequest 8506;
+		if( checkquest(8506,PLAYTIME) != -1 )
+		{
+			mes "Você recebeu um indicador que mostra que você é um ^FF0000Deserter of Battleground^000000. Eu não posso deixá-lo participar até the indicador apague.";
+			close;
+		}
+		if( checkquest(6025,PLAYTIME) == 2 ) erasequest 6025;
+		if( checkquest(6025,PLAYTIME) != -1 )
+		{
+			mes "Você recebeu um indicador mostrando que você participou nesta batalha. Eu não posso deixá-lo participar até que o indicador se  apague.";
+			close;
+		}
+		// ========================================================================
+		mes "Boa Sorte!";
+		close2;
+		warp "bat_room",254,224;
+		end;
+	case 2:
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "To win the Battle of Kriger Von Midgard you and your team must kill all the other opponents before all of you die.";
+		next;
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "The first team to lose all their soldiers loses.";
+		next;
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "Since you cannot come back to battle after you die, taking care on the battlefield is essential.";
+		next;
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "Are you ready for battle? Then apply with the recruiter next to me!";
+	case 3:
+		close;
+	}
+OnInit:
+waitingroom "Time Azul",0;
+end;
+}
+
+bat_room,160,159,3	script	Batalha KVM#2	414,{
+	mes "^FF1493[ KVM Officer ]^000000";
+	mes (gettime(3)>= 6&&gettime(3)<= 12?"Bom-dia":(gettime(3)>=13&&gettime(3)<=18?"Boa-tarde":"Boa-noite"))+", ^008aff"+strcharinfo(0)+"^000000 !";
+	mes "Vamos mostrar o poder do Exército Croix para estes Guillaumes estúpidos!";
+	next;
+	switch( select("^0084ff[ • ]^000000 Quero entrar em seu exército!:^0084ff[ • ]^000000 Sobre KvM:^ff0000[ • ]^000000 Terminar Conversa") )
+	{
+	case 1:
+		mes "^FF1493[ KVM Officer ]^000000";
+		if( BaseLevel < 80 )
+		{
+			mes "Estou muito agredecido que você queria se juntar ao nosso exército, but I'm sorry: This arena is for players with baselevel from 80 to 99.";
+			close;
+		}
+		// Delay Check ============================================================
+		if( checkquest(8506,PLAYTIME) == 2 ) erasequest 8506;
+		if( checkquest(8506,PLAYTIME) != -1 )
+		{
+			mes "Você recebeu um indicador que mostra que você é um ^FF0000Deserter of Battleground^000000. Eu não posso deixá-lo participar até the indicador goes off.";
+			close;
+		}
+		if( checkquest(6025,PLAYTIME) == 2 ) erasequest 6025;
+		if( checkquest(6025,PLAYTIME) != -1 )
+		{
+			mes "Você recebeu um indicador mostrando que você participou nesta batalha. Eu não posso deixá-lo participar até que o indicador se  goes off.";
+			close;
+		}
+		// ========================================================================
+		mes "Boa Sorte!";
+		close2;
+		warp "bat_room",253,207;
+		end;
+	case 2:
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "To win the Battle of Kriger Von Midgard you and your team must kill all the other opponents before all of you die.";
+		next;
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "The first team to lose all their soldiers loses.";
+		next;
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "Since you cannot come back to battle after you die, taking care on the battlefield is essential.";
+		next;
+		mes "^FF1493[ KVM Officer ]^000000";
+		mes "Are you ready for battle? Then apply with the recruiter next to me!";
+	case 3:
+		close;
+	}
+OnInit:
+waitingroom "Time Vermelho",0;
+end;
+}
+
+// Guard Dummy
+// *********************************************************************
+
+bat_room,161,158,3	script	Prince Croix's#01	415,{ end; }
+bat_room,161,160,3	duplicate(bat_aid)	Prince Croix's#02	415
+bat_room,161,141,3	duplicate(bat_aid)	General Guillaume's#03	419
+bat_room,161,139,3	duplicate(bat_aid)	General Guillaume's#04	419
+
+// Flags
+// *********************************************************************
+
+-	script	Guillaume camp#bat	973,{ end; }
+-	script	Croix camp#bat	974,{ end; }
+
+// Exit from Registration
+// *********************************************************************
+
+// Flavius CTF
+bat_room,57,81,0	warp	bat1	1,1,bat_room,100,100
+bat_room,57,90,0	warp	bat2	1,1,bat_room,100,100
+// Tierra Boss
+bat_room,57,220,0	warp	bat3	1,1,bat_room,100,100
+bat_room,57,211,0	warp	bat4	1,1,bat_room,100,100
+// Tierra EOS
+bat_room,85,81,0	warp	bat5	1,1,bat_room,100,100
+bat_room,85,90,0	warp	bat6	1,1,bat_room,100,100
+// Tierra Valley
+bat_room,85,220,0	warp	bat7	1,1,bat_room,100,100
+bat_room,85,211,0	warp	bat8	1,1,bat_room,100,100
+// Flavius TD
+bat_room,113,81,0	warp	bat9	1,1,bat_room,100,100
+bat_room,113,90,0	warp	bat10	1,1,bat_room,100,100
+// KvM
+bat_room,113,220,0	warp	bat11	1,1,bat_room,100,100
+bat_room,113,211,0	warp	bat12	1,1,bat_room,100,100
+// Flavius SC
+bat_room,141,81,0	warp	bat13	1,1,bat_room,100,100
+bat_room,141,90,0	warp	bat14	1,1,bat_room,100,100
+// Tierra Domination
+bat_room,141,220,0	warp	bat15	1,1,bat_room,100,100
+bat_room,141,211,0	warp	bat16	1,1,bat_room,100,100
+// Castle Conquest
+bat_room,169,81,0	warp	bat17	1,1,bat_room,100,100
+bat_room,169,90,0	warp	bat18	1,1,bat_room,100,100
+// Castle Rush
+bat_room,169,220,0	warp	bat19	1,1,bat_room,100,100
+bat_room,169,211,0	warp	bat20	1,1,bat_room,100,100
+// Tierra Triple Infierno
+bat_room,197,81,0	warp	bat21	1,1,bat_room,100,100
+bat_room,197,90,0	warp	bat22	1,1,bat_room,100,100
+bat_room,225,81,0	warp	bat25	1,1,bat_room,100,100
+// KvM
+bat_room,197,220,0	warp	bat23	1,1,bat_room,100,100
+bat_room,197,211,0	warp	bat24	1,1,bat_room,100,100
+// Free BG
+bat_room,225,90,0	warp	bat26	1,1,bat_room,100,100
+// KvM
+bat_room,225,220,0	warp	bat27	1,1,bat_room,100,100
+bat_room,225,211,0	warp	bat28	1,1,bat_room,100,100
+// Flavius
+bat_room,253,81,0	warp	bat29	1,1,bat_room,100,100
+bat_room,253,90,0	warp	bat30	1,1,bat_room,100,100
+// KvM
+bat_room,253,220,0	warp	bat31	1,1,bat_room,100,100
+bat_room,253,211,0	warp	bat32	1,1,bat_room,100,100
