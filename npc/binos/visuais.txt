@@ -1,0 +1,148 @@
+-	script	Roleiro	-1,{
+	.@Title$ = "[Roleiro]";
+	.usaItem = 7283; // ID do item cobrado. para desativar essa opção deixar em -1
+	mes .@Title$;
+	mes "Oi,";
+	mes "Para utilizar meus serviços é necessário um ^4B0082Ticket de troca visual^000000."; 
+	mes "Eu posso trocar qualquer chapéu que você possuir por um visual.";
+	mes "Nesse caso você perderia qualquer benefício que este HAT te der. Mas você poderia usar outro chapéu e usufruir os benefícios dele e esse ficaria apenas com a aparência no seu char";
+	mes "Caso você preferir também posso tranformar qualquer HAT visual em normal. e você usuária os benefícios desse HAT.";
+
+	switch(select("Converter para visual.:Restaurar ao chapéu.:Não, obrigado.")) {
+	case 1:
+			next;
+			if(!countitem(.usaItem) && .usaItem){
+				mes "Você não possuí nenhum ^4B0082Ticket de troca visual^000000";
+				close;
+			}
+			mes .@Title$;
+			mes "Por favor, selecione o que deseja converter.";
+			mes "Lembre-se, cartas e refinamentos serão perdidos.";
+			next;
+				setarray .@Position$[1],"Topo","Meio","Baixo";
+				setarray .@Position[1],     1,    9,   10;
+				set .@Menu$,"";
+			for( set .@i, 1; .@i < 5; set .@i, .@i + 1 )
+			{
+				if( getequipisequiped(.@Position[.@i]) )
+				set .@Menu$, .@Menu$ + .@Position$[.@i] + "-" + "[" + getequipname(.@Position[.@i]) + "]";
+				set .@Menu$, .@Menu$ + ":";
+			}
+			set .@Part, .@Position[ select(.@Menu$) ];
+			set .@id, getequipid(.@Part);
+			set .@ref, getequiprefinerycnt(.@Part);
+			if( !getequipisequiped(.@Part) )
+			{
+				mes .@Title$;
+				mes "Você não está usando nada aí...";
+				close;
+			}
+			mes .@Title$;
+			mes "Você deseja converter seu " + getitemname(getequipid(.@Part)) + " para visual?";
+			next;
+			if( select("Sim, por favor:Não, desculpe.") == 2 )
+			{
+				mes .@Title$;
+				mes "Precisa de algum tempo pra pensar sobre isso, né?";
+				mes "Tudo bem, eu entendo.";
+				close;
+			}
+			for(set .@i,0; .@i<4; set .@i,.@i+1)
+				set .@slot[.@i], getequipcardid(.@Part,.@i);
+			if (.@slot[0]>4000 && .@slot[0]<5000) { // Se houver cartas, não converta
+				mes .@Title$;
+				mes "Uma carta? Aqui?!";
+				mes "Como eu disse, eu não posso converter chapéus com cartas, ou elas seriam perdidas.";
+				emotion e_hmm;
+				close;
+			}
+			getinventorylist;
+			for(set .@i,0; .@i<@inventorylist_count; set .@i,.@i+1)
+				if (@inventorylist_expire[.@i] != 0 && @inventorylist_equip[.@i] != 0) { // If rental don't convert
+				mes .@Title$;
+				mes "Opa, desculpe mas eu não posso convrter um chapéu de aluguel!";
+				emotion e_hmm;
+				close;
+				}
+				if (.@ref > 0) { // Se estiver refinado, não converta
+				mes .@Title$;
+				mes "Desculpe, eu não posso converter chapéus com refinamentos, ou eles seriam perdidos.";
+				emotion e_hmm;
+				close;
+				}
+			if (!countitem(.@id)) { 
+				mes .@Title$;
+				mes "Onde está seu "+getitemname(@id)+"...?";
+				npctalk "Peraí, você está tentando me enganar?!";
+				logmes "Trapaceiro: tentou converter um item sem estar usando: "+getitemname(@id);
+				emotion e_wah;
+				close;
+			}
+			if(!countitem(.usaItem) && .usaItem){
+				mes "Você não possuí nenhum ^4B0082Ticket de troca visual^000000";
+				close;
+			}else{
+				delitem .usaItem, 1;
+			}
+			costume .@Part; // Convertendo o chapéu
+			mes .@Title$;
+			mes "Pronto! Aproveite seu chapéu.";
+			close;
+	case 2:
+			next;
+			if(!countitem(.usaItem) && .usaItem){
+				mes "Você não possuí nenhum ^4B0082Ticket de troca visual^000000";
+				close;
+			}
+			mes .@Title$;
+			mes "Por favor, escolha qual item quer restaurar.";
+			mes "Lembre-se, eu só restauro itens sem refinamentos e cartas.";
+			next;
+				setarray .@Position$[1],"Top","Mid","Low";
+				setarray .@Position[1],     13,    12,   11;
+				set .@Menu$,"";
+			for( set .@i, 1; .@i < 5; set .@i, .@i + 1 )
+			{
+				if( getequipisequiped(.@Position[.@i]) )
+				set .@Menu$, .@Menu$ + .@Position$[.@i] + "-" + "[" + getequipname(.@Position[.@i]) + "]";
+				set .@Menu$, .@Menu$ + ":";
+			}
+			set .@Part, .@Position[ select(.@Menu$) ];
+			if( !getequipisequiped(.@Part) )
+			{
+				mes .@Title$;
+				mes "Você não está usando nada aí...";
+				close;
+			}
+			mes .@Title$;
+			mes "Você quer restaurar o seu " + getitemname(getequipid(.@Part)) + "?";
+			next;
+			if( select("Sim, prossiga.:Não, me desculpe.") == 2 )
+			{
+				mes .@Title$;
+				mes "Precisa de um tempo pra pensar, né?";
+				mes "Tudo bem, eu entendo.";
+				close;
+			}
+			a = getequipid(.@Part);
+			if(!countitem(.usaItem) && .usaItem){
+				mes "Você não possuí nenhum ^4B0082Ticket de troca visual^000000";
+				close;
+			}else{
+				delitem .usaItem, 1;
+			}			
+			delitem a,1;
+			getitem a,1;
+			
+			mes .@Title$;
+			mes "Pronto, seu chapéu foi restaurado.";
+			close;
+	case 3:
+		next;
+		mes .@Title$;
+		mes "Muito bem. Retorne quando precisar de meus serviços.";
+		close;
+	}
+}
+prontera,169,194,4	duplicate(Roleiro)	Roleiro#prt	4_BLACKDRAGON
+sec_in02,152,178,4	duplicate(Roleiro)	Roleiro#vip	4_BLACKDRAGON

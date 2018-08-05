@@ -1,0 +1,50 @@
+//===== Descrição: ===========================================
+//= Guerra dos tesouros que se inicia a cada 2 horas depois de 10 minutos no mapa apareçe dois baús um de cada lado.
+//============================================================
+//prontera.gat,0,0,0 script War of Treasure -1,{
+-	script	WoT	-1,{
+	OnHour00:
+	OnHour02:
+	OnHour04:
+	OnHour06:
+	OnHour08:
+	OnHour10:
+	OnHour12:
+	OnHour14:
+	OnHour16:
+	OnHour18:
+	OnHour20:
+	OnHour22:
+		announce "[Wot] Os baús aparecerão em 10 minutos !",8;
+		announce "[Wot] Portal para a sala do baú ao norte de Izlude !",8;
+		end;
+	OnMinute05:
+		announce "[Wot] Os baús aparecerão em 5 minutos !",8;
+		end;
+	OnMinute09:
+		announce "[Wot] Os baús aparecerão em 1 minuto !",8;
+		end;
+	OnMinute10:
+		announce "[Wot] Os baús apareceram",8;
+		monster "prt_are_in",178,140,"Bau do Tesouro",1324,1,"War of Treasure::OnThisMobDeath";
+		monster "prt_are_in",22,89,"Bau do Tesouro",1324,1,"War of Treasure::OnThisMobDeath";
+	OnThisMobDeath:
+		announce "[Wot] O Jogador "+strcharinfo(0)+" acaba de destruir um dos baús!",8;
+	end;
+}
+// Portais
+prontera,171,194,6	script	WoT#prace3	4_M_DST_TOUGH,{
+	mes "[Warper]";
+	mes "Olá "+strcharinfo(0)+", você quer ir";
+	mes "para a Guerra do Tesouro?";
+	if(select("Sim, claro.:Não, obrigado.") == 2) close;
+	close2; warp "prt_are_in",98,6; end;
+}
+
+//izlude,128,226,0 warp War Of Treasure1 1,1,prt_are_in,98,6
+//prt_are_in,55,13,0 warp War Of Treasure2 1,1,prt_are_in,177,129
+//prt_are_in,177,127,0 warp War Of Treasure3 1,1,prt_are_in,57,13
+//prt_are_in,21,75,0 warp War Of Treasure4 1,1,prt_are_in,140,13
+//prt_are_in,142,13,0 warp War Of Treasure5 1,1,prt_are_in,21,77
+// baus
+//1324,TREASURE_BOX1,Baú do Tesouro,Baú do Tesouro,99,0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,20,0x120,0,0,0,0,0,0,0,0,0,0,0,0,732,7760,608,3000,607,2500,2504,800,2404,800,2315,800,2104,800,616,1000,0,0,0,0

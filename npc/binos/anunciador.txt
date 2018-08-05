@@ -1,0 +1,98 @@
+
+-	script	Anunciador	-1,{
+	//===== Configurações: =========================================
+	set .vip, 2;  // Verifica se o usuario tem que ser vip ou não para usar [2=cobrar/1=sempre/0=não]
+	set .Zeny, 25000; //Custo de cada anuncio
+	set .NPCName$, "[Anunciador]";
+	//==============================================================
+
+	set .Cobrar, 0; /// Não mexer nessa variavel
+	if (getgroupid() < 1 && .vip == 1)
+	{
+		mes "[Anunciador VIP]";
+		close;
+		warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
+	}
+	
+	mes .NPCName$;
+	
+	mes "Olá, como posso ajudá-l"+((Sex)?"o":"a")+" ?";
+	mes "Cada mensagem tem intervalo de 60 segundos para ser enviada.";
+	if(.Zeny >0){
+		if(getgroupid()<1 && .vip == 2){
+			mes "Como você não é de um grupo ^0000DDVIP^000000 preciso cobrar de você as mensagens personalizadas.";
+			mes "O custo é de:" + .Zeny+ "z por mensagem";
+		}
+	}
+	next;
+	//switch (select ("Procurar Grupo:Procurar Clã:Anuncio de Itens:Enviar Mensagem"))
+	switch (select ("Procurar Grupo:Procurar Clã:Enviar Mensagem"))
+	{
+		mes .NPCName$;
+
+		case 1:
+		case 2:
+			callsub L_Confirm, "[Anúncio]: "+strcharinfo(0)+" ~ "+jobname(Class)+" ~ Nv. "+BaseLevel+"/"+JobLevel+" procura um ["+((@menu == 1)?"Grupo":"Clã")+"] !", "0x"+((@menu == 1)?"00FF00":"FF0000");
+			break;
+		
+		/* TODO
+		case 3:
+			mes "Escolha a opção:";
+			next;
+			switch (select ("Comprar Item:Vender Item"))
+			{
+				mes .NPCName$;
+
+				case 1:
+					mes "Digite o ID do item.";
+			}
+		*/
+		
+		case 3:
+		//case 4:
+			set .Cobrar, 1;
+			mes "Selecione a cor da mensagem:";
+			next;
+			switch (select ("^FFFFFFBranca","^EE6363Vermelha","^E8E8E8Cinza","^00CD00Verde","^5CACEEAzul"))
+			{
+				case 1: set .@color$, "0xFFFFFF"; break;
+				case 2: set .@color$, "0xEE6363"; break;
+				case 3: set .@color$, "0xE8E8E8"; break;
+				case 4: set .@color$, "0x00CD00"; break;
+				case 5: set .@color$, "0x5CACEE"; break;
+			}
+			mes .NPCName$;
+			mes "Digite a mensagem:";
+			mes "Ela deve conter no máximo 130 caracteres.";
+			next;
+			input .@msg$;
+			mes .NPCName$;
+			if (!getstrlen(.@msg$) || getstrlen(.@msg$) > 130)
+			{
+				mes "O tamanho não confere.";
+				close;
+			}
+			callsub L_Confirm, "["+strcharinfo(0)+"] "+.@msg$, .@color$;
+	}
+	
+	L_Confirm:
+		mes "Tem certeza que deseja enviar a mensagem ?";
+		next;
+		if (select ("Simmm:Não") == 2) close;
+		mes .NPCName$;
+		mes "Mensagem enviada!";
+		if(.Zeny >0 && .Cobrar){
+			if(getgroupid()<1 && .vip == 2){
+				Zeny -= .Zeny;
+			}
+		}
+		close2;
+		announce getarg(0), bc_all, getarg(1);
+		end;
+	return;
+}
+// --------------------------------------------------------------------------
+// Use duplicates to put your npc on different cities
+// --------------------------------------------------------------------------
+prontera,165,180,3	duplicate(Anunciador)	Anunciador#prt	4_M_BIRMAN
+sec_in02,141,168,4	duplicate(Anunciador)	Anunciador#vip	4_M_BIRMAN

@@ -1,0 +1,63 @@
+prontera,146,179,5	script	TesteVIP	2_BULLETIN_BOARD,{
+
+	// Adiciona o vip por 5min
+	add_time_vip(0, 0, 5, 0);
+	end;
+
+}
+-	script	InfoVip	-1,{
+	OnInit:
+		bindatcmd "vip",strnpcinfo(3)+"::OnAtcommand";
+		end;
+	OnAtcommand:
+		//@vipRestante$ = callfunc("calc_time", #official_time_vip);
+		@vipRestante$ = show_time_vip();
+
+		if(getstrlen(@vipRestante$) == 0)
+			dispbottom "Você não possui mais vip!";
+		else
+			dispbottom "Você possui \""+@vipRestante$+"\" restante de tempo vip.";
+
+		end;
+}
+
+sec_in02,0,0,0	script	CheckVIP	-1,500,500,{
+end;
+	OnPCLoadMapEvent:
+		if (getgroupid() < 1 && strcharinfo(3) == "sec_in02")
+			warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
+		end;
+}
+
+sec_in02	mapflag	nobranch
+sec_in02	mapflag	noicewall
+sec_in02	mapflag	nomemo
+sec_in02	mapflag	nopenalty
+sec_in02	mapflag	noreturn
+sec_in02	mapflag	nosave
+sec_in02	mapflag	noskill
+sec_in02	mapflag	noteleport
+sec_in02	mapflag	novending
+sec_in02	mapflag	nowarp
+sec_in02	mapflag	nowarpto
+sec_in02	mapflag	loadevent
+
+
+function	script	calc_time	{
+		set .@t,getarg(0)-gettimetick(2);
+		
+		if(.@t <= 0)
+			return "";
+
+		if(.@t%60)
+			set .@ret$,(.@t%60)+" segundo(s)";
+		if(.@t/60%60)
+			set .@ret$,(.@t/60%60)+" minuto(s) "+.@ret$;
+		if(.@t%86400/3600)
+			set .@ret$,(.@t%86400/3600)+" hora(s) "+.@ret$;
+		if(.@t%2592000/86400)
+			set .@ret$,(.@t%2592000/86400)+" dia(s) "+.@ret$;
+		if(.@t/2592000)
+			set .@ret$,(.@t/2592000)+" mes(es) "+.@ret$;
+		return .@ret$;
+}

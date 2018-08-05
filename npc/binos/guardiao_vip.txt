@@ -1,0 +1,22 @@
+
+-	script	GuardiaoVIP	-1,{
+
+	if(getgroupid()<1){
+		mes "[Guardião VIP]";
+		mes "Entrada permitido apenas um grupo exclusivo de participantes";
+		mes "Saiba mais em ^0000DDwww.binosro.com.br^000000";
+		close;
+	}
+	mes "Bem vindo ^0000DD"+strcharinfo(0)+"^000000,";
+	mes "Deseja entrar na Sala VIP?";
+	if(select("Sim:Não") == 2){
+		mes "OK, Volte quando quiser!";
+		close;
+	}
+	else {
+		warp "sec_in02",141,163;
+		end;
+	}
+}
+
+prontera,151,190,5	duplicate(GuardiaoVIP)	Guadião VIP#1	4_M_RUSKNIGHT

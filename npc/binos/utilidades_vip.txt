@@ -1,0 +1,177 @@
+sec_in02,142,178,4	shop	Balas#vip	4_M_MELODY,12149:5000,12150:20000,12151:10000
+
+sec_in02,144,178,4	shop	Aljavas#vip	4_M_JOB_HUNTER,12004:1000,12005:3000,12006:5000,12007:7000,12008:3000,12009:3000,12010:5000,12011:5000,12012:5000,12013:7000,12014:7000,12015:7000,12183:7000
+
+sec_in02,146,178,0	trader	Loja de Utilidades#vip	1_M_INNKEEPER,{
+OnInit:
+	sellitem Spectacles;
+	sellitem Arrow;
+	sellitem Silver_Arrow;
+	sellitem Fire_Arrow;
+	sellitem Red_Potion;
+	//sellitem Orange_Potion;
+	//sellitem Yellow_Potion;
+	sellitem White_Potion;
+	sellitem Blue_Potion;
+	sellitem Green_Potion;
+	sellitem Center_Potion;
+	sellitem Awakening_Potion;
+	sellitem Berserk_Potion;
+	sellitem Wing_Of_Fly;
+	//sellitem Wing_Of_Butterfly;
+	sellitem Booby_Trap;
+	//sellitem One_Eyed_Glass;
+	sellitem Blue_Gemstone;
+	sellitem Leaf_Of_Yggdrasil;
+	//Guns
+	sellitem Bullet;
+	sellitem Silver_Bullet;
+	sellitem Shell_Of_Blood;
+	//Ninja
+	sellitem Flame_Stone;
+	sellitem Ice_Stone;
+	sellitem Wind_Stone;
+	sellitem Shadow_Orb;
+	sellitem Charm_Fire;
+	sellitem Charm_Ice;
+	sellitem Charm_Wind;
+	sellitem Charm_Earth;
+}
+
+sec_in02,148,178,0	trader	Loja de Armas#vip	4_M_BLACKMAN,{
+OnInit:
+	//Arcos
+	sellitem Bow;
+	sellitem Great_Bow;
+	sellitem Hunter_Bow;
+	sellitem Kakkung;
+	// Adagas
+	sellitem Knife;
+	sellitem Cutter;
+	sellitem Main_Gauche;
+	sellitem Dirk;
+	sellitem Dagger;
+	sellitem Stiletto;
+	sellitem Gladius;
+	sellitem Damascus;
+	// Cajados
+	sellitem Rod;
+	sellitem Wand;
+	sellitem Staff;
+	sellitem Arc_Wand;
+	sellitem Sword;
+	//Espadas
+	sellitem Falchion;
+	sellitem Blade;
+	sellitem Lapier;
+	sellitem Scimiter;
+	sellitem Ring_Pommel_Saber;
+	sellitem Tsurugi;
+	sellitem Haedonggum;
+	sellitem Saber;
+	sellitem Flamberge;
+	sellitem Katana;
+	// Espadas de duas mãos
+	sellitem Slayer;
+	sellitem Bastard_Sword;
+	sellitem Two_Hand_Sword;
+	sellitem Broad_Sword;
+	sellitem Town_Sword;
+	sellitem Cinquedea;
+	//Machados
+	sellitem Axe;
+	sellitem Battle_Axe;
+	sellitem Hammer;
+	sellitem Buster;
+	sellitem Two_Handed_Axe;
+	sellitem Javelin;
+	sellitem Spear;
+	sellitem Pike;
+	sellitem Guisarme;
+	sellitem Glaive;
+	sellitem Partizan;
+	sellitem Trident;
+	sellitem Halberd;
+	sellitem Lance;
+	// Katar
+	sellitem Jur;
+	sellitem Katar;
+	sellitem Jamadhar;
+	// Maças
+	sellitem Mace;
+	sellitem Smasher;
+	sellitem Flail;
+	sellitem Morning_Star;
+	sellitem Sword_Mace;
+	sellitem Chain;
+	sellitem Stunner;
+	// Punhos
+	sellitem Waghnakh;
+	sellitem Knuckle_Duster;
+	sellitem Hora;
+	sellitem Fist;
+	sellitem Claw;
+	sellitem Finger;
+	//Violinos
+	sellitem Violin;
+	sellitem Mandolin;
+	sellitem Lute;
+	sellitem Harp;
+	sellitem Guh_Moon_Goh;
+	sellitem Guitar;
+	//Chicotes	
+	sellitem Rope;
+	sellitem Line;
+	sellitem Wire;
+	sellitem Tail;
+	sellitem Whip;
+	sellitem Rante;
+	//Guns
+	sellitem Branch;
+	sellitem Crimson_Bolt;
+	sellitem The_Cyclone;
+	sellitem Rolling_Stone;
+	sellitem Black_Rose;
+	sellitem Long_Barrel;
+	sellitem Jungle_Carbine;
+	sellitem Thunder_P;
+	//Ninja
+	sellitem Shuriken;
+	sellitem Nimbus_Shuriken;
+	sellitem Flash_Shuriken;
+	sellitem Sharp_Leaf_Shuriken;
+	sellitem Thorn_Needle_Shuriken;
+}
+
+sec_in02,150,178,0	trader	Loja de Armaduras#vip	4_M_JOB_BLACKSMITH,{
+OnInit:
+	sellitem Guard;
+	sellitem Buckler;
+	sellitem Shield;
+	sellitem Sandals;
+	sellitem Shoes;
+	sellitem Boots;
+	sellitem Hood;
+	sellitem Muffler;
+	sellitem Manteau;
+	sellitem Hat;
+	sellitem Cap;
+	sellitem Helm;
+	sellitem Circlet;
+	sellitem Cotton_Shirt;
+	sellitem Leather_Jacket;
+	sellitem Adventure_Suit;
+	sellitem Silk_Robe;
+	sellitem Silver_Robe;
+	sellitem Wooden_Mail;
+	sellitem Mantle;
+	sellitem Coat;
+	sellitem Padded_Armor;
+	sellitem Chain_Mail;
+	sellitem Plate_Armor;
+	sellitem Thief_Clothes;
+	sellitem Novice_Armlet;
+	sellitem Belt;
+	sellitem Arm_Guard;
+}
+

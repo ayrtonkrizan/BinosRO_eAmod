@@ -1,0 +1,311 @@
+////// MUITO IMPORTANTE
+// A LOJA SÓ CARREGA OS ITENS COM O COMANDO @reloadscript.
+// QUANDO USA O COMANDO @loadnpc SÓ VAI APARECER JELLOPY
+
+bat_room,160,152,5	script	Trocador de Emblemas#1	4_M_UNCLEKNIGHT,{ callfunc "initfunc"; }
+
+
+// N?cleo da Script
+//============================================================
+-	script	quest_shop	-1,{ 
+function Add; function Chk; function Slot;
+OnInit:
+	freeloop(1);
+
+// -----------------------------------------------------------
+//  Configura?es b?icas da loja.
+// -----------------------------------------------------------
+
+	set .Announce,0;	// Anunciar para o servidor assim que comprar um item? (1: sim / 0: n?)
+	set .ShowSlot,1;	// Mostrar slots nos itens? (2: todos equipamentos / 1: if slots > 0 / 0: nunca)
+	set .ShowID,0;  	// Mostrar ID dos itens? (1: sim / 0: n?)
+	set .ShowZeny,1;	// Mostrar custo de Zenys?, se houver? (1: sim / 0: n?)
+	set .MaxStack,100;	// N?mero m?imo de itens de quest comprados de uma s?vez.
+
+// -----------------------------------------------------------
+//  V?iavel de Pontos -- opcional, caso queira trocar pontos ao inves de outros itens pelas quests.
+//	setarray .Points$[0],"<nome da variavel>","<nome de exibi?o>";
+// -----------------------------------------------------------
+
+	setarray .Points$[0],"#CASHPOINTS","Cash Points";
+
+// -----------------------------------------------------------
+//  IDs Shop - para adicionar lojas, copiar dados fict?ios na parte inferior do arquivo.
+//	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
+// -----------------------------------------------------------
+
+	setarray .Shops$[1],"Consumiveis - Emblema da Bravura","Armas - Emblema da Bravura","Armaduras - Emblema da Bravura","Consumiveis - Emblema do Valor","Armas - Emblema do Valor","Armaduras - Emblema do Valor";
+
+// -----------------------------------------------------------
+//  Quest itens - N? use um item de recompensa mais do que uma vez!
+//	Add(<shop ID>,
+//		<ID premiação>,
+//		<quantidade premiação>,
+//	    <Custo de Zeny> (Pode colocar a qtd de emblema aqui pq só vai mostrar.),
+//		<Custo de pontos>,
+//	    <ID do item requirido>,
+//		<custo do iten requirido>{,...});
+// -----------------------------------------------------------
+	
+	//Consumiveis - Emblemas da Bravura
+	Add(1,578,100,1,0,7828,1); // Morango 
+	Add(1,547,50,1,0,7828,1); // Opção branca condensada
+	Add(1,7135,10,1,0,7828,1); // Frasco de Fogo Grego
+	Add(1,7136,10,1,0,7828,1); // Frasco de Acido
+	Add(1,678,10,1,0,7828,1); // EDP
+	Add(1,656,20,1,0,7828,1); // Berserk
+	Add(1,657,10,1,0,7828,1); // Despertar
+	Add(1,12029,25,1,0,7828,1); // Caixa da concentração
+	Add(1,717,20,1,0,7828,1); // Gema azul
+	Add(1,716,20,1,0,7828,1); // Gema Amarela
+	Add(1,715,20,1,0,7828,1); // Gema Vermelha
+
+
+	//Consumiveis - Emblemas do Valor
+	Add(4,578,100,1,0,7829,1); // Morango 
+	Add(4,547,50,1,0,7829,1); // Opção branca condensada
+	Add(4,7135,10,1,0,7829,1); // Frasco de Fogo Grego
+	Add(4,7136,10,1,0,7829,1); // Frasco de Acido
+	Add(4,678,10,1,0,7829,1); // EDP
+	Add(4,656,20,1,0,7829,1); // Berserk
+	Add(4,657,10,1,0,7829,1); // Despertar
+	Add(4,12029,25,1,0,7829,1); // Caixa da concentração
+	Add(4,717,20,1,0,7829,1); // Gema azul
+	Add(4,716,20,1,0,7829,1); // Gema Amarela
+	Add(4,715,20,1,0,7829,1); // Gema Vermelha
+
+	//Armas - Emblemas da Bravura
+	Add(2,13036,1,100,0,7828,100); 
+	Add(2,13411,1,100,0,7828,100);
+	Add(2,1183,1,100,0,7828,100);
+	Add(2,1425,1,100,0,7828,100);
+	Add(2,1632,1,100,0,7828,100);
+	Add(2,1634,1,100,0,7828,100);
+	Add(2,1543,1,100,0,7828,100);
+	Add(2,1380,1,100,0,7828,100);
+	Add(2,13305,1,100,0,7828,100);
+	Add(2,1739,1,100,0,7828,100);
+	Add(2,1279,1,100,0,7828,100);
+	Add(2,1924,1,100,0,7828,100);
+	Add(2,1978,1,100,0,7828,100);
+	Add(2,1574,1,100,0,7828,100);
+	Add(2,1824,1,100,0,7828,100);
+	Add(2,13108,1,100,0,7828,100);
+	Add(2,13172,1,100,0,7828,100);
+
+	//Armas - Emblemas do Valor
+	Add(5,13037,1,100,0,7829,100); 
+	Add(5,13410,1,100,0,7829,100);
+	Add(5,1184,1,100,0,7829,100);
+	Add(5,1482,1,100,0,7829,100);
+	Add(5,1633,1,100,0,7829,100);
+	Add(5,1635,1,100,0,7829,100);
+	Add(5,1542,1,100,0,7829,100);
+	Add(5,1379,1,100,0,7829,100);
+	Add(5,13306,1,100,0,7829,100);
+	Add(5,1738,1,100,0,7829,100);
+	Add(5,1280,1,100,0,7829,100);
+	Add(5,1923,1,100,0,7829,100);
+	Add(5,1977,1,100,0,7829,100);
+	Add(5,1575,1,100,0,7829,100);
+	Add(5,1823,1,100,0,7829,100);
+	Add(5,13171,1,100,0,7829,100);
+	Add(5,13173,1,100,0,7829,100);
+	Add(5,13174,1,100,0,7829,100);
+
+	//Armaduras - Emblemas da Bravura
+	Add(3,2538,1,50,0,7828,50);
+	Add(3,2539,1,50,0,7828,50);
+	Add(3,2540,1,50,0,7828,50);
+	Add(3,2435,1,50,0,7828,50);
+	Add(3,2436,1,50,0,7828,50);
+	Add(3,2437,1,50,0,7828,50);
+	Add(3,2376,1,80,0,7828,80);
+	Add(3,2377,1,80,0,7828,80);
+	Add(3,2378,1,80,0,7828,80);
+	Add(3,2379,1,80,0,7828,80);
+	Add(3,2380,1,80,0,7828,80);
+	Add(3,2381,1,80,0,7828,80);
+	Add(3,2382,1,80,0,7828,80);
+	Add(3,2733,1,500,0,7828,500);
+	Add(3,2720,1,500,0,7828,500);
+	Add(3,2721,1,500,0,7828,500);
+	Add(3,2722,1,500,0,7828,500);
+	Add(3,2723,1,500,0,7828,500);
+	Add(3,2724,1,500,0,7828,500);
+	Add(3,2725,1,500,0,7828,500);
+
+	//Armaduras - Emblemas do Valor
+	Add(6,2538,1,50,0,7829,50);
+	Add(6,2539,1,50,0,7829,50);
+	Add(6,2540,1,50,0,7829,50);
+	Add(6,2435,1,50,0,7829,50);
+	Add(6,2436,1,50,0,7829,50);
+	Add(6,2437,1,50,0,7829,50);
+	Add(6,2376,1,80,0,7829,80);
+	Add(6,2377,1,80,0,7829,80);
+	Add(6,2378,1,80,0,7829,80);
+	Add(6,2379,1,80,0,7829,80);
+	Add(6,2380,1,80,0,7829,80);
+	Add(6,2381,1,80,0,7829,80);
+	Add(6,2382,1,80,0,7829,80);
+	Add(6,2733,1,500,0,7829,500);
+	Add(6,2720,1,500,0,7829,500);
+	Add(6,2721,1,500,0,7829,500);
+	Add(6,2722,1,500,0,7829,500);
+	Add(6,2723,1,500,0,7829,500);
+	Add(6,2724,1,500,0,7829,500);
+	Add(6,2725,1,500,0,7829,500);
+
+// -----------------------------------------------------------
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "qshop"+.@i,909;
+	}
+	end;
+
+OnMenu:
+	//dispbottom "Abri menu";
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"Ocorreu um erro.";
+		end;
+	}
+	dispbottom "Selecione um item de cada vez.";
+	callshop "qshop"+.@i,1;
+	npcshopattach "qshop"+.@i;
+	end;
+
+OnBuyItem:
+	// .@q[] : RewardID, BoughtAmt, RewardAmt, BaseAmt, ReqZeny, ReqPts, { ReqItem, ReqAmt, ... }
+	setarray .@q[0],@bought_nameid[0],((@bought_quantity[0] > .MaxStack)?.MaxStack:@bought_quantity[0]);
+	copyarray .@q[3],getd(".q_"+.@q[0]+"[0]"),getarraysize(getd(".q_"+.@q[0]));
+	set .@q[2],.@q[1]*.@q[3];
+	if (!.@q[2] || .@q[2] > 30000) {
+		message strcharinfo(0),"Você pode comprar tantos "+getitemname(.@q[0])+".";
+		end;
+	}
+	mes "[Trocador de Emblemas]";
+	mes "Recompensa: ^0055FF"+((.@q[2] > 1)?.@q[2]+"x ":"")+Slot(.@q[0])+"^000000";
+	mes "Requerimentos:";
+	disable_items;
+	//Comentado linha abaixo para não comparar zenny.
+	//if (.@q[4]) mes " > "+Chk(Zeny,.@q[4]*.@q[1])+(.@q[4]*.@q[1])+" Zeny^000000";
+	if (.@q[5]) mes " > "+Chk(getd(.Points$[0]),.@q[5]*.@q[1])+(.@q[5]*.@q[1])+" "+.Points$[1]+" ("+getd(.Points$[0])+"/"+(.@q[5]*.@q[1])+")^000000";
+	if (.@q[6]) for(set .@i,6; .@i<getarraysize(.@q); set .@i,.@i+2)
+		mes " > "+Chk(countitem(.@q[.@i]),.@q[.@i+1]*.@q[1])+((.ShowID)?"{"+.@q[.@i]+"} ":"")+Slot(.@q[.@i])+" ("+countitem(.@q[.@i])+"/"+(.@q[.@i+1]*.@q[1])+")^000000";
+	next;
+	setarray @qe[1], getiteminfo(.@q[0],5), getiteminfo(.@q[0],11);
+	if (@qe[2] > 0 && ((@qe[1] & 1) || (@qe[1] & 256) || (@qe[1] & 512) || (@qe[1] & 1024) || (@qe[1] & 2048) || (@qe[1] & 4096) || (@qe[1] & 4) || (@qe[1] & 8192)))
+		set .@preview,1;
+	addtimer 1000, strnpcinfo(0)+"::OnEnd";
+	while(1) {
+		switch(select(" ~ Comprar ^0055FF"+getitemname(.@q[0])+"^000000:"+((.@preview && !@qe[7])?" ~ Visualizar...":"")+": ~ ^777777Cancelar^000000")) {
+		case 1:
+			if (@qe[0]) { 
+				mes "[Trocador de Emblemas]";
+				mes "Você tem os itens requeridos para completar essa compra.";
+				close;
+			}
+			if (!checkweight(.@q[0],.@q[2])) {
+				mes "[Trocador de Emblemas]";
+				mes "^FF0000Você precisa de "+(((.@q[2]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" capacidade de peso adicional para completar est?negocia?o^000000";
+				close;
+			}
+			// Comentado linha abaixo para não descontar zenny no momento da compra.
+			//if (.@q[4]) set Zeny, Zeny-(.@q[4]*.@q[1]);
+			if (.@q[5]) setd .Points$[0], getd(.Points$[0])-(.@q[5]*.@q[1]);
+			if (.@q[6]) for(set .@i,6; .@i<getarraysize(.@q); set .@i,.@i+2)
+				delitem .@q[.@i],.@q[.@i+1]*.@q[1];
+			getitem .@q[0],.@q[2];
+			if (.Announce) announce strcharinfo(0)+" trocou suas emblemas pelo item "+((.@q[2] > 1)?.@q[2]+"x "+getitemname(.@q[0]):callfunc("F_InsertArticle",getitemname(.@q[0])))+"!",0;
+			specialeffect2 EF_FLOWERLEAF;
+			close;
+		case 2:
+			setarray @qe[3], getlook(LOOK_HEAD_BOTTOM), getlook(LOOK_HEAD_TOP), getlook(LOOK_HEAD_MID), getlook(LOOK_ROBE), 1;
+			if ((@qe[1] & 1) || (@qe[1] & 4096)) changelook LOOK_HEAD_BOTTOM, @qe[2];
+			else if ((@qe[1] & 256) || (@qe[1] & 1024)) changelook LOOK_HEAD_TOP, @qe[2];
+			else if ((@qe[1] & 512) || (@qe[1] & 2048)) changelook LOOK_HEAD_MID, @qe[2];
+			else if ((@qe[1] & 4) || (@qe[1] & 8192)) changelook LOOK_ROBE, @qe[2];
+			break;
+		case 3:
+			close;
+		}
+	}
+
+	OnEnd:
+		if (@qe[7]) {
+			changelook LOOK_HEAD_BOTTOM, @qe[3];
+			changelook LOOK_HEAD_TOP, @qe[4];
+			changelook LOOK_HEAD_MID, @qe[5];
+			changelook LOOK_ROBE, @qe[6];
+		}
+		deletearray @qe[0],8;
+		end;
+
+	function Add {
+		if (getitemname(getarg(1)) == "null") {
+			debugmes "Recompensa #"+getarg(1)+" invalid (skipped).";
+			return;
+		}
+		setarray .@j[0],getarg(2),getarg(3),getarg(4);
+		for(set .@i,5; .@i<getargcount(); set .@i,.@i+2) {
+			if (getitemname(getarg(.@i)) == "null") {
+				debugmes "Requerimentos da Compra #"+getarg(.@i)+" invalid (skipped).";
+				return;
+			} else
+				setarray .@j[.@i-2],getarg(.@i),getarg(.@i+1);
+		}
+		copyarray getd(".q_"+getarg(1)+"[0]"),.@j[0],getarraysize(.@j);
+		npcshopadditem "qshop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+		return;
+	}
+
+	function Chk {
+		if (getarg(0) < getarg(1)) {
+			set @qe[0],1;
+			return "^FF0000";
+		} else
+			return "^00FF00";
+	}
+
+	function Slot {
+		set .@s$,getitemname(getarg(0));
+		switch(.ShowSlot) {
+			case 1: if (!getitemslots(getarg(0))) return .@s$;
+			case 2: if (getiteminfo(getarg(0),2) == 4 || getiteminfo(getarg(0),2) == 5) return .@s$+" ["+getitemslots(getarg(0))+"]";
+			default: return .@s$;
+		}
+	}
+}
+
+function	script	initfunc	{
+	deletearray @i[0],getarraysize(@i);
+	//dispbottom  "lop rfunc";
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1){
+		set @i[.@i],getarg(.@i);
+	}
+	doevent "quest_shop::OnMenu";
+	end;
+}
+
+
+// Dados loja Dummy - copiar, conforme necess?io.
+//============================================================
+-	shop	qshop1	-1,909:-1
+-	shop	qshop2	-1,909:-1
+-	shop	qshop3	-1,909:-1
+-	shop	qshop4	-1,909:-1
+-	shop	qshop5	-1,909:-1
+-	shop	qshop6	-1,909:-1
