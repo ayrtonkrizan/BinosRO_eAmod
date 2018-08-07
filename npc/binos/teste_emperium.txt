@@ -1,8 +1,8 @@
 //pvp_n_4-5	mapflag	restricted	7
 pvp_n_4-5	mapflag	gvg_castle
 
-sec_in02,147,168,4	script	Emp Breaker Test	4_M_GUILLOTINE,{
-   	if (getgroupid() < 1)
+sec_in02,147,168,4	script	Emp Breaker Test	467,{
+   	if (getgmlevel() < 1)
 	{
 		warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
 		end;
@@ -27,7 +27,7 @@ sec_in02,147,168,4	script	Emp Breaker Test	4_M_GUILLOTINE,{
     
     mes "Gostaria de tentar outro recorde?";
     next;
-    if (getgroupid()==99) { menu "Standard Menu",-,"Reset",L_reset,"Reset Rooms",L_emptyrooms,"Exit",L_exit;}
+    if (getgmlevel()==99) { menu "Standard Menu",-,"Reset",L_reset,"Reset Rooms",L_emptyrooms,"Exit",L_exit;}
     menu "Sim",-,"Não",L_exit,"Resetar Recorde",L_resc;
     cleararray .arena$[0],"",4;
     mes "[Emperium Breaker Test]";

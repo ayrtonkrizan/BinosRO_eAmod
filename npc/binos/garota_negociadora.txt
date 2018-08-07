@@ -5,7 +5,7 @@
 	next;
 	mes "[Garota Negociante]";
 	if ((BaseClass == 5 || Class == 23|| Class == 4190 || Class == 4191) && !checkcart() && getskilllv(39)) setcart();
-	else if (BaseClass == 1 && !checkmount() && getskilllv(63)) setmount();
+	else if (BaseClass == 1 && !checkriding() && getskilllv(63)) setriding();
 	else if (BaseClass == 3 && !checkfalcon() && getskilllv(127)) setfalcon();
 	else
 	{
@@ -16,5 +16,5 @@
 	mes "Aqui está, faça bom proveito!";
 	close;
 }
-sec_in02,137,168,4	duplicate(Garota_Negociante)	Garota Negociante#vip	4_F_01
-prontera,143,194,4	duplicate(Garota_Negociante)	Garota Negociante#prt	4_F_01
+sec_in02,137,168,4	duplicate(Garota_Negociante)	Garota Negociante#vip	90
+prontera,144,193,4	duplicate(Garota_Negociante)	Garota Negociante#prt	90

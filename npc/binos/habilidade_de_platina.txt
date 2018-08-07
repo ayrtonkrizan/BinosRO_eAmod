@@ -1,4 +1,4 @@
-prontera,145,193,5	script	Habilidades de Platina	4_F_MAID,{
+prontera,146,192,5	script	Habilidades de Platina	94,{
 	mes "[ Habilidades de Platina ]";
 	mes "Olá, "+strcharinfo(0)+", eu posso fornecer a você habilidades extras para sua classe.";
 	mes "Deseja receber suas habilidades extras agora?";

@@ -1,5 +1,5 @@
 -	script	Resetadora	-1,{
-	if(getgroupid() <1){
+	if(isPremium() <1){
 		set .@ResetStat, 75000;	// Zeny requeridos para resetar atributos.
 		set .@ResetSkill,75000;	// Zeny requeridos para resetar habilidades.
 		set .@ResetBoth, 100000;// Zeny requeridos para resetar ambos.
@@ -22,7 +22,7 @@
 			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
 			close;
 		}
-		Zeny -= .@ResetSkill;
+		set Zeny,Zeny-.@ResetSkill;
 		sc_end SC_ALL;
 		resetskill;
 		mes "Pronto Atributos resetados, volte quando precisar de algum serviço.";
@@ -33,7 +33,7 @@
 			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
 			close;
 		}
-		Zeny -= .@ResetStat;
+		set Zeny,Zeny-.@ResetStat;
 		resetstatus;
 		mes "Pronto Habilidades resetadas, volte quando precisar de algum serviço.";
 		close;
@@ -43,7 +43,7 @@
 			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
 			close;
 		}
-		Zeny -= .@ResetBoth;
+		set Zeny,Zeny-.@ResetBoth;
 		sc_end SC_ALL;
 		resetskill;
 		resetstatus;
@@ -56,5 +56,5 @@
 	}
 }
 
-sec_in02,145,168,4	duplicate(Resetadora)	Resetadora#vip	4_F_TELEPORTER
-prontera,147,192,5	duplicate(Resetadora)	Resetadora#prt	4_F_TELEPORTER
+sec_in02,145,168,4	duplicate(Resetadora)	Resetadora#vip	412
+prontera,148,191,5	duplicate(Resetadora)	Resetadora#prt	412

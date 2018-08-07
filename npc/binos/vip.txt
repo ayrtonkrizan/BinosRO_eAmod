@@ -1,7 +1,10 @@
-prontera,146,179,5	script	TesteVIP	2_BULLETIN_BOARD,{
-
-	// Adiciona o vip por 5min
-	add_time_vip(0, 0, 5, 0);
+prontera,154,193,5	script	Quadro de Avisos	837,{
+	//Comentar linhas abaixo para suspender vip gratuito;
+	set .@Time, 60 * 60; // 1 hora
+	set #Premium_Tick, #Premium_Tick + .@Time;
+	set @vipRestante$, callfunc("calc_time", #Premium_Tick);
+	dispbottom "Você também pode usar o comando @vip para verificar o tempo restante";
+	dispbottom "Você possui \""+@vipRestante$+"\" restante de tempo vip.";
 	end;
 
 }
@@ -10,13 +13,13 @@ prontera,146,179,5	script	TesteVIP	2_BULLETIN_BOARD,{
 		bindatcmd "vip",strnpcinfo(3)+"::OnAtcommand";
 		end;
 	OnAtcommand:
-		//@vipRestante$ = callfunc("calc_time", #official_time_vip);
-		@vipRestante$ = show_time_vip();
+		set @vipRestante$, callfunc("calc_time", #Premium_Tick);
+		//set @vipRestante$, show_time_vip();
 
 		if(getstrlen(@vipRestante$) == 0)
-			dispbottom "VocÃª nÃ£o possui mais vip!";
+			dispbottom "Você não possui mais vip!";
 		else
-			dispbottom "VocÃª possui \""+@vipRestante$+"\" restante de tempo vip.";
+			dispbottom "Você possui \""+@vipRestante$+"\" restante de tempo vip.";
 
 		end;
 }
@@ -24,7 +27,7 @@ prontera,146,179,5	script	TesteVIP	2_BULLETIN_BOARD,{
 sec_in02,0,0,0	script	CheckVIP	-1,500,500,{
 end;
 	OnPCLoadMapEvent:
-		if (getgroupid() < 1 && strcharinfo(3) == "sec_in02")
+		if (isPremium() < 1 && strcharinfo(3) == "sec_in02")
 			warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
 		end;
 }
@@ -61,3 +64,9 @@ function	script	calc_time	{
 			set .@ret$,(.@t/2592000)+" mes(es) "+.@ret$;
 		return .@ret$;
 }
+
+
+-	cashshop	LojaVip	-1,7282:10000,7283:1000
+
+sec_in02,161,178,4	duplicate(LojaVip)	Cilada (Cash Shop)#vip	72
+prontera,156,191,4	duplicate(LojaVip)	Cilada (Cash Shop)#prt	72

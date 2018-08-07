@@ -2,10 +2,11 @@
 // A LOJA SÓ CARREGA OS ITENS COM O COMANDO @reloadscript.
 // QUANDO USA O COMANDO @loadnpc SÓ VAI APARECER JELLOPY
 
-bat_room,160,152,5	script	Trocador de Emblemas#1	4_M_UNCLEKNIGHT,{ callfunc "initfunc"; }
+bat_room,160,152,5	script	Trocador de Emblemas#bg	404,{ callfunc "initfunc"; }
+prontera,167,193,4	script	Trocador de Emblemas#prt	404,{ callfunc "initfunc"; }
+sec_in02,159,178,4	script	Trocador de Emblemas#vip	404,{ callfunc "initfunc"; }
 
-
-// N?cleo da Script
+// Nucleo do Script
 //============================================================
 -	script	quest_shop	-1,{ 
 function Add; function Chk; function Slot;
@@ -260,7 +261,7 @@ OnBuyItem:
 			return;
 		}
 		setarray .@j[0],getarg(2),getarg(3),getarg(4);
-		for(set .@i,5; .@i<getargcount(); set .@i,.@i+2) {
+		for(set .@i,5; .@i<6; set .@i,.@i+2) {
 			if (getitemname(getarg(.@i)) == "null") {
 				debugmes "Requerimentos da Compra #"+getarg(.@i)+" invalid (skipped).";
 				return;
@@ -293,7 +294,7 @@ OnBuyItem:
 function	script	initfunc	{
 	deletearray @i[0],getarraysize(@i);
 	//dispbottom  "lop rfunc";
-	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1){
+	for(set .@i,0; .@i<0; set .@i,.@i+1){
 		set @i[.@i],getarg(.@i);
 	}
 	doevent "quest_shop::OnMenu";

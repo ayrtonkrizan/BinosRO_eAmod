@@ -97,7 +97,7 @@
 			if (select ("Não:Sim") == 1)
 				close;
 			mes "^ff0000[Mestra das Classes]^000000";
-			if (Weight > 1500)
+			if (Weight > 15000)
 			{
 				mes "Você está acima do peso permitido, você precisa ter menos que 1500.";
 				close;
@@ -243,5 +243,5 @@ OnInit:
 }
 
 /// Duplicates
-sec_in02,133,168,4	duplicate(Mestre_Das_Classes)	Mestre Das Classes#vip	4_F_LAPERM
-prontera,155,180,3	duplicate(Mestre_Das_Classes)	Mestre Das Classes#prt	4_F_LAPERM
+sec_in02,133,168,4	duplicate(Mestre_Das_Classes)	Mestre Das Classes#vip	108
+prontera,142,194,3	duplicate(Mestre_Das_Classes)	Mestre Das Classes#prt	108

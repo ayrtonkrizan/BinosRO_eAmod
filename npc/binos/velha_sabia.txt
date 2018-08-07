@@ -12,7 +12,7 @@ set .@vip, 1;  // Verifica se o usuario tem que ser vip [1=sim/0=não]
 		mes "[Velha Sábia]";
 	
 		case 1:
-			if(getgroupid() <1 && .@vip){ //Verifica se eh VIP
+			if(getgmlevel() <1 && .@vip){ //Verifica se eh VIP
 				callsub F_MesThenClose, "Meus serviços são muito cansativos por isso só posso faze-los para um grupo seleto de pessoas. Para entrar nesse grupo visite o site www.binosro.com.br";
 			}
 			mes "Então, qual item você quer que eu examine?";
@@ -88,5 +88,5 @@ set .@vip, 1;  // Verifica se o usuario tem que ser vip [1=sim/0=não]
 	return;
 }
 
-sec_in02,131,168,4	duplicate(Velha_Sabia)	Velha Sábia#vip	1_F_ORIENT_04
-prontera,149,191,4	duplicate(Velha_Sabia)	Velha Sábia#prt	1_F_ORIENT_04
+sec_in02,131,168,4	duplicate(Velha_Sabia)	Velha Sábia#vip	78
+prontera,150,190,4	duplicate(Velha_Sabia)	Velha Sábia#prt	78

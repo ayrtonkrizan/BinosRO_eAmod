@@ -1,0 +1,19 @@
+-	script	Teste	-1,{
+	mes "Itens Equipados.";
+	next;
+		setarray .@Position$[1],"Topo","Meio","Baixo";
+		setarray .@Position[1],     1,    9,   10;
+		set .@Menu$,"";
+	for( set .@i, 1; .@i < 256; set .@i, .@i + 1 )
+	{
+		if( getequipisequiped(.@i) )
+		set .@Menu$, .@Menu$ + .@i + "-" + "[" + getequipname(.@i) + "]";
+		set .@Menu$, .@Menu$ + ":";
+	}
+	set .@Part, .@Position[ select(.@Menu$) ];
+	close;
+}
+sec_in02,178,176,4	cashshop	CashShop#vip	630,7282:10000,7283:1000
+
+
+prontera,170,196,4	duplicate(Teste)	Testebinos	631

@@ -39,7 +39,7 @@
 		set @ccolor, getlook (7);
 		
 		if (.novip_can_acess == 0) {
-			if (getgroupid () < .vip_needed) {
+			if (isPremium()) {
 				set .save_style$, "";
 				set .load_style$, "";
 			} else {
@@ -68,7 +68,7 @@
 		switch (select ("- Próximo.:- Anterior.:- Escolher número.:- Gostei deste.")) {
 			case 1: { //Próximo
 				if (.vip_needed > 0) {
-					if (getgroupid () < .vip_needed) {
+					if (getgmlevel () < .vip_needed) {
 						if (@hstyle >= .max_hstyle) {
 							mes .npcname$;
 							mes "Seu estilo de cabelo já é o último que possuo em meu catálogo.";
@@ -123,7 +123,7 @@
 			case 3: { //Escolher Número
 				mes .npcname$;
 				if (.vip_needed > 0) {
-					if (getgroupid () < .vip_needed) {
+					if (getgmlevel () < .vip_needed) {
 						mes "Escolha um número entre ^FF0000"+.min_hstyle+"^000000 e ^FF0000"+.max_hstyle+"^000000.";
 						next;
 						input @input,.min_hstyle,.max_hstyle;
@@ -172,7 +172,7 @@
 		switch (select ("- Próxima.:- Anterior.:- Escolher número.:- Gostei desta.")) {
 			case 1: { //Próxima
 				if (.vip_needed > 0) {
-					if (getgroupid () < .vip_needed) {
+					if (getgmlevel () < .vip_needed) {
 						if (@hcolor >= .max_hcolor) {
 							mes .npcname$;
 							mes "Sua cor de cabelo já é a última que possuo em meu catálogo.";
@@ -227,7 +227,7 @@
 			case 3: { //Escolher Número
 				mes .npcname$;
 				if (.vip_needed > 0) {
-					if (getgroupid () < .vip_needed) {
+					if (getgmlevel () < .vip_needed) {
 						mes "Escolha um número entre ^FF0000"+.min_hcolor+"^000000 e ^FF0000"+.max_hcolor+"^000000.";
 						next;
 						input @input,.min_hcolor,.max_hcolor;
@@ -276,7 +276,7 @@
 		switch (select ("- Próxima.:- Anterior.:- Escolher número.:- Gostei desta.")) {
 			case 1: { //Próxima
 				if (.vip_needed > 0) {
-					if (getgroupid () < .vip_needed) {
+					if (getgmlevel () < .vip_needed) {
 						if (@ccolor >= .max_ccolor) {
 							mes .npcname$;
 							mes "Sua cor de roupa já é a última que possuo em meu catálogo.";
@@ -331,7 +331,7 @@
 			case 3: { //Escolher Número
 				mes .npcname$;
 				if (.vip_needed > 0) {
-					if (getgroupid () < .vip_needed) {
+					if (getgmlevel () < .vip_needed) {
 						mes "Escolha um número entre ^FF0000"+.min_ccolor+"^000000 e ^FF0000"+.max_ccolor+"^000000.";
 						next;
 						input @input,.min_ccolor,.max_ccolor;
@@ -643,6 +643,5 @@
 }
 
 
-///prontera,169,179,3	script	[ Estilista ]	2_M_DYEINGER,{
-prontera,169,179,3	duplicate(Estilista)	Estilista#prt	2_M_DYEINGER
-sec_in02,156,183,3	duplicate(Estilista)	Estilista#vip	2_M_DYEINGER
+prontera,169,179,3	duplicate(Estilista)	Estilista#prt	122
+sec_in02,156,183,3	duplicate(Estilista)	Estilista#vip	122

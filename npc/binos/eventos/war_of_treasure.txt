@@ -128,11 +128,11 @@ prontera,145,201,5	script	Bino das Tretas	730,{
 		if(.@debug){
 			announce "[Bino das Treta] Start", bc_blue|bc_all;
 		}
-		if (!getmapusers("prt_are_in")) {
-			announce "[Bino das Treta] O evento foi cancelado devido a falta de jogadores T_T", bc_all|bc_blue;
-			callsub S_CallFinish;
-			end;
-		}
+		//if (!getmapusers("prt_are_in")) {
+		//	announce "[Bino das Treta] O evento foi cancelado devido a falta de jogadores T_T", bc_all|bc_blue;
+		//	callsub S_CallFinish;
+		//	end;
+		//}
 
 		disablenpc "Tutorial";
 		enablenpc "WarpToWOT";
@@ -195,7 +195,7 @@ prontera,145,201,5	script	Bino das Tretas	730,{
 		else {
 			//Berry, Seed, OCA, EDP, Dex+10, Bottle Granade, Acid
 			setarray .@RandItems[0], 607, 608, 616, 678, 12095, 7135, 7136;
-			setarray .@RandQuant[0], 20, 50, 5, 50, 5, 50, 50;
+			setarray .@RandQuant[0], 20, 50, 3, 15, 3, 20, 20;
 			
 			set .@rand, rand(0, (getarraysize(.@RandItems)-1));
 			

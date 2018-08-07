@@ -7,7 +7,7 @@
 	//==============================================================
 
 	set .Cobrar, 0; /// Não mexer nessa variavel
-	if (getgroupid() < 1 && .vip == 1)
+	if (isPremium() < 1 && .vip == 1)
 	{
 		mes "[Anunciador VIP]";
 		close;
@@ -19,7 +19,7 @@
 	mes "Olá, como posso ajudá-l"+((Sex)?"o":"a")+" ?";
 	mes "Cada mensagem tem intervalo de 60 segundos para ser enviada.";
 	if(.Zeny >0){
-		if(getgroupid()<1 && .vip == 2){
+		if(isPremium()<1 && .vip == 2){
 			mes "Como você não é de um grupo ^0000DDVIP^000000 preciso cobrar de você as mensagens personalizadas.";
 			mes "O custo é de:" + .Zeny+ "z por mensagem";
 		}
@@ -82,8 +82,8 @@
 		mes .NPCName$;
 		mes "Mensagem enviada!";
 		if(.Zeny >0 && .Cobrar){
-			if(getgroupid()<1 && .vip == 2){
-				Zeny -= .Zeny;
+			if(isPremium()<1 && .vip == 2){
+				set Zeny, Zeny - .Zeny;
 			}
 		}
 		close2;
@@ -94,5 +94,5 @@
 // --------------------------------------------------------------------------
 // Use duplicates to put your npc on different cities
 // --------------------------------------------------------------------------
-prontera,165,180,3	duplicate(Anunciador)	Anunciador#prt	4_M_BIRMAN
-sec_in02,141,168,4	duplicate(Anunciador)	Anunciador#vip	4_M_BIRMAN
+prontera,165,180,3	duplicate(Anunciador)	Anunciador#prt	61
+sec_in02,141,168,4	duplicate(Anunciador)	Anunciador#vip	61

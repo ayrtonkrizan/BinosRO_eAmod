@@ -1,14 +1,16 @@
+//Comentei a parte de voltar ao normal pois acho que não vai ter mais.
 -	script	Roleiro	-1,{
-	.@Title$ = "[Roleiro]";
-	.usaItem = 7283; // ID do item cobrado. para desativar essa opção deixar em -1
+	set .@Title$, "[Roleiro]";
+	set .usaItem, 7283; // ID do item cobrado. para desativar essa opção deixar em -1
 	mes .@Title$;
 	mes "Oi,";
 	mes "Para utilizar meus serviços é necessário um ^4B0082Ticket de troca visual^000000."; 
 	mes "Eu posso trocar qualquer chapéu que você possuir por um visual.";
 	mes "Nesse caso você perderia qualquer benefício que este HAT te der. Mas você poderia usar outro chapéu e usufruir os benefícios dele e esse ficaria apenas com a aparência no seu char";
-	mes "Caso você preferir também posso tranformar qualquer HAT visual em normal. e você usuária os benefícios desse HAT.";
+	//mes "Caso você preferir também posso tranformar qualquer HAT visual em normal. e você usuária os benefícios desse HAT.";
 
-	switch(select("Converter para visual.:Restaurar ao chapéu.:Não, obrigado.")) {
+	//switch(select("Converter para visual.:Restaurar ao chapéu.:Não, obrigado.")) {
+	switch(select("Converter para visual.:Não, obrigado.")) {
 	case 1:
 			next;
 			if(!countitem(.usaItem) && .usaItem){
@@ -88,7 +90,7 @@
 			mes .@Title$;
 			mes "Pronto! Aproveite seu chapéu.";
 			close;
-	case 2:
+	case 3:
 			next;
 			if(!countitem(.usaItem) && .usaItem){
 				mes "Você não possuí nenhum ^4B0082Ticket de troca visual^000000";
@@ -124,7 +126,7 @@
 				mes "Tudo bem, eu entendo.";
 				close;
 			}
-			a = getequipid(.@Part);
+			set a, getequipid(.@Part);
 			if(!countitem(.usaItem) && .usaItem){
 				mes "Você não possuí nenhum ^4B0082Ticket de troca visual^000000";
 				close;
@@ -137,12 +139,12 @@
 			mes .@Title$;
 			mes "Pronto, seu chapéu foi restaurado.";
 			close;
-	case 3:
+	case 2:
 		next;
 		mes .@Title$;
 		mes "Muito bem. Retorne quando precisar de meus serviços.";
 		close;
 	}
 }
-prontera,169,194,4	duplicate(Roleiro)	Roleiro#prt	4_BLACKDRAGON
-sec_in02,152,178,4	duplicate(Roleiro)	Roleiro#vip	4_BLACKDRAGON
+prontera,169,194,4	duplicate(Roleiro)	Roleiro#prt	631
+sec_in02,152,178,4	duplicate(Roleiro)	Roleiro#vip	631

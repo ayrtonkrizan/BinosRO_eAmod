@@ -54,7 +54,7 @@ M_Save:
 
 // Sul
 //============================================================
-prontera,151,29,0	script	Funcionária Kafra::kaf_prontera2	115,{
+prontera,164,173,3	script	Funcionária Kafra::kaf_prontera2	115,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSetPront";
 	mes "[Funcionária Kafra]";

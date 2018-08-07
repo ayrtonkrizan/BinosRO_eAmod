@@ -1,5 +1,5 @@
-sec_in02,143,168,5	script	Refinador VIP	2_M_OLDBLSMITH,{
-	if (getgroupid() < 1)
+sec_in02,143,168,5	script	Refinador VIP	813,{
+	if (isPremium() < 1)
 	{
 		warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
 		end;
@@ -19,7 +19,7 @@ function	script	refinemain1	{
 	setarray .@position$[1], "Cabeça cima","Corpo","Mão esquerda","Mão direita","Capa","Botas","Accessório 1","Accessório 2","Cabeça meio","Cabeça baixo";
 	set .@menu$,"";
 	for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
-	{
+	{ 
 		if( getequipisequiped(.@i) )
 			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
 
