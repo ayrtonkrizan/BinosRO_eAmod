@@ -1,7 +1,7 @@
-﻿Build started 05/08/2018 13:11:12.
-     1>Project "C:\Developments\BinosRO\emulador\vcproj-12\common.vcxproj" on node 2 (Build target(s)).
+﻿Build started 07/08/2018 21:51:39.
+     1>Project "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\common.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\src\common /I..\3rdparty\msinttypes\include /I..\3rdparty\mt19937ar /I..\3rdparty\zlib\old\include /Zi /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D FD_SETSIZE=4096 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"common\Debug\\" /Fd"common\Debug\vc120.pdb" /Gd /TC /wd4996 /FIconfig.vc.h /analyze- /errorReport:prompt ..\3rdparty\mt19937ar\mt19937ar.c ..\src\common\core.c ..\src\common\db.c ..\src\common\des.c ..\src\common\ers.c ..\src\common\grfio.c ..\src\common\lock.c ..\src\common\malloc.c ..\src\common\mapindex.c ..\src\common\md5calc.c ..\src\common\nullpo.c ..\src\common\plugins.c ..\src\common\random.c ..\src\common\showmsg.c ..\src\common\socket.c ..\src\common\strlib.c ..\src\common\timer.c ..\src\common\utils.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\src\common /I..\3rdparty\msinttypes\include /I..\3rdparty\mt19937ar /I..\3rdparty\zlib\old\include /Zi /nologo /W3 /WX- /MP /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _LIB /D FD_SETSIZE=4096 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"common\Debug\\" /Fd"common\Debug\vc120.pdb" /Gd /TC /wd4996 /FIconfig.vc.h /analyze /analyze:plugin"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\\bin\localespc.dll" /errorReport:prompt   /analyze:quiet ..\3rdparty\mt19937ar\mt19937ar.c ..\src\common\core.c ..\src\common\db.c ..\src\common\des.c ..\src\common\ers.c ..\src\common\grfio.c ..\src\common\lock.c ..\src\common\malloc.c ..\src\common\mapindex.c ..\src\common\md5calc.c ..\src\common\nullpo.c ..\src\common\plugins.c ..\src\common\random.c ..\src\common\showmsg.c ..\src\common\socket.c ..\src\common\strlib.c ..\src\common\timer.c ..\src\common\utils.c
          mt19937ar.c
          core.c
          db.c
@@ -39,9 +39,27 @@
          common\Debug\strlib.obj
          common\Debug\timer.obj
          common\Debug\utils.obj
-         common.vcxproj -> C:\Developments\BinosRO\emulador\vcproj-12\common\Debug\common.lib
-     1>Done Building Project "C:\Developments\BinosRO\emulador\vcproj-12\common.vcxproj" (Build target(s)).
+         common.vcxproj -> C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\common\Debug\common.lib
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\db.c(539): warning C6011: Dereferencing NULL pointer 'x'. See line 540 for an earlier location where this can occur
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\grfio.c(460): warning C6054: String 'grf_header' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\grfio.c(609): warning C6054: String 'w2' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\lock.c(45): warning C6031: Return value ignored: 'rename'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\malloc.c(260): warning C6011: Dereferencing NULL pointer 'large'. 
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\malloc.c(267): warning C6011: Dereferencing NULL pointer 'head'. 
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\mapindex.c(159): warning C6385: Reading invalid data from 'mapindex_indexes':  the readable size is '8000' bytes, but 'index' bytes may be read.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\plugins.c(162): warning C6031: Return value ignored: 'sscanf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\plugins.c(163): warning C6031: Return value ignored: 'sscanf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\plugins.c(316): warning C6054: String 'w1' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\plugins.c(317): warning C6054: String 'w2' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\socket.c(687): warning C6262: Function uses '16412' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\socket.c(1045): warning C6054: String 'w1' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\socket.c(1078): warning C6054: String 'w2' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\strlib.c(954): warning C6053: The prior call to '_snprintf' might not zero-terminate string 'path'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\timer.c(144): warning C28159: Consider using 'GetTickCount64' instead of 'GetTickCount'. Reason: GetTickCount overflows roughly every 49 days.  Code that does not take that into account can loop indefinitely.  GetTickCount64 operates on 64 bit values and does not have that problem
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\utils.c(105): warning C28182: Dereferencing NULL pointer. 'p' contains the same NULL value as 'path' did. 
+     1>c:\developments\binosro\binosro_emulador_eamod\src\common\utils.c(105): warning C6011: Dereferencing NULL pointer 'srcpath'. 
+     1>Done Building Project "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\common.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.37
+Time Elapsed 00:00:43.36

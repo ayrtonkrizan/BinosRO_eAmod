@@ -3935,8 +3935,9 @@
 7279,Vita500_Lid,Vita500 Lid,3,10,,10,,,,,,,,,,,,,{},{},{}
 7280,Quiz_Ticket01,Ticket de Atributos,3,0,,10,,,,,,,,,,,,,{},{},{}
 7281,Quiz_Ticket02,2nd Quiz Entry,3,0,,10,,,,,,,,,,,,,{},{},{}
-7282,Quiz_Ticket03,3rd Quiz Entry,3,0,,10,,,,,,,,,,,,,{},{},{}
-7283,Quiz_Ticket04,4th Quiz Entry,3,0,,10,,,,,,,,,,,,,{},{},{}
+7282,Ticket_VIP_30,Ticket Vip 30 dias,2,1500,,150,,,,,0xFFF7FEEF,7,2,,,1,,,{ if(isPremium() == 1) set #Premium_Tick, #Premium_Tick + 2592000; else set #Premium_Tick, gettimetick(2) + 2592000; },{},{}
+//7282,Ticket Vip 30 dias,3rd Quiz Entry,2,0,,10,,,,,,,,,,,,,{ if(isPremium() == 1) set #Premium_Tick, #Premium_Tick + 2592000; else set #Premium_Tick, gettimetick(2) + 2592000; },{},{}
+7283,Ticket_Troca_Visual,Ticket troca visual,3,0,,10,,,,,,,,,,,,,{},{},{}
 7284,Quiz_Ticket05,5th Quiz Entry,3,0,,10,,,,,,,,,,,,,{},{},{}
 7285,Thread_Skein,Linha Sagrada,3,2,,10,,,,,,,,,,,,,{},{},{}
 7286,Chilli,Pimenta Vermelha,3,20,,10,,,,,,,,,,,,,{},{},{}

@@ -476,6 +476,478 @@ ACMD_FUNC(mapmove)
 	return 0;
 }
 
+//***** Funcoes criadas por Ayrton Krizan *****//
+ACMD_FUNC(move) {
+	int town = INT_MAX; // Initialized to INT_MAX instead of -1 to avoid conflicts with those who map [-3:-1] to @memo locations.
+	char map_name[MAP_NAME_LENGTH];
+	unsigned short mapindex;
+	int16 m;
+
+#pragma region mapas
+	const struct {
+		char map[MAP_NAME_LENGTH];
+		int x, y;
+		int group_min;// Minimo de grupo permitido para o warp 
+		//int min_match; ///< Minimum string length to match
+	} data[] = {
+		///### Cities
+		// Amatsu
+		{ "ama_fild01", 190, 197, 1 },
+
+		//Ayothaya
+		{ "ayo_fild01", 173, 134, 1 },
+		{ "ayo_fild02", 212, 150, 1 },
+
+		//Comodo
+		{ "cmd_fild01", 180, 178, 1 },
+		{ "cmd_fild02", 231, 160, 1 },
+		{ "cmd_fild03", 191, 172, 1 },
+		{ "cmd_fild04", 228, 194, 1 },
+		{ "cmd_fild05", 224, 203, 1 },
+		{ "cmd_fild06", 190, 223, 1 },
+		{ "cmd_fild07", 234, 177, 1 },
+		{ "cmd_fild08", 194, 175, 1 },
+		{ "cmd_fild09", 172, 172, 1 },
+
+		//Einbroch
+		{ "ein_fild01", 142, 225, 1 },
+		{ "ein_fild02", 182, 141, 1 },
+		{ "ein_fild03", 187, 228, 1 },
+		{ "ein_fild04", 185, 173, 1 },
+		{ "ein_fild05", 216, 173, 1 },
+		{ "ein_fild06", 195, 148, 1 },
+		{ "ein_fild07", 272, 220, 1 },
+		{ "ein_fild08", 173, 214, 1 },
+		{ "ein_fild09", 207, 174, 1 },
+		{ "ein_fild10", 196, 200, 1 },
+
+		//Geffen
+		{ "gef_fild01", 46, 199, 1 },
+		{ "gef_fild02", 213, 204, 1 },
+		{ "gef_fild03", 195, 212, 1 },
+		{ "gef_fild04", 257, 192, 1 },
+		{ "gef_fild05", 188, 171, 1 },
+		{ "gef_fild06", 166, 263, 1 },
+		{ "gef_fild07", 248, 158, 1 },
+		{ "gef_fild08", 195, 191, 1 },
+		{ "gef_fild09", 186, 183, 1 },
+		{ "gef_fild10", 221, 117, 1 },
+		{ "gef_fild11", 178, 218, 1 },
+		{ "gef_fild12", 136, 328, 1 },
+		{ "gef_fild13", 240, 181, 1 },
+		{ "gef_fild14", 235, 235, 1 },
+		{ "gef_fild15", 211, 185, 1 },
+
+		//Gondun
+		{ "gon_fild01", 220, 227, 1 },
+
+		//Huriel
+		{ "hu_fild01", 268, 101, 1 },
+		{ "hu_fild02", 222, 193, 1 },
+		{ "hu_fild03", 232, 185, 1 },
+		{ "hu_fild04", 252, 189, 1 },
+		{ "hu_fild05", 196, 106, 1 },
+		{ "hu_fild06", 216, 220, 1 },
+		{ "hu_fild07", 227, 197, 1 },
+
+		//Ligthhalzen
+		{ "lhz_fild01", 240, 179, 1 },
+		{ "lhz_fild02", 185, 235, 1 },
+		{ "lhz_fild03", 240, 226, 1 },
+
+		//Louyang
+		{ "lou_fild01", 229, 187, 1 },
+
+		//Lutie
+		{ "xmas_fild01", 115, 145, 2 }, ///Haiti
+
+		//Man qq coisa
+		{ "man_fild01", 35, 236, 1 },
+		{ "man_fild02", 35, 262, 1 },
+		{ "man_fild03", 84, 365, 1 },
+
+		//Mjolnir
+		{ "mjolnir_01", 204, 120, 1 },
+		{ "mjolnir_02", 175, 193, 1 },
+		{ "mjolnir_03", 208, 213, 1 },
+		{ "mjolnir_04", 179, 180, 1 },
+		{ "mjolnir_05", 181, 240, 1 },
+		{ "mjolnir_06", 195, 270, 1 },
+		{ "mjolnir_07", 235, 202, 1 },
+		{ "mjolnir_08", 188, 215, 1 },
+		{ "mjolnir_09", 205, 144, 1 },
+		{ "mjolnir_10", 245, 223, 1 },
+		{ "mjolnir_11", 180, 206, 1 },
+		{ "mjolnir_12", 196, 208, 1 },
+
+		//Moskavia
+		{ "mosk_fild01", 82, 104, 1 },
+		{ "mosk_fild02", 131, 147, 1 },
+
+		//Niflheim
+		{ "nif_fild01", 215, 229, 1 },
+		{ "nif_fild02", 167, 234, 1 },
+
+
+		//Payon
+		{ "pay_fild01", 158, 206, 1 },
+		{ "pay_fild02", 151, 219, 1 },
+		{ "pay_fild03", 205, 148, 1 },
+		{ "pay_fild04", 186, 247, 1 },
+		{ "pay_fild05", 134, 204, 1 },
+		{ "pay_fild06", 193, 235, 1 },
+		{ "pay_fild07", 200, 177, 1 },
+		{ "pay_fild08", 137, 189, 1 },
+		{ "pay_fild09", 201, 224, 1 },
+		{ "pay_fild10", 160, 205, 1 },
+		{ "pay_fild11", 194, 150, 1 },
+
+
+		//Prontera
+		{ "prt_fild01", 208, 227, 1 },
+		{ "prt_fild02", 190, 206, 1 },
+		{ "prt_fild03", 240, 206, 1 },
+		{ "prt_fild04", 190, 143, 1 },
+		{ "prt_fild05", 307, 252, 1 },
+		{ "prt_fild06", 239, 213, 1 },
+		{ "prt_fild07", 185, 188, 1 },
+		{ "prt_fild08", 193, 194, 1 },
+		{ "prt_fild09", 187, 218, 1 },
+		{ "prt_fild10", 210, 183, 1 },
+		{ "prt_fild11", 195, 149, 1 },
+		{ "prt_fild11", 198, 164, 1 },
+
+
+		//Rachel
+		{ "ra_fild01", 192, 162, 1 },
+		{ "ra_fild02", 235, 166, 1 },
+		{ "ra_fild03", 202, 206, 1 },
+		{ "ra_fild04", 202, 208, 1 },
+		{ "ra_fild05", 225, 202, 1 },
+		{ "ra_fild06", 202, 214, 1 },
+		{ "ra_fild07", 263, 196, 1 },
+		{ "ra_fild08", 217, 201, 1 },
+		{ "ra_fild09", 87, 121, 1 },
+		{ "ra_fild10", 277, 181, 1 },
+		{ "ra_fild11", 221, 185, 1 },
+		{ "ra_fild12", 175, 200, 1 },
+		{ "ra_fild13", 174, 197, 1 },
+
+
+		//Morroc - Sograt Desert
+		{ "moc_fild01", 219, 205, 1 },
+		{ "moc_fild02", 177, 206, 1 },
+		{ "moc_fild03", 194, 182, 1 },
+		{ "moc_fild07", 224, 170, 1 },
+		{ "moc_fild11", 198, 216, 1 },
+		{ "moc_fild12", 156, 187, 1 },
+		{ "moc_fild13", 185, 263, 1 },
+		{ "moc_fild16", 206, 228, 1 },
+		{ "moc_fild17", 208, 238, 1 },
+		{ "moc_fild18", 209, 223, 1 },
+		{ "moc_fild19", 85, 97, 1 },
+		{ "moc_fild20", 207, 202, 1 },
+		{ "moc_fild21", 31, 195, 1 },
+		{ "moc_fild22", 38, 195, 1 },
+
+		//Spleinder
+		{ "spl_fild01", 175, 186, 1 },
+		{ "spl_fild02", 236, 184, 1 },
+		{ "spl_fild03", 188, 204, 1 },
+
+		//Umbala
+		{ "um_fild01", 217, 206, 1 },
+		{ "um_fild02", 223, 221, 1 },
+		{ "um_fild03", 237, 215, 1 },
+		{ "um_fild04", 202, 197, 1 },
+
+		//Veins
+		{ "ve_fild01", 186, 175, 1 },
+		{ "ve_fild02", 196, 370, 1 },
+		{ "ve_fild03", 222, 45, 1 },
+		{ "ve_fild04", 51, 250, 1 },
+		{ "ve_fild05", 202, 324, 1 },
+		{ "ve_fild06", 150, 223, 1 },
+		{ "ve_fild07", 149, 307, 1 },
+
+
+		//Yuno - Juno
+		{ "yuno_fild0", 189, 224, 1 },
+		{ "yuno_fild0", 192, 207, 1 },
+		{ "yuno_fild0", 221, 157, 1 },
+		{ "yuno_fild0", 226, 199, 1 },
+		{ "yuno_fild0", 223, 177, 1 },
+		{ "yuno_fild0", 187, 232, 1 },
+		{ "yuno_fild0", 231, 174, 1 },
+		{ "yuno_fild0", 196, 203, 1 },
+		{ "yuno_fild0", 183, 214, 1 },
+		{ "yuno_fild10", 200, 124, 1 },
+		{ "yuno_fild11", 195, 226, 1 },
+		{ "yuno_fild12", 210, 304, 1 },
+
+
+		///### Dungeons
+
+		{ "abbey01", 51, 14, 0 },
+		{ "abbey02", 150, 11, 1 },
+		{ "abbey03", 120, 10, 2 }, //Fallen bishop
+
+		{ "abyss_01", 261, 272, 0 },
+		{ "abyss_02", 275, 270, 1 },
+		{ "abyss_03", 116, 27, 2 },
+
+		{ "ama_dun01", 229, 11, 0 },
+		{ "ama_dun02", 33, 40, 1 },
+		{ "ama_dun03", 120, 12, 2 },  //(Samurai Encarnado)
+
+		{ "ayo_dun01", 275, 19, 0 },
+		{ "ayo_dun02", 24, 26, 1 },
+
+		{ "anthell01", 37, 362, 0 },
+		{ "anthell02", 169, 170, 2 },// (Maya)
+
+		{ "beach_dun", 266, 67, 2 }, //Tao Gunka
+		{ "beach_dun2", 255, 244, 1 },
+		{ "beach_dun3", 23, 260, 1 },
+
+		{ "c_tower1", 199, 159, 0 },
+		{ "c_tower2", 148, 283, 1 },
+		{ "c_tower3", 65, 147, 1 },
+		{ "c_tower4", 56, 155, 1 },
+		{ "alde_dun01", 297, 25, 1 },
+		{ "alde_dun02", 127, 169, 1 },
+		{ "alde_dun03", 277, 178, 1 },
+		{ "alde_dun04", 268, 74, 1 },
+
+		{ "ein_dun01", 22, 13, 0 },
+		{ "ein_dun02", 291, 292, 2 }, //(RSX-0806)
+
+		{ "gefenia01", 223, 256, 0 },
+		{ "gefenia02", 240, 23, 1 },
+		{ "gefenia03", 58, 29, 1 },
+		{ "gefenia04", 284, 95, 1 },
+
+		{ "gef_dun00", 104, 199, 0 },
+		{ "gef_dun01", 115, 236, 2 },// Dracula
+		{ "gef_dun02", 106, 131, 2 },// (Doppelganger)
+
+		{ "gl_chyard", 147, 15, 2 },// (Dark Lord)
+		{ "gl_church", 156, 8, 0 },
+		{ "gl_knt01", 150, 10, 0 },
+		{ "gl_knt02", 15, 140, 1 },
+		{ "gl_cas01", 200, 22, 1 },
+		{ "gl_cas02", 104, 18, 1 },
+		{ "gl_prison", 14, 70, 0 },
+		{ "gl_prison1", 150, 13, 1 },
+		{ "gl_sew01", 258, 255, 0 },
+		{ "gl_sew02", 30, 269, 1 },
+		{ "gl_sew03", 172, 283, 1 },
+		{ "gl_sew04", 68, 277, 1 },
+		{ "gl_dun01", 134, 274, 0 },
+		{ "gl_dun02", 224, 274, 1 },
+
+		{ "gon_dun01", 153, 48, 0 },
+		{ "gon_dun02", 17, 113, 1 },
+		{ "gon_dun03", 67, 9, 2 },// (Serpente Suprema)
+
+		{ "ice_dun01", 157, 13, 0 },
+		{ "ice_dun02", 151, 139, 1 },
+		{ "ice_dun03", 149, 21, 2 },// (Ktullanux)
+
+		{ "in_sphinx1", 288, 8, 0 },
+		{ "in_sphinx2", 149, 81, 1 },
+		{ "in_sphinx3", 210, 54, 1 },
+		{ "in_sphinx4", 10, 222, 1 },
+		{ "in_sphinx5", 99, 100, 2 }, //(Faraó)
+
+		{ "iz_dun00", 168, 169, 0 },
+		{ "iz_dun01", 253, 253, 1 },
+		{ "iz_dun02", 236, 204, 1 },
+		{ "iz_dun03", 34, 64, 1 },
+		{ "iz_dun04", 26, 29, 1 },
+
+		{ "juperos_01", 53, 248, 0 },
+		{ "juperos_02", 34, 62, 1 },
+		{ "jupe_core", 149, 286, 2 },// (Vesper)
+
+		{ "kh_dun01", 3, 231, 0 },
+		{ "kh_dun02", 41, 196, 2 },// (Kiel D-01)
+
+		{ "lou_dun01", 218, 195, 0 },
+		{ "lou_dun02", 285, 18, 1 },
+		{ "lou_dun03", 165, 38, 2 },// (Bacosjin)
+
+		{ "lhz_dun01", 144, 9, 0 },
+		{ "lhz_dun02", 183, 138, 1 },
+		{ "lhz_dun03", 140, 133, 2 }, //(MVP PUTASSO)
+
+		{ "mag_dun01", 126, 69, 0 },
+		{ "mag_dun02", 47, 30, 1 },
+
+		{ "mjo_dun01", 52, 17, 0 },
+		{ "mjo_dun02", 381, 343, 1 },
+		{ "mjo_dun03", 305, 261, 1 },
+
+		{ "moc_pryd01", 192, 9, 0 },
+		{ "moc_pryd02", 10, 192, 1 },
+		{ "moc_pryd03", 100, 93, 1 },
+		{ "moc_pryd04", 181, 11, 2 }, //(Osiris) 
+		{ "moc_pryd05", 93, 96, 1 },
+		{ "moc_pryd06", 194, 10, 2 },// (AmonRá)
+
+		{ "mosk_dun01", 189, 45, 0 },
+		{ "mosk_dun02", 165, 29, 1 },
+		{ "mosk_dun03", 31, 133, 2 }, //(MVP DRAGAO N SEI O NOME)
+
+
+		{ "nyd_dun01", 61, 239, 0 },
+		{ "nyd_dun02", 60, 271, 1 },
+		/*{ "nyd_dun01", 0 },
+		{ "nyd_dun02", 0 },
+		{ "1@nyd", 0 },
+		{ "2@nyd", 10 },// (Sombra de Niddhogur)
+		*/
+
+		{ "odin_tem01", 96, 146, 0 },
+		{ "odin_tem02", 27, 334, 1 },
+		{ "odin_tem03", 247, 37, 2 },// (Valkyrie Randgris)
+
+		{ "orcsdun01", 32, 169, 0 },
+		{ "orcsdun02", 21, 185, 1 },
+
+		{ "pay_dun00", 21, 183, 0 },
+		{ "pay_dun01", 18, 33, 1 },
+		{ "pay_dun02", 19, 63, 1 },
+		{ "pay_dun03", 155, 158, 1 },
+		{ "pay_dun04", 43, 40, 2 },  //(Flor do Luar)
+
+		{ "prt_sewb1", 132, 248, 0 },
+		{ "prt_sewb2", 19, 15, 1 },
+		{ "prt_sewb3", 180, 170, 1 },
+		{ "prt_sewb4", 100, 92, 2 },// (Besouro-Ladrão Dourado)
+
+		{ "prt_maze01", 48, 104, 0 },
+		{ "prt_maze02", 93, 19, 1 },
+		{ "prt_maze03", 182, 88, 2 },// (Bafomé)
+
+		{ "ra_san01", 140, 19, 0 },
+		{ "ra_san02", 287, 149, 1 },
+		{ "ra_san03", 119, 283, 1 },
+		{ "ra_san04", 119, 101, 1 },
+		{ "ra_san05", 150, 9, 2 }, //(Pesar Noturno)
+
+		{ "tha_t01", 150, 39, 0 },
+		{ "tha_t02", 150, 136, 1 },
+		{ "tha_t03", 220, 158, 1 },
+		{ "tha_t04", 59, 143, 1 },
+		{ "tha_t05", 62, 11, 1 },
+		{ "tha_t06", 89, 221, 1 },
+		{ "tha_t07", 35, 166, 1 },
+		{ "tha_t08", 93, 148, 1 },
+		{ "tha_t09", 29, 107, 1 },
+		{ "tha_t10", 159, 138, 1 },
+		{ "tha_t11", 19, 20, 1 },
+		{ "tha_t12", 130, 52, 2 },//Thanatos
+
+		{ "thor_v01", 21, 229, 0 },
+		{ "thor_v02", 77, 203, 1 },
+		{ "thor_v03", 34, 261, 2 },// (Ifrit)
+
+		{ "treasure01", 69, 24, 0 },
+		{ "treasure02", 102, 26, 2 },// (Drake)
+
+		{ "tur_dun01", 157, 37, 0 },
+		{ "tur_dun02", 167, 23, 1 },
+		{ "tur_dun03", 132, 189, 1 },
+		{ "tur_dun04", 100, 192, 2 }, //(General Tartaruga)
+
+		{ "um_dun01", 42, 29, 0 },
+		{ "um_dun02", 52, 22, 1 },
+
+		{ "xmas_dun01", 205, 16, 1 },
+		{ "xmas_dun02", 133, 130, 2 }, //(Cavaleiro da Tempestade)
+
+		{ "yggdrasil01", 204, 78, 1 },
+
+	};
+#pragma endregion Struct com todos os mapas do jogo.
+
+	memset(map_name, '\0', sizeof(map_name));
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
+
+	if (!*message || sscanf(message, "%11s", map_name) < 1) {
+		clif_displaymessage(fd, "Entre com o mapa @move <mapname>");
+		return -1;
+	}
+	if (battle_config.pvpmode_nowarp_cmd && sd->state.pvpmode)
+	{
+		clif_displaymessage(sd->fd, "Você não pode usar @move enquanto estiver em PVP.");
+		return -1;
+	}
+
+	if (town < 0 || town >= ARRAYLENGTH(data)) {
+		int i;
+		map_name[MAP_NAME_LENGTH - 1] = '\0';
+
+		// Match maps on the list
+		for (i = 0; i < ARRAYLENGTH(data); i++) {
+			if (strcmpi(map_name, data[i].map) == 0) {
+				town = i;
+				break;
+			}
+		}
+	}
+
+	if (town >= 0 && town < ARRAYLENGTH(data)) {
+		mapindex = mapindex_name2id(map_name);
+		if (mapindex)
+			m = map_mapindex2mapid(mapindex);
+		else{
+			clif_displaymessage(fd, msg_txt(1)); // Map not found.
+			return -1;
+		}
+		if (map[m].flag.nowarpto && battle_config.any_warp_GM_min_level > pc_isGM(sd)) {
+			clif_displaymessage(fd, msg_txt(247));
+			return -1;
+		}
+		
+		if (sd->bl.m >= 0 && map[sd->bl.m].flag.nowarp && battle_config.any_warp_GM_min_level > pc_isGM(sd)) {
+			clif_displaymessage(fd, msg_txt(248));
+			return -1;
+		}
+
+		switch (data[town].group_min){
+			case 1:
+				if (!pc_isPremium(sd)){
+					clif_displaymessage(fd, "Warp para esse mapa não é permitido a você");
+					return -1;
+				}
+				break;
+			case 2:
+				if (!pc_isGM(sd)){
+					clif_displaymessage(fd, "Warp para esse mapa não é permitido a você");
+					return -1;
+				}
+				break;
+		}
+		
+		if (pc_setpos(sd, mapindex, data[town].x, data[town].y, CLR_TELEPORT) == 0) {
+			clif_displaymessage(fd, msg_txt(0)); // Warped.
+		}
+		else {
+			clif_displaymessage(fd, msg_txt(1)); // Map not found.
+			return -1;
+		}
+	}
+	else {
+		clif_displaymessage(fd, msg_txt(38)); // Invalid location number or name.
+		return -1;
+	}
+
+	return 0;
+}
+
+
 /*==========================================
  * Displays where a character is. Corrected version by Silent. [Skotlex]
  *------------------------------------------*/
@@ -11549,6 +12021,8 @@ ACMD_FUNC(say)
 	return 0;
 }
 
+
+
 /*==========================================
  * atcommand_info[] structure definition
  *------------------------------------------*/
@@ -11925,7 +12399,8 @@ AtCommandInfo atcommand_info[] = {
 	{ "language",          60,60,   0,     atcommand_language },
 	{ "learnlang",         60,60,   0,     atcommand_learnlang },
 	{ "unlearnlang",       60,60,   0,     atcommand_unlearnlang },
-	{ "say",               60,60,   0,     atcommand_say },
+	{ "say", 60, 60, 0, atcommand_say },
+	{ "move", 0, 60, 0, atcommand_move },
 };
 
 

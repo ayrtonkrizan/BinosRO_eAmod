@@ -1,7 +1,11 @@
 prontera,154,193,5	script	Quadro de Avisos	837,{
 	//Comentar linhas abaixo para suspender vip gratuito;
 	set .@Time, 60 * 60; // 1 hora
-	set #Premium_Tick, #Premium_Tick + .@Time;
+	if(isPremium() == 1)
+		set .@Time, #Premium_Tick + .@Time;
+	else
+		set .@Time, gettimetick(2) + .@Time; 
+	set #Premium_Tick, .@Time;
 	set @vipRestante$, callfunc("calc_time", #Premium_Tick);
 	dispbottom "Você também pode usar o comando @vip para verificar o tempo restante";
 	dispbottom "Você possui \""+@vipRestante$+"\" restante de tempo vip.";
@@ -69,4 +73,4 @@ function	script	calc_time	{
 -	cashshop	LojaVip	-1,7282:10000,7283:1000
 
 sec_in02,161,178,4	duplicate(LojaVip)	Cilada (Cash Shop)#vip	72
-prontera,156,191,4	duplicate(LojaVip)	Cilada (Cash Shop)#prt	72
+prontera,156,193,4	duplicate(LojaVip)	Cilada (Cash Shop)#prt	72

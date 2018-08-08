@@ -1,6 +1,20 @@
-﻿Build started 05/08/2018 13:12:43.
-     1>Project "C:\Developments\BinosRO\emulador\vcproj-12\char-server_sql.vcxproj" on node 3 (Build target(s)).
-     1>Link:
+﻿Build started 07/08/2018 21:52:42.
+     1>Project "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\char-server_sql.vcxproj" on node 3 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\src\common /I..\3rdparty\msinttypes\include /ZI /nologo /W3 /WX- /MP /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"char-server_sql\Debug\\" /Fd"char-server_sql\Debug\vc120.pdb" /Gd /TC /wd4800 /wd4996 /FIconfig.vc.h /analyze /analyze:plugin"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\\bin\localespc.dll" /errorReport:prompt   /analyze:quiet ..\src\char_sql\char.c ..\src\char_sql\int_achievement.c ..\src\char_sql\int_auction.c ..\src\char_sql\int_guild.c ..\src\char_sql\int_homun.c ..\src\char_sql\int_mail.c ..\src\char_sql\int_mercenary.c ..\src\char_sql\int_party.c ..\src\char_sql\int_pet.c ..\src\char_sql\int_quest.c ..\src\char_sql\int_storage.c ..\src\char_sql\inter.c
+         char.c
+         int_achievement.c
+         int_auction.c
+         int_guild.c
+         int_homun.c
+         int_mail.c
+         int_mercenary.c
+         int_party.c
+         int_pet.c
+         int_quest.c
+         int_storage.c
+         inter.c
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\char-server_sql.exe" /INCREMENTAL /NOLOGO libcmtd.lib oldnames.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\char-server_sql.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /NXCOMPAT /IMPLIB:"..\char-server_sql.lib" /MACHINE:X86 /SAFESEH "char-server_sql\Debug\char.obj"
          "char-server_sql\Debug\int_achievement.obj"
          "char-server_sql\Debug\int_auction.obj"
@@ -13,12 +27,72 @@
          "char-server_sql\Debug\int_quest.obj"
          "char-server_sql\Debug\int_storage.obj"
          "char-server_sql\Debug\inter.obj"
-         "C:\Developments\BinosRO\emulador\vcproj-12\common\Debug\common.lib"
-         "C:\Developments\BinosRO\emulador\vcproj-12\common_sql\Debug\common_sql.lib"
+         "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\common\Debug\common.lib"
+         "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\common_sql\Debug\common_sql.lib"
      1>char.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-         char-server_sql.vcxproj -> C:\Developments\BinosRO\emulador\vcproj-12\..\char-server_sql.exe
-     1>Done Building Project "C:\Developments\BinosRO\emulador\vcproj-12\char-server_sql.vcxproj" (Build target(s)).
+         char-server_sql.vcxproj -> C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\..\char-server_sql.exe
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(1067): warning C6262: Function uses '45220' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(1648): warning C6262: Function uses '45244' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(1699): warning C6262: Function uses '46420' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(1980): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(2005): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(2074): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(2416): warning C6385: Reading invalid data from 'session':  the readable size is '256' bytes, but 'fd' bytes may be read.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(2516): warning C28182: Dereferencing NULL pointer. 'session[fd]' contains the same NULL value as 'session[i]' did. See line 2506 for an earlier location where this can occur
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(2962): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(2990): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(3044): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(3126): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(3178): warning C6262: Function uses '16400' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(3184): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(3211): warning C6262: Function uses '152468' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(3267): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(4294): warning C6262: Function uses '90652' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(4611): warning C6054: String 'email' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(4913): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(5108): warning C6054: String 'w1' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(5324): warning C6031: Return value ignored: 'sscanf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\char.c(5330): warning C6031: Return value ignored: 'sscanf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_auction.c(133): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_auction.c(144): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_auction.c(291): warning C6054: String 'searchtext' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1047): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1062): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1089): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1105): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1120): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1134): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1149): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1164): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1179): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1191): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1207): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1220): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1232): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1243): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1255): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1266): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_guild.c(1277): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_mail.c(327): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_party.c(366): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_party.c(393): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_party.c(410): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_party.c(423): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_party.c(438): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_party.c(449): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_quest.c(92): warning C6262: Function uses '96032' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\int_quest.c(137): warning C6262: Function uses '56020' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(208): warning C6054: String 'w1' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(236): warning C6054: String 'w2' might not be zero-terminated.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(366): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(371): warning C6385: Reading invalid data from 'wd->msg':  the readable size is '512' bytes, but '1991' bytes may be read.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(382): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(514): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(529): warning C6001: Using uninitialized memory 'buf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(612): warning C6031: Return value ignored: 'sscanf'.
+     1>c:\developments\binosro\binosro_emulador_eamod\src\char_sql\inter.c(615): warning C6031: Return value ignored: 'sscanf'.
+     1>Done Building Project "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\char-server_sql.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:15.73
+Time Elapsed 00:02:02.59

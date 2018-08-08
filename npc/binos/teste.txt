@@ -13,7 +13,27 @@
 	set .@Part, .@Position[ select(.@Menu$) ];
 	close;
 }
+//prontera,170,196,4	duplicate(Teste)	Testebinos	631
+
+-	script	InfoTeste	-1,{
+	OnInit:
+		bindatcmd "binovip",strnpcinfo(3)+"::OnAtcommand";
+		end;
+	OnAtcommand:
+		if(isPremium() == 1)
+			set #Premium_Tick, #Premium_Tick + atoi(.@atcmd_parameters$[0]);
+		else
+			set #Premium_Tick, gettimetick(2) + atoi(.@atcmd_parameters$[0]); 
+	
+		set @vipRestante$, callfunc("calc_time", #Premium_Tick);
+
+		if(getstrlen(@vipRestante$) == 0)
+			dispbottom "Você não possui mais vip!";
+		else
+			dispbottom "Você possui \""+@vipRestante$+"\" restante de tempo vip.";
+
+		end;
+}
+
+
 sec_in02,178,176,4	cashshop	CashShop#vip	630,7282:10000,7283:1000
-
-
-prontera,170,196,4	duplicate(Teste)	Testebinos	631
