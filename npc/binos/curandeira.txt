@@ -43,3 +43,33 @@
 
 sec_in02,135,168,4	duplicate(Curandeira)	Curandeira#vip	91
 prontera,156,185,4	duplicate(Curandeira)	Curandeira#prt	91
+
+-	script	CommandsCurandeira	-1,{
+	OnInit:
+		bindatcmd "buffs",strnpcinfo(3)+"::OnAtcommand";
+		end;
+	OnAtcommand:
+		sc_start 32,300000,10;
+		sc_start 30,300000,10;
+		if(isPremium()> 0){ ///VIPS
+			sc_start 29, 300000, 10; skilleffect 29,0; // Angelus
+			sc_start 39, 300000, 10; skilleffect 73,0; // Kyrie Eleison
+			sc_start 41, 300000, 5; skilleffect 75,0; // Gloria
+			sc_start 40, 300000, 5; skilleffect 75,0; // Magnificat
+		}
+		if(getgmlevel() > 1){ ///GMS
+			skilleffect 103,0; //Manejo Perfeito
+			sc_start 21, 300000, 10; skilleffect 33,0; // Endure
+			sc_start 35, 300000, 5; skilleffect 66,0; // Impositio Manus
+			/*sc_start SC_FOOD_STR,300000,10;
+			sc_start SC_FOOD_AGI,300000,10;
+			sc_start SC_FOOD_VIT,300000,10;
+			sc_start SC_FOOD_INT,300000,10;
+			sc_start SC_FOOD_DEX,300000,10;
+			sc_start SC_FOOD_LUK,300000,10;*/
+		}
+
+		
+		dispbottom "Você foi buffado!";
+		
+}
