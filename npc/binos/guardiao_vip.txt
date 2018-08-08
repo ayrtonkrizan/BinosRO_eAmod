@@ -1,8 +1,8 @@
 
 -	script	GuardiaoVIP	-1,{
 
-	//if(isPremium()<1){
-	if(getgmlevel()<1){
+	if(isPremium()<1){
+	//if(getgmlevel()<1){
 		mes "[Guardião VIP]";
 		mes "Entrada permitido apenas um grupo exclusivo de participantes";
 		mes "Saiba mais em ^0000DDwww.binosro.com.br^000000";
