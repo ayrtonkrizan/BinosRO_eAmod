@@ -1,2 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<DEFECTS><DEFECT><SFA><FILEPATH>c:\developments\binosro\binosro_emulador_eamod\src\common\</FILEPATH><FILENAME>lock.c</FILENAME><LINE>45</LINE><COLUMN>9</COLUMN></SFA><DEFECTCODE>6031</DEFECTCODE><DESCRIPTION>Return value ignored: 'rename'.</DESCRIPTION><FUNCTION>lock_fclose</FUNCTION><DECORATED>lock_fclose</DECORATED><FUNCLINE>35</FUNCLINE><PATH/></DEFECT></DEFECTS>

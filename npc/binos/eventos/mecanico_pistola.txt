@@ -1,0 +1,352 @@
+//- Entrada do Evento.
+prontera,167,203,4	script	Segurança do Calabouço	867,{
+	set @name$,"[^0065DF Segurança do Calabouço ^000000]"; //- Nome do NPC.
+	
+	
+	
+	if($open == 0 && getgmlevel() ==99){
+		mes "GM o evento está fechado deseja inicia-lo ?";
+		switch(select("Sim:Só Premio:Não")){
+			case 1:
+				initnpctimer;
+				announce "[Segurança do Calabouço] Por ordens superiores liberei a entrada por 1 minuto !",bc_all,0xADD8E6;
+				set $open,1;
+				setnpctimer 290000;
+				close;
+			case 2:
+				initnpctimer;
+				announce "[Segurança do Calabouço] Por ordens superiores liberei a entrada por 1 minuto !",bc_all,0xADD8E6;
+				set $open,1;
+				setnpctimer 470000;
+				close;
+		}
+	}
+	
+	specialeffect 417;
+	mes @name$;
+	mes "Olá eu sou o segurança do calabouço onde está aprisionado o mais perigoço e habilidoso mecânico que já existiu no mundo!!";
+	mes "Ele é conhecido por ^006400Mecânico Pistola!^000000";
+	mes "Deseja ir ao território do Mecânico pistola?";
+	next;
+	menu "Ir ao calabouço", EventEnter, "Mecânico Pistola?", EventHistory, "Não, to bem aqui!", EventDenied;
+	
+	EventEnter:
+		//- Checando se o Evento está Ligado.
+		if($open == 0){
+			mes @name$;
+			mes "Sinto muito, mas o evento está fechado no momento.";
+			close;
+		}
+		//- Removedor de Buffs , Carrinhos , Falcões e Montarias.
+		sc_end SC_ALL;
+		setcart 0;
+		setfalcon 0;
+		setriding 0;
+		//- Checagem e Remoção Temporária de Homunculus.
+		//if (checkhomcall() == 0) { 
+		//atcommand "@useskill 244 1 "+strcharinfo(0);
+		//dispbottom "[Segurança do Calabouço] : Homunculus são proibidos neste local!";
+		//dispbottom "[Segurança do Calabouço] : por isso usei o [ Vaporizar ] para você !"; next;
+		//}
+		//- Chacagem de uso de Pets.
+		if (getpetinfo(2) != "null") {
+			mes @name$;
+			mes "Por favor, remova o Pet para entrar no Evento.";
+			close;
+		}
+		mes @name$;
+		mes "Certo, irei te teleportar para lá. Boa Sorte!";
+		close2;
+		warp "job3_rune02",39,40;
+		announce "[Segurança do Calabouço] O Jogador "+strcharinfo(0)+" acaba de entrar no calabouço do Mecânico Pistola!!",bc_all;
+		end;
+		
+	EventDenied:
+		mes @name$;
+		mes "Dizem que ele esconde varios tesouros no calabouço.";
+		mes "Uma pena, você não ter coragem!";
+		close;
+		end;
+		
+	EventHistory:
+		mes @name$;
+		mes "Dizem que um mecânico muito habilidoso ficou louco de tanto trabalhar, e foi aprisionado em um calabouço, com todos os seus tesouros e ferramentas.";
+		next;
+		mes @name$;
+		mes "Muitos aventureiros após escutarem as histórias de sua mais famosa invenção, O ^000080Elunium Enriquecido^000000, tentam entrar no calabouço.";
+		next;
+		mes @name$;
+		mes "Eu não custumo deixar as pessoas entrarem, por que é muito perigoso!";
+		mes "^FF0000E todos que entraram só conseguiram a morte!!!!^000000";
+		next;
+		mes @name$;
+		mes "Por conta da insistência eu deixo os aventureiros que não tem nada a perder entrar!";
+		mes "Se você for um desses que não tem amigos, montaria, carros ou animais de caça posso deixar você entrar em alguns horários especificos.";
+		next;
+		mes @name$;
+		mes "Os horários que os aventureiros podem entrar são:";
+		mes "^000080 00:15^000000";
+		mes "^000080 04:15^000000";
+		mes "^000080 08:15^000000";
+		mes "^000080 12:15^000000";
+		mes "^000080 16:15^000000";
+		mes "^000080 20:15^000000";
+		next;
+		mes @name$;
+		mes "O evento funciona da seguinte maneira:";
+		mes "O evento é anunciado e todos podem entrar no calabouço;";
+		mes "Após 5 minutos o Mecânico Pistola será acordado;";
+		mes "A cada 30 segundos um baú é liberado;";
+		mes "Os baús podem conter itens de oficina ou as drogas que o deixaram forte e louco;";
+		next;
+		mes @name$;
+		mes "Ele matará 1 por 1, mas quem conseguir ficar vivo no final de 5 rounds ganha ^0000801x Elunium Enriquecido^000000!!!!";
+		mes "Após isso você será teleportado a prontera.";
+		next;
+		menu "Ir ao calabouço", EventEnter, "Mecânico Pistola?", EventHistory, "Não, to bem aqui!", EventDenied;
+		end;
+	
+	OnInit:
+		set $open,0;                          // Closed de Evento Não Mexer.
+		end;
+		
+	//Horário de ínicio do evento 4 em 4 horas.
+	OnClock0015:
+	OnClock0415:
+	OnClock0815:
+	OnClock1215:
+	OnClock1615:
+	OnClock2015:
+		callsub EventInit;
+		end;
+
+	OnTimer60000:
+		announce "[Evento Mecânico Pistola] Em 4 minutos o Evento iniciará , apressem-se !",bc_all,0xADD8E6;
+		end;
+
+	OnTimer120000:
+		announce "[Evento Mecânico Pistola] Em 3 minutos o Evento iniciará , apressem-se !",bc_all,0xADD8E6;
+		end;
+
+	OnTimer180000:
+		announce "[Evento Mecânico Pistola] Em 2 minutos o Evento iniciará , apressem-se !",bc_all,0xADD8E6;
+		end;
+
+	OnTimer240000:
+		announce "[Evento Mecânico Pistola] Em 1 minuto o Evento iniciará , apressem-se !",bc_all,0xADD8E6;
+		end;
+	
+	OnTimer297000:
+		enablenpc "Mecânico";
+		donpcevent "Mecânico::OnEffect";
+		end;
+	OnTimer300000:
+		callsub EventStart;
+		end;
+
+	OnTimer330000:
+		callsub RoundDone,"2º";
+		end;
+
+	OnTimer360000:
+		callsub RoundDone,"3º";
+		end;
+
+	OnTimer390000:
+		callsub RoundDone,"4º";
+		end;
+
+	OnTimer420000:
+		callsub RoundDone,"Último";
+		end;
+
+	OnTimer480000:
+		callsub EventEnd;
+		end;
+
+	OnPCDieEvent:
+		getmapxy @map$,@x,@y,0;
+		if ( @map$ == "job3_rune02" || @map$ == "bomber" ) {
+			set .@spoint$, getsavepoint(0);
+			set .@x, getsavepoint(1);
+			set .@y, getsavepoint(2);
+			warp .@spoint$, .@x, .@y;
+			end;
+		}
+		else{ 
+			end; 
+		}
+		end;
+				
+	
+	EventInit:
+		initnpctimer;
+		announce "[Segurança do Calabouço] Quem for corajoso tem 5 minutos para entrar no calabouço!!!",bc_all,0xADD8E6;
+		set $open,1;
+		end;
+	
+	EventStart:
+		disablenpc "Mecânico";
+		set $open,0;
+		announce "[Evento Mecânico Pistola] O 1º Round Começou !",bc_all,0xADD8E6;
+		monster "job3_rune02",39,40,"Mecânico Pistola",1807,1,4;
+		end;
+	
+	EventEnd:
+		set $open,0;
+		killmonsterall "job3_rune02",0;
+		switch(getmapusers("job3_rune02")){
+			case 0:
+				announce "[Segurança do Calabouço] Ninguém sobreviveu, boa sorte na próxima!", bc_all, 0xADD8E6;
+				break;
+			case 1:
+				announce "[Segurança do Calabouço] Parabéns ao vencedor!!", bc_all, 0xADD8E6;
+				monster "job3_rune02",39,40,"Baú do Tesouro",1798,1,"Treasure::OnPriceBoxBreak";
+				break;
+			default:
+				announce "[Segurança do Calabouço] Parabéns aos " + getmapusers("job3_rune02") + " venderores!!", bc_all, 0xADD8E6;
+				monster "job3_rune02",39,40,"Baú do Tesouro",1798,getmapusers("job3_rune02"),"Treasure::OnPriceBoxBreak";
+				break;
+		}
+		end;
+	
+	EventDone:
+		stopnpctimer;
+		mapwarp "job3_rune02","prontera",122,161;
+		end;
+	
+	RoundDone:
+		set .round, getarg(0) +1;
+		mapannounce "job3_rune02","[Evento Mecânico Pistola] 1 caixa de ferramenta foi derrubada pelo Mecânico Pistola !",bc_map,0xADD8E6;
+		monster "job3_rune02",39,40,"Baú do Tesouro",1798,1,"Treasure::OnBoxBreak";
+		sleep2 1000;
+		mapannounce "job3_rune02","[Evento Mecânico Pistola] O " + getarg(0) + " Round Começou !",bc_map,0xADD8E6;
+		end;
+}
+
+
+-	script	Treasure	-1,{
+	OnInit:
+		set .roundT, 0;
+		end;
+		
+	OnBoxBreak:
+		set .xIni, 32;
+		set .xFim, 45;
+		set .yIni, 34;
+		set .yFim, 47;
+		
+		///// Posições de onde nascerão os baus
+		set .monkeytrasurex1,rand(.xIni,.xFim);
+		set .monkeytrasurex2,rand(.xIni,.xFim);
+		set .monkeytrasurex3,rand(.xIni,.xFim);
+		set .monkeytrasurex4,rand(.xIni,.xFim);
+		set .monkeytrasurex5,rand(.xIni,.xFim);
+		set .monkeytrasurex6,rand(.xIni,.xFim);
+		set .monkeytrasurex7,rand(.xIni,.xFim);
+		set .monkeytrasurex8,rand(.xIni,.xFim);
+		set .monkeytrasurex9,rand(.xIni,.xFim);
+		set .monkeytrasurex10,rand(.xIni,.xFim);
+		set .monkeytrasurex11,rand(.xIni,.xFim);
+		set .monkeytrasurex12,rand(.xIni,.xFim);
+		set .monkeytrasurex13,rand(.xIni,.xFim);
+		set .monkeytrasurex14,rand(.xIni,.xFim);
+		set .monkeytrasurex15,rand(.xIni,.xFim);
+		set .monkeytrasurey1,rand(.yIni,.yFim);
+		set .monkeytrasurey2,rand(.yIni,.yFim);
+		set .monkeytrasurey3,rand(.yIni,.yFim);
+		set .monkeytrasurey4,rand(.yIni,.yFim);
+		set .monkeytrasurey5,rand(.yIni,.yFim);
+		set .monkeytrasurey6,rand(.yIni,.yFim);
+		set .monkeytrasurey7,rand(.yIni,.yFim);
+		set .monkeytrasurey8,rand(.yIni,.yFim);
+		set .monkeytrasurey9,rand(.yIni,.yFim);
+		set .monkeytrasurey10,rand(.yIni,.yFim);
+		set .monkeytrasurey11,rand(.yIni,.yFim);
+		set .monkeytrasurey12,rand(.yIni,.yFim);
+		set .monkeytrasurey13,rand(.yIni,.yFim);
+		set .monkeytrasurey14,rand(.yIni,.yFim);
+		set .monkeytrasurey15,rand(.yIni,.yFim);
+		
+		
+		//Condensed, EDP, Bottle Granade, Acid, Dex+10, Vit+10, Agi+10, Int+10, Str+10, Speed Potion
+		setarray .@RandItems[0], 547, 678, 7135, 7136, 12095, 12085, 12090, 12080, 12075, 12016;
+		//Itens basicos 
+		setarray .@RandItems2[0], 7317, 7094, 7319, 7093, 7317, 7094, 7319, 7093, 985;
+		
+		set .roundT, .roundT +1 ;
+		dispbottom "Teste: " +.roundT;
+		set .droptype,rand(.roundT,5);
+		if (.droptype == 1) {
+			makeitem .@RandItems[rand(0, (getarraysize(.@RandItems)-1))],rand(1, 3),"job3_rune02",.monkeytrasurex10,.monkeytrasurey10;
+			makeitem .@RandItems[rand(0, (getarraysize(.@RandItems)-1))],rand(1, 3),"job3_rune02",.monkeytrasurex11,.monkeytrasurey11;
+			makeitem .@RandItems[rand(0, (getarraysize(.@RandItems)-1))],rand(1, 3),"job3_rune02",.monkeytrasurex12,.monkeytrasurey12;
+			makeitem .@RandItems[rand(0, (getarraysize(.@RandItems)-1))],rand(1, 3),"job3_rune02",.monkeytrasurex13,.monkeytrasurey13;
+			makeitem .@RandItems[rand(0, (getarraysize(.@RandItems)-1))],rand(1, 3),"job3_rune02",.monkeytrasurex14,.monkeytrasurey14;
+			makeitem .@RandItems[rand(0, (getarraysize(.@RandItems)-1))],rand(1, 3),"job3_rune02",.monkeytrasurex15,.monkeytrasurey15;
+		}
+		else{
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex1,.monkeytrasurey1;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex2,.monkeytrasurey2;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex3,.monkeytrasurey3;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex4,.monkeytrasurey4;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex5,.monkeytrasurey5;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex6,.monkeytrasurey6;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex7,.monkeytrasurey7;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex8,.monkeytrasurey8;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex9,.monkeytrasurey9;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex10,.monkeytrasurey10;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex11,.monkeytrasurey11;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex12,.monkeytrasurey12;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex13,.monkeytrasurey13;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex14,.monkeytrasurey14;
+			makeitem .@RandItems2[rand(0, (getarraysize(.@RandItems2)-1))],1,"job3_rune02",.monkeytrasurex15,.monkeytrasurey15;
+		}
+		
+		end;
+	
+	OnPriceBoxBreak:
+		getitem 7619,1;
+		warp "prontera",122,161;
+		end;
+		
+}
+
+job3_rune02,39,40,4	script	Mecânico	600,{
+	end;
+	OnInit:
+		disablenpc "Mecânico";
+		end;
+	
+	OnEffect:
+		npctalk "Ninguém vai roubar minhas invenções!!!!";
+		//mapannounce "job3_rune02","[Mecânico Pistola] Ninguém vai roubar minhas invenções!!!!",bc_map,0xADD8E6;
+		sleep2 500;
+		specialeffect 98, AREA;
+		sleep2 500;
+		specialeffect 103, AREA;
+		sleep2 500;
+		specialeffect 220, AREA;
+		sleep2 500;
+		specialeffect 102, AREA;
+		sleep2 500;
+		specialeffect 79, AREA;
+		sleep2 500;
+		end;
+}
+//Mapflags - Mecânico Pistola
+job3_rune02	mapflag	novending
+job3_rune02	mapflag	nowarp
+job3_rune02	mapflag	nochat
+job3_rune02	mapflag	noloot
+job3_rune02	mapflag	nodrop
+job3_rune02	mapflag	noskill
+job3_rune02	mapflag	noteleport
+job3_rune02	mapflag	noicewall
+job3_rune02	mapflag	nobranch
+job3_rune02	mapflag	nomemo
+job3_rune02	mapflag	nopenalty
+job3_rune02	mapflag	nowarpto
+job3_rune02	mapflag	nosave
+
+job3_rune02	mapflag	restricted	1

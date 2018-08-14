@@ -1383,3 +1383,4 @@ rent_in3
 rent_in4
 rent_in5
 rent_in6
+safari

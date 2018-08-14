@@ -1,7 +1,7 @@
-﻿Build started 07/08/2018 21:52:39.
+﻿Build started 09/08/2018 18:08:38.
      1>Project "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\login-server_sql.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\src\common /I..\3rdparty\msinttypes\include /ZI /nologo /W3 /WX- /MP /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D WITH_SQL /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"login-server_sql\Debug\\" /Fd"login-server_sql\Debug\vc120.pdb" /Gd /TC /wd4100 /wd4800 /wd4996 /FIconfig.vc.h /analyze /analyze:plugin"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\\bin\localespc.dll" /errorReport:prompt   /analyze:quiet ..\src\login\account_sql.c ..\src\login\ipban_sql.c ..\src\login\login.c ..\src\login\loginlog_sql.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\src\common /I..\3rdparty\msinttypes\include /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _DEBUG /D WITH_SQL /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"login-server_sql\Debug\\" /Fd"login-server_sql\Debug\vc120.pdb" /Gd /TC /wd4100 /wd4800 /wd4996 /FIconfig.vc.h /analyze- /errorReport:prompt ..\src\login\account_sql.c ..\src\login\ipban_sql.c ..\src\login\login.c ..\src\login\loginlog_sql.c
          account_sql.c
          ipban_sql.c
          login.c
@@ -15,20 +15,8 @@
          "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\common_sql\Debug\common_sql.lib"
      1>account_sql.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
          login-server_sql.vcxproj -> C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\..\login-server_sql.exe
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(254): warning C6001: Using uninitialized memory 'buf'.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(339): warning C6054: String 'w1' might not be zero-terminated.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(390): warning C6054: String 'cmd' might not be zero-terminated.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(394): warning C6054: String 'params' might not be zero-terminated.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(416): warning C6262: Function uses '43616' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(775): warning C6031: Return value ignored: 'sscanf'.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(778): warning C6031: Return value ignored: 'sscanf'.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(714): warning C6001: Using uninitialized memory 'buf'.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(750): warning C6001: Using uninitialized memory 'buf'.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(654): warning C6001: Using uninitialized memory 'buf'.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(1580): warning C6054: String 'w1' might not be zero-terminated.
-     1>c:\developments\binosro\binosro_emulador_eamod\src\login\login.c(1631): warning C6054: String 'w2' might not be zero-terminated.
      1>Done Building Project "C:\Developments\BinosRO\BinosRO_Emulador_eAmod\vcproj-12\login-server_sql.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:01:10.52
+Time Elapsed 00:00:17.55

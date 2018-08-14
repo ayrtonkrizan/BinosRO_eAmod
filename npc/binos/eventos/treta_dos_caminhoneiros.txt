@@ -1,0 +1,244 @@
+prontera,145,201,5	script	Bino das Tretas	730,{
+	set .@debug, 0; // 1 Para mandar mensagens 0 para não
+	mes "[Bino das Treta]";
+
+	if (getgmlevel() == 99) {
+		switch (select ("Ligar/Desligar","Continuar para Menu","Cancelar")) {
+			case 1:
+			{
+				mes "Pronto!";
+				close2;
+				if (!$treta_isOpen)
+					callsub S_CallBegin;
+				else
+					callsub S_CallFinish;
+				end;
+			}
+			
+			case 2:
+				break;
+			
+			case 3:
+				close;
+		}
+	}
+
+	if ($treta_isOpen) {
+		mes "Deseja ir para o evento?";
+		if(select("Sim:Anh?")== 1){
+			if (getcharid(1)) {
+				mes "^FF0000Você não pode estar em uma party para participar desse evento.!^000000";
+				close;
+			}
+			else{
+				warp "prt_are_in", rand(88, 108), rand(7, 30);
+				close2;
+				end;
+			}
+			close;
+		}
+		next;
+	}
+
+	mes "Olá, eu sou o guardião dos portões da Treta dos Caminhoneiros.";
+	next;
+	if (select ("O que é essa treta?:Cancelar") == 2) close;
+	mes "[Bino das Treta]";
+	mes "Funciona assim:"; 
+	mes "Eu anuncio o inicio do evento e um minuto depois libero a entrada para uma sala onde o ^FF0000PVP^000000 estará ligado.";
+	mes "Você pode morrer e voltar até faltar 1 minuto para o fim do evento.";
+	mes "^FF0000Aviso: você não poderá estar em um grupo, caso contrário será expulso da sala!^000000";
+	next;
+	mes "[Bino das Treta]";
+	mes "Nessa sala existem apenas duas passagens para os baús do tesouro que dão prêmios àqueles que o quebram.";
+	mes "Contudo, existem barricadas protegendo os tesouros e você terá que destruí-las para liberar a passagem para a sala do tesouro onde se encontra o baú.";
+	mes "Os portais para o tesouro serão liberados 5 minutos após o inicio do evento";
+	next;
+	mes "[Bino das Treta]";
+	mes "Os premios de cada baú variam entre EDP, OCA, Yggdrasil Berry, Yggdrasil Seed, Frasco de Ácido e Frasco de Fogo Grego.";
+	mes "O evento termina 30 segundos após os baús serem liberados!";
+	close;
+	
+	// Schedule
+	OnClock0000:
+	OnClock0200:
+	OnClock0400:
+	OnClock0600:
+	OnClock0800:
+	OnClock1000:
+	OnClock1200:
+	OnClock1400:
+	OnClock1600:
+	OnClock1800:
+	OnClock2000:
+	OnClock2200:
+		callsub S_CallBegin;
+		end;
+	
+	//----->
+	
+	/// Function to control start TIMER
+	Start1: setnpctimer 0; startnpctimer; end;
+	
+	// ---> Timers .. em milisegundos
+	OnTimer60000: announce "[Bino das Treta] A treta dos caminhoneiros começou!", bc_all|bc_blue; callsub S_CallStart; end;
+	OnTimer180000: announce "[Bino das Treta] Corra para sala que a treta ta pegando fogo!!", bc_all|bc_blue; end;
+	OnTimer240000: announce "[Bino das Treta] Última chance de entrar na treta!", bc_all|bc_blue; end;
+	OnTimer300000: announce "[Bino das Treta] Ninguém mais pode entrar na treta!", bc_all|bc_blue; set $treta_isOpen, 0; end;
+	OnTimer360000: callsub S_LeaveTreasures; end;
+	OnTimer390000: callsub S_CallFinish; end;
+
+
+
+	// Begin label
+	S_CallBegin:
+		if(.@debug){
+			announce "[Bino das Treta] Begin", bc_blue|bc_all;
+		}
+		announce "[Bino das Treta] A treta dos caminhoneiros começa em 1 minuto, se preparem para a porrada!!", bc_all|bc_blue;
+		
+		setmapflag "prt_are_in", 38;
+		
+		
+		// Spawn first barricade line
+		set $MyFirstBarricade, 4;
+		setcell "prt_are_in",113,17,125,10,cell_walkable,0;
+		for (set .@i, 0; .@i < 4; set .@i, .@i + 1)
+			monster "prt_are_in",112,(15 - .@i),"Guardião do Tesouro",1906,1,strnpcinfo(1)+"::OnFirstBarricade";
+		
+		// Spawn second barricade line
+		set $MySecondBarricade, 4;
+		setcell "prt_are_in",83,10,72,17,cell_walkable,0;
+		for (set .@i, 0; .@i < 4; set .@i, .@i + 1)
+			monster "prt_are_in",84,(15 - .@i),"Guardião do Tesouro",1906,1,strnpcinfo(1)+"::OnSecondBarricade";
+		
+		// Spawn treasures
+		set $MyTrea, 6;
+		monster "prt_are_in", 180, 140, "Baú do Tesouro", 1324, 1, strnpcinfo(1)+"::OnBreakTrea";
+		monster "prt_are_in", 178, 140, "Baú do Tesouro", 1324, 1, strnpcinfo(1)+"::OnBreakTrea";
+		monster "prt_are_in", 175, 140, "Baú do Tesouro", 1324, 1, strnpcinfo(1)+"::OnBreakTrea";
+		monster "prt_are_in", 24, 88, "Baú do Tesouro", 1324, 1, strnpcinfo(1)+"::OnBreakTrea";
+		monster "prt_are_in", 22, 88, "Baú do Tesouro", 1324, 1, strnpcinfo(1)+"::OnBreakTrea";
+		monster "prt_are_in", 20, 88, "Baú do Tesouro", 1324, 1, strnpcinfo(1)+"::OnBreakTrea";
+
+		
+		callsub Start1;
+
+		end;
+
+	// Start the event
+	S_CallStart:
+		if(.@debug){
+			announce "[Bino das Treta] Start", bc_blue|bc_all;
+		}
+		set $treta_isOpen, 1;
+		pvpon "prt_are_in";
+		end;
+	//----->
+	
+	//Libera Portais para tesouros
+	S_LeaveTreasures:
+		announce "[Bino das Treta] Portais para tesouros liberados", bc_blue|bc_all;
+		enablenpc "RightWarp";
+		enablenpc "LeftWarp";
+		end;
+
+	// Finishes the event
+	S_CallFinish:
+		announce "[Bino das Treta] O evento terminou. Parabéns a todos os participantes!", bc_all|bc_blue;
+		killmonsterall "prt_are_in";
+		set $treta_isOpen, 0;
+		disablenpc "RightWarp";
+		disablenpc "LeftWarp";
+		mapwarp "prt_are_in", "prontera", 122, 161;
+		pvpoff "prt_are_in";
+		end;
+	//----->
+	
+	OnFirstBarricade:
+		set $MyFirstBarricade, $MyFirstBarricade - 1;
+		if ($MyFirstBarricade < 1) {
+			setcell "prt_are_in",113,17,125,10,cell_walkable,1;
+		}
+		end;
+		
+	OnSecondBarricade:
+		set $MySecondBarricade, $MySecondBarricade - 1;
+		if ($MySecondBarricade < 1) {
+			setcell "prt_are_in",83,10,72,17,cell_walkable,1;
+		}
+		end;
+		
+	OnBreakTrea:
+		atcommand "@cleanmap"; //debug: clean the floor so nobody can pickup items lol
+		set $MyTrea, $MyTrea - 1;
+		if ($MyTrea < 1) {
+			callsub S_CallFinish;
+		}
+		else {
+			//Berry, Seed, OCA, EDP, Dex+10, Bottle Granade, Acid
+			setarray .@RandItems[0], 607, 608, 616, 678, 12095, 7135, 7136;
+			setarray .@RandQuant[0], 20, 50, 3, 15, 3, 20, 20;
+			
+			set .@rand, rand(0, (getarraysize(.@RandItems)-1));
+			
+			set .@prizei, .@RandItems[.@rand];
+			set .@prizeq, .@RandQuant[.@rand];
+
+			getitem .@prizei, .@prizeq; 
+			announce "[Bino das Treta] O jogador "+strcharinfo(0)+" do Clã "+strcharinfo(2)+" abriu um Baú do Tesouro. Prêmio: "+.@prizeq+"x "+getitemname(.@prizei), bc_blue|bc_all;
+			
+
+		}
+		end;
+}
+
+
+prt_are_in,54,13,0	script	LeftWarp	45,2,2,{
+	end;
+	OnTouch:
+		if (getcharid(1)) {
+			announce "[Bino das Tretas] Você não pode estar em uma party para participar desse evento.!", bc_self;
+			warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
+			end;
+		}
+		else {
+			warp "prt_are_in", 178, 129;
+			end;
+		}
+	
+	OnInit:
+		disablenpc "LeftWarp";
+		end;
+}
+
+prt_are_in,143,13,0	script	RightWarp	45,2,2,{
+	end;
+	OnTouch:
+		if (getcharid(1)) {
+			announce "[Bino das Tretas] Você não pode estar em uma party para participar desse evento.!", bc_self;
+			warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
+			end;
+		}
+		else {
+			warp "prt_are_in", 22, 77;
+			end;
+		}
+	
+	OnInit:
+		disablenpc "RightWarp";
+		end;
+}
+			
+// Flags
+prt_are_in	mapflag	loadevent
+prt_are_in	mapflag	nowarpto
+prt_are_in	mapflag	nowarp
+prt_are_in	mapflag	noicewall
+prt_are_in	mapflag	noteleport
+prt_are_in	mapflag	noreturn
+prt_are_in	mapflag	nomemo	SavePoint
+//prt_are_in	mapflag	gvg_noparty	on
+prt_are_in	mapflag	nodrop
+prt_are_in	mapflag	noloot
+prt_are_in	mapflag	partylock
