@@ -65,7 +65,7 @@ prontera,164,173,3	script	Funcionária Kafra::kaf_prontera2	115,{
 	callfunc "F_Kafra",5,0,0,40,800;
 
 	M_Save:
-		savepoint "prontera",150,33;
+		savepoint "prontera",121,151;
 		callfunc "F_KafEnd",0,1," na cidade de Prontera";
 }
 

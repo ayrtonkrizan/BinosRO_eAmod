@@ -1,15 +1,87 @@
-prontera,154,193,5	script	Quadro de Avisos	837,{
-	//Comentar linhas abaixo para suspender vip gratuito;
-	set .@Time, 60 * 60; // 1 hora
-	if(isPremium() == 1)
-		set .@Time, #Premium_Tick + .@Time;
-	else
-		set .@Time, gettimetick(2) + .@Time; 
-	set #Premium_Tick, .@Time;
-	set @vipRestante$, callfunc("calc_time", #Premium_Tick);
-	dispbottom "Você também pode usar o comando @vip para verificar o tempo restante";
-	dispbottom "Você possui \""+@vipRestante$+"\" restante de tempo vip.";
-	end;
+prontera,120,161,5	script	Quadro de Avisos	837,{
+	/// CONFIGURACOES
+	set .@Time, 60 * 60 * 24 * 7; // 60 segundos * 60 minutos * 24 horas * 7 dias
+	
+	
+	
+	mes "^00FF00Quandro de avisos^000000";
+	mes "Bem vindo ^0000DD"+strcharinfo(0)+"^000000 ao Binos RO";
+	callsub S_Menu;
+	
+	S_Menu:
+		mes "O que deseja?";
+		menu "Avisos Importantes", S_Avisos, "Resgatar VIP Cortesia", S_VipCortesia, "Pegar Kit de aprendiz", S_KitAprendiz, "Cancelar", S_Finalizar;
+		end;
+	S_Finalizar:
+		next;
+		mes "^00FF00Quandro de avisos^000000";
+		mes "Sempre que necessário venha me consultar!";
+		close;
+		end;
+	S_Avisos:
+		next;
+		mes "^00FF00Quandro de avisos^000000";
+		mes "Todos os jogadores ganham ^FF00007 dias^000000 VIP de cortesia, que podem ser ativados a qualquer momento selecionando a opção 'Resgatar VIP Cortesia'!";
+		next;
+		mes "^00FF00Quandro de avisos^000000";
+		mes "Todo personagem pode resgatar seu Kit aprendiz selecionando a opção 'Pegar Kit de aprendiz'";
+		next;
+		mes "^00FF00Quandro de avisos^000000";
+		mes "Utilize o comando ^0000DD@move^000000 para se teletransportar pelos mapas do jogo";
+		mes "Você pode se teletransportar para qualquer mapa que o seu nível de acesso permitir, igual no teletransportador!";
+		mes "Não VIPS - para as entradas das dungeons";
+		mes "VIPS - para todos os mapas sem eventos ou MVPS";
+		next;
+		mes "Você pode usar o comando ^0000DD@vip^000000 para verificar o tempo de vip restante";
+		callsub S_Menu;
+		end;
+	
+	S_VipCortesia:
+		next;
+		mes "^00FF00Quandro de avisos^000000";
+		if(#GOTFREEVIP == 1){
+			mes "Malandrinho você!!";
+			mes "Essa cortesia só pode ser requisitada uma vez por conta!";
+			mes "O ^00FFFFGM Bino^000000 precisa pagar o leite das crianças que ele fez na estrada!";
+			close;
+		}
+		mes "Tem certeza que deseja ativar o VIP agora?";
+		if(select("Sim:Não") == 2){
+			mes "Volte assim que quiser pegar sua cortesia!";
+		}
+		else{
+			if(isPremium() == 1)
+				set .@Time, #Premium_Tick + .@Time;
+			else
+				set .@Time, gettimetick(2) + .@Time; 
+			
+			set #Premium_Tick, .@Time;
+			set #GOTFREEVIP, 1;
+			set @vipRestante$, callfunc("calc_time", #Premium_Tick);
+			
+			next;
+			mes "^00FF00Quandro de avisos^000000";
+			mes "VIP Adicionado, tempo restante: ^0000DD"+@vipRestante$+"^000000";
+			mes "Utilize o comando ^0000DD@vip^000000 para consultar o tempo que falta para o vip acabar!";
+		}
+		callsub S_Menu;
+		end;
+	
+	S_KitAprendiz:
+		next;
+		mes "^00FF00Quandro de avisos^000000";
+		if(GOTNOVICEPACK == 1){
+			mes "Lindo você já pegou suas pot grátis né?";
+			mes "Vamo upa agora vamo!";
+		}
+		else{
+			mes "Aqui não tem cilada!";
+			mes "Para te ajudar nesse começo dificil pode pegar 300 poções de aprendiz!";
+			set GOTNOVICEPACK, 1;
+			getitem 569, 300;
+		}
+		callsub S_Menu;
+		end;
 
 }
 -	script	InfoVip	-1,{
@@ -45,7 +117,7 @@ sec_in02	mapflag	nosave
 sec_in02	mapflag	noskill
 sec_in02	mapflag	noteleport
 sec_in02	mapflag	novending
-sec_in02	mapflag	nowarp
+//sec_in02	mapflag	nowarp
 sec_in02	mapflag	nowarpto
 sec_in02	mapflag	loadevent
 
