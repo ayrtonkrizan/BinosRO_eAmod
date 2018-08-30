@@ -191,21 +191,29 @@ OnMatchEnd:
 	// =======================================================
 	// Team Rewards
 	// =======================================================
-	set .@Reward, 100 + (.Team1_Score * 2);
-	if( .Team1_Score > .Team2_Score )
+	//set .@Reward, 100 + (.Team1_Score * 2);
+	set .@Reward, 16;
+	if( .Team1_Score > .Team2_Score ){
 		set .@Won,50;
-	else
+		set .@Reward, .@Reward * 2;
+	}
+	else{
 		set .@Won,2;
+	}
 
 	bg_reward $@BG_Team1,7773,.@Reward,0,0,"BG_RUSH",1,5,.@Won;
 	bg_reward $@BG_Team1,7828,.@Reward,0,0,"BG_RUSH",1,5,.@Won;
 	bg_reward $@BG_Team1,7829,.@Reward,0,0,"BG_RUSH",1,5,.@Won;
 	// =======================================================
-	set .@Reward, 100 + (.Team2_Score * 2);
-	if( .Team2_Score > .Team1_Score )
+	//set .@Reward, 100 + (.Team2_Score * 2);
+	set .@Reward, 16;
+	if( .Team2_Score > .Team1_Score ){
 		set .@Won,50;
-	else
+		set .@Reward, .@Reward * 2;
+	}
+	else{
 		set .@Won,2;
+	}
 
 	bg_reward $@BG_Team2,7773,.@Reward,0,0,"BG_RUSH",1,5,.@Won;
 	bg_reward $@BG_Team2,7828,.@Reward,0,0,"BG_RUSH",1,5,.@Won;

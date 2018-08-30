@@ -76,26 +76,24 @@ OnValidateScore:
 
 	if( .Team2_Score <= 0 )
 	{ // Team 1 Won
-		bg_reward $@BG_Team1,7829,30,0,0,"BG_TDM",1,4,0;
-		bg_reward $@BG_Team2,7829,15,0,0,"BG_TDM",1,4,2;
+		bg_reward $@BG_Team1,7829,32,0,0,"BG_TDM",1,4,0;
+		bg_reward $@BG_Team2,7829,16,0,0,"BG_TDM",1,4,2;
 		mapannounce "bat_b03","The " + bg_get_data($@BG_Team1,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team1,4);
 	}
 	else if( .Team1_Score <= 0 )
 	{ // Team 2 Won
-		bg_reward $@BG_Team1,7829,15,0,0,"BG_TDM",1,4,2;
-		bg_reward $@BG_Team2,7829,30,0,0,"BG_TDM",1,4,0;
+		bg_reward $@BG_Team1,7829,16,0,0,"BG_TDM",1,4,2;
+		bg_reward $@BG_Team2,7829,32,0,0,"BG_TDM",1,4,0;
 		mapannounce "bat_b03","The " + bg_get_data($@BG_Team2,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team2,4);
 	}
 	else if( .@Team2Count == 0 )
 	{ // All Team 2 Players quit
-		set .@Rate, 25 - .Team2_Score;
-		bg_reward $@BG_Team1,7829,30 * .@Rate / 25,0,0,"BG_TDM",1,4,0;
+		bg_reward $@BG_Team1,7829,32,0,0,"BG_TDM",1,4,0;
 		mapannounce "bat_b03","The " + bg_get_data($@BG_Team1,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team1,4);
 	}
 	else if( .@Team1Count == 0 )
 	{ // All Team 1 Players quit
-		set .@Rate, 25 - .Team1_Score;
-		bg_reward $@BG_Team2,7829,30 * .@Rate / 25,0,0,"BG_TDM",1,4,0;
+		bg_reward $@BG_Team2,7829,32,0,0,"BG_TDM",1,4,0;
 		mapannounce "bat_b03","The " + bg_get_data($@BG_Team2,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team2,4);
 	}
 	else end;
@@ -113,20 +111,20 @@ OnTimer840000:
 OnTimer900000:
 	if( .Team1_Score > .Team2_Score )
 	{ // Team 1 Won
-		bg_reward $@BG_Team1,7829,30,0,0,"BG_TDM",1,4,0;
-		bg_reward $@BG_Team2,7829,15,0,0,"BG_TDM",1,4,2;
+		bg_reward $@BG_Team1,7829,32,0,0,"BG_TDM",1,4,0;
+		bg_reward $@BG_Team2,7829,16,0,0,"BG_TDM",1,4,2;
 		mapannounce "bat_b03","The " + bg_get_data($@BG_Team1,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team1,4);
 	}
 	else if( .Team1_Score < .Team2_Score )
 	{ // Team 2 Won
-		bg_reward $@BG_Team1,7829,15,0,0,"BG_TDM",1,4,2;
-		bg_reward $@BG_Team2,7829,30,0,0,"BG_TDM",1,4,0;
+		bg_reward $@BG_Team1,7829,16,0,0,"BG_TDM",1,4,2;
+		bg_reward $@BG_Team2,7829,32,0,0,"BG_TDM",1,4,0;
 		mapannounce "bat_b03","The " + bg_get_data($@BG_Team2,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team2,4);
 	}
 	else
 	{
-		bg_reward $@BG_Team1,7829,15,0,0,"BG_TDM",1,4,1;
-		bg_reward $@BG_Team2,7829,15,0,0,"BG_TDM",1,4,1;
+		bg_reward $@BG_Team1,7829,16,0,0,"BG_TDM",1,4,1;
+		bg_reward $@BG_Team2,7829,32,0,0,"BG_TDM",1,4,1;
 		mapannounce "bat_b03","The battle is over. This is a Tie...!",1,0x808000;
 	}
 	donpcevent "Flavius_TD::OnMatchEnd";

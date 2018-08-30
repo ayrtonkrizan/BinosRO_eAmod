@@ -185,10 +185,9 @@ OnFri0600: // Friday, 6 a.m.
 
 // BattleGround Happy Hour
 OnDoHappyHour:
-OnClock1600:
-OnClock1800:
+//OnClock1600:
+//OnClock1800:
 OnClock2000:
-OnClock2200:
 	switch( gettime(4) )
 	{
 	case 1:

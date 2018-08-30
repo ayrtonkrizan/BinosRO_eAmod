@@ -402,12 +402,14 @@ OnMatchEnd:
 	// =======================================================
 	// Team Rewards
 	// =======================================================
-	set .@Reward, 50 + .Score;
+	//set .@Reward, 50 + .Score;
+	set .@Reward, 16;
 	set .@Won,2;
 
 	if( .Score >= 6 )
 	{ // Emperium Taken
-		set .@Reward, .@Reward + 9;
+		//set .@Reward, .@Reward * 2;
+		set .@Reward;
 		set .@Won,0;
 	}
 
@@ -417,12 +419,13 @@ OnMatchEnd:
 
 	set .Score, 6 - .Score; // Switch for Defender
 
-	set .@Reward, 15 + .Score;
+	//set .@Reward, 15 + .Score;
+	set .@Reward, 16;
 	set .@Won,2;
 
 	if( .Score >= 1 )
 	{ // Emperium Defended
-		set .@Reward, .@Reward + 9;
+		set .@Reward, .@Reward * 2;
 		set .@Won,0;
 	}
 

@@ -35,7 +35,7 @@ OnInit:
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"Consumiveis - Emblema da Bravura","Armas - Emblema da Bravura","Armaduras - Emblema da Bravura","Consumiveis - Emblema do Valor","Armas - Emblema do Valor","Armaduras - Emblema do Valor", "Armas - Emblemas de Guerra", "Armadauras - Emblemas de Guerra";
+	setarray .Shops$[1],"Consumiveis - Emblema da Bravura","Armas - Emblema da Bravura","Armaduras - Emblema da Bravura","Consumiveis - Emblema do Valor","Armas - Emblema do Valor","Armaduras - Emblema do Valor", "Armas - Emblemas de Guerra", "Armaduras - Emblemas de Guerra";
 
 // -----------------------------------------------------------
 //  Quest itens - N? use um item de recompensa mais do que uma vez!
