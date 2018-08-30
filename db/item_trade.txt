@@ -410,7 +410,7 @@
 5305,73,100	// Pirate_Dagger
 
 5373,73,100	// Darkness_Helm
-7773,9,99	// War_Badge
+
 
 // Moscovia Quest Items -----
 7876,115,100	// Gold_Key
@@ -1582,6 +1582,7 @@
 2733,123,99	// Medal_Gunner
 7828,123,99	// BF_Badge1
 7829,123,99	// BF_Badge2
+7773,123,99	// War_Badge
 
 // Battleground Rewards (Krieger Von Midgard)
 13416,123,99	// Krieger_Onehand_Sword1

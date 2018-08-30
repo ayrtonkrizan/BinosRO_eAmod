@@ -1,9 +1,4 @@
 prontera,120,161,5	script	Quadro de Avisos	837,{
-	/// CONFIGURACOES
-	set .@Time, 60 * 60 * 24 * 7; // 60 segundos * 60 minutos * 24 horas * 7 dias
-	
-	
-	
 	mes "^00FF00Quandro de avisos^000000";
 	mes "Bem vindo ^0000DD"+strcharinfo(0)+"^000000 ao Binos RO";
 	callsub S_Menu;
@@ -32,6 +27,7 @@ prontera,120,161,5	script	Quadro de Avisos	837,{
 		mes "Não VIPS - para as entradas das dungeons";
 		mes "VIPS - para todos os mapas sem eventos ou MVPS";
 		next;
+		mes "^00FF00Quandro de avisos^000000";
 		mes "Você pode usar o comando ^0000DD@vip^000000 para verificar o tempo de vip restante";
 		callsub S_Menu;
 		end;
@@ -50,10 +46,13 @@ prontera,120,161,5	script	Quadro de Avisos	837,{
 			mes "Volte assim que quiser pegar sua cortesia!";
 		}
 		else{
-			if(isPremium() == 1)
+			set .@Time, 60 * 60 * 24 * 7; // 60 segundos * 60 minutos * 24 horas * 7 dias
+			if(isPremium() == 1){
 				set .@Time, #Premium_Tick + .@Time;
-			else
+			}
+			else{
 				set .@Time, gettimetick(2) + .@Time; 
+			}
 			
 			set #Premium_Tick, .@Time;
 			set #GOTFREEVIP, 1;
@@ -63,6 +62,7 @@ prontera,120,161,5	script	Quadro de Avisos	837,{
 			mes "^00FF00Quandro de avisos^000000";
 			mes "VIP Adicionado, tempo restante: ^0000DD"+@vipRestante$+"^000000";
 			mes "Utilize o comando ^0000DD@vip^000000 para consultar o tempo que falta para o vip acabar!";
+			close;
 		}
 		callsub S_Menu;
 		end;
@@ -80,7 +80,7 @@ prontera,120,161,5	script	Quadro de Avisos	837,{
 			set GOTNOVICEPACK, 1;
 			getitem 569, 300;
 		}
-		callsub S_Menu;
+		close;
 		end;
 
 }
