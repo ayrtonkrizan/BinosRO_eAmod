@@ -1,0 +1,121 @@
+sec_in02,172,184,5	script	Refinador Especial	726,{
+	if (isPremium() < 1)
+	{
+		warp getsavepoint(0), getsavepoint(1), getsavepoint(2);
+		end;
+	}
+	callfunc "refinespecial","Refinadora Especial",1;
+	end;
+}
+
+function	script	refinespecial	{
+	set .@increaseRate, 25;
+	set .@features,getarg(1);
+	mes "[" + getarg(0) + "]";
+	mes "Olá, ouviu falar de minha fama?";
+	mes "Sou a única pessoa que trabalha com ^0000DDElunium Enriquecido^000000, por isso tenho ^0000DD"+.@increaseRate+"%^000000 mais de chances de sucesso no refinamento de itens de proteção.";
+	next;
+	mes "[" + getarg(0) + "]";
+	mes "O ^0000DDElunium Enriquecido^000000 é um item muito raro, por isso só trabalho com equipamentos já refinados pelo menos até o nível 4.";
+	mes "Diga o que quer refinar.";
+	next;
+
+	setarray .@position$[1], "Cabeça cima","Corpo","Mão direita","Mão esquerda","Capa","Botas";
+	set .@menu$,"";
+	for( set .@i,1; .@i <= 6; set .@i,.@i+1 )
+	{ 
+		if( getequipisequiped(.@i) && getequipweaponlv(.@i) == 0 && getequiprefinerycnt(.@i) >=4){
+			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+		}
+
+		set .@menu$, .@menu$ + ":";
+	}
+	set .@part,select(.@menu$);
+	if(!getequipisequiped(.@part)) {
+		mes "[" + getarg(0) + "]";
+		mes "Você não está usando";
+		mes "nada que eu";
+		mes "possa refinar.";
+		emotion 6;
+		close;
+	}
+	//Check if the item is refinable...
+	if(!getequipisenableref(.@part)) {
+		mes "[" + getarg(0) + "]";
+		mes "Eu acho que não posso";
+		mes "refinar este item...";
+		close;
+	}
+	//Check if the item is identified... (Don't know why this is in here... but kept it anyway)
+	if(!getequipisidentify(.@part)) {
+		mes "[" + getarg(0) + "]";
+		mes "Você não pode refinar um item";
+		mes "se você não o identificou";
+		mes "primeiro. Certifique-se de";
+		mes "que ele esteja identificado antes que";
+		mes "eu possa refiná-lo.";
+		close;
+	}
+	//Check to see if the items is already +10
+	if(getequiprefinerycnt(.@part) >= 10) {
+		mes "[" + getarg(0) + "]";
+		mes "Eu não posso refinar esse item";
+		mes "mais. Ele já foi refinado";
+		mes "ao máximo permitido!";
+		close;
+	}
+	set .@refineitemid, getequipid(.@part); // save id of the item
+	set .@refinerycnt, getequiprefinerycnt(.@part); //save refinery count
+	
+	set .@price,50000;
+	set .@material,7619;
+	set .@safe,4; 
+
+	
+	mes "[" + getarg(0) + "]";
+	mes "Além do ^0000DDElunium Enriquecido^000000 preciso de ^DD0000" + .@price + "^000000 Zeny.";
+	mes "Sei que meus trabalhos são caros, mas como eu disse, eu sou a melhor!!";
+	mes "Iae bora fazer o serviço?";
+	next;
+	
+	if(select("Sim","Não...") == 2){
+		mes "[" + getarg(0) + "]";
+		mes "Ahhh você não confia numa mulher mexendo nos seus equipamentos? Seu ^DD0000FASCISTA^000000";
+		close;
+	}
+	if(countitem(.@material) < 1 || Zeny < .@price) {
+		mes "[" + getarg(0) + "]";
+		mes "Trabalho de primeira classe é caro e raro! Infelizmente, não posso trabalhar para você a um preço mais baixo ou sem os itens necessários.";
+		close;
+	}
+	set Zeny,Zeny - .@price;
+	delitem .@material,.@refinecnt;
+	if (getequipisequiped(.@part) == 0) {
+		mes "[" + getarg(0) + "]";
+		mes "Veja... Você não está com nenhum item equipado...";
+		close;
+	}
+	if (getequipid(.@part) != .@refineitemid || (.@menu2 == 1 && getequippercentrefinery(.@part) < 100)) {
+		mes "[" + getarg(0) + "]";
+		mes "Mas você imagina que eu sou burra!?!";
+		mes "Você trocou de item...";
+		mes "Saia daqui antes que eu te estoure com o meu martelo!!!";
+		close;
+	} 
+	mes "Clang, clang!!!";
+	if(.@menu2 == 2 && getequippercentrefinery(.@part) <= rand(100 - .@increaseRate)) {
+		failedrefitem .@part;
+		emotion 23;
+		mes "[" + getarg(0) + "]";
+		mes "WAHHHH!!! Ops, essa TPM está me atrapalhando hoje!!";
+		close;
+	}
+	successrefitem .@part;
+	emotion 21;
+	next;
+
+	mes "[" + getarg(0) + "]";
+	mes "YUPIIIIII!!!!";
+	mes "Viu como eu sou demais? Se encontrar novas pedrinhas dessas no calabouço do meu pai pode voltar aqui, ficarei feliz em ajudar!!.";
+	close;
+}

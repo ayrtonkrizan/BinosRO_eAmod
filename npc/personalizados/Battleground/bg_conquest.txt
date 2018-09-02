@@ -408,8 +408,8 @@ OnMatchEnd:
 
 	if( .Score >= 6 )
 	{ // Emperium Taken
-		//set .@Reward, .@Reward * 2;
-		set .@Reward;
+		set .@Reward, .@Reward * 2;
+		//set .@Reward;
 		set .@Won,0;
 	}
 
