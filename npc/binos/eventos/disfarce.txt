@@ -20,7 +20,7 @@ prontera,155,220,4	script	Mestre dos Disfarces	795,{
 		end;
 		
 	// ---> Timers .. em milisegundos
-	OnTimer10000: 
+	OnTimer60000: 
 		announce "[Mestre dos Disfarces] O Evento começou!! prontera 155 220!!!", bc_all|bc_blue; 
 		callsub S_CallStart; 
 		end;
