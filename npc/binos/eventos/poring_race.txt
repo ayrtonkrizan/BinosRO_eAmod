@@ -77,29 +77,17 @@ p_track02,44,41,0	script	Checker#prace0	-1,{
 -	script	Timers#prace0	-1,{
 
 	OnClock0100: callsub OnCalll;
-	OnClock0130: callsub OnCalll;
 	OnClock0300: callsub OnCalll;
-	OnClock0330: callsub OnCalll;
 	OnClock0500: callsub OnCalll;
-	OnClock0530: callsub OnCalll;
 	OnClock0700: callsub OnCalll;
-	OnClock0730: callsub OnCalll;
 	OnClock0900: callsub OnCalll;
-	OnClock0930: callsub OnCalll;
 	OnClock1100: callsub OnCalll;
-	OnClock1130: callsub OnCalll;
 	OnClock1300: callsub OnCalll;
-	OnClock1330: callsub OnCalll;
 	OnClock1500: callsub OnCalll;
-	OnClock1530: callsub OnCalll;
 	OnClock1700: callsub OnCalll;
-	OnClock1730: callsub OnCalll;
 	OnClock1900: callsub OnCalll;
-	OnClock1930: callsub OnCalll;
 	OnClock2100: callsub OnCalll;
-	OnClock2130: callsub OnCalll;
 	OnClock2300: callsub OnCalll;
-	OnClock2330: callsub OnCalll;
 
 	OnCalll:
 		set $prace_gate,1;

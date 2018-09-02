@@ -6,7 +6,7 @@
 		end;
 	}
 	set @input, 1;
-	menu "Ver Itens", S_ItensEquipados, "Testar Efeitos NPC", S_TesteEfeitosNPC, "Testar Efeitos CHAR", S_TesteEfeitosChar, "Testar Variavel", S_TesteVariaveis;
+	menu "Disguise NPC", S_DisguiseTest, "Ver Itens", S_ItensEquipados, "Testar Efeitos NPC", S_TesteEfeitosNPC, "Testar Efeitos CHAR", S_TesteEfeitosChar, "Testar Variavel", S_TesteVariaveis;
 	
 	S_TesteEfeitosNPC:
 		while(@input != 0){
@@ -53,6 +53,19 @@
 			mes "Tinha valor";
 		}
 		close;
+		end;
+	S_DisguiseTest:
+		input .@input;
+		setnpcdisplay strnpcinfo(3), .@input;
+		set $MonsterName$,getmonsterinfo(.@input,0);
+		deletepset 1;
+		defpattern 1,"([^:]+):.\\s*"+$MonsterName$+".*", "iCorrect";
+		activatepset 1;		
+		close;
+		end;
+	iCorrect:
+		announce strcharinfo(0)+" is correct! I was disguised as: "+$MonsterName$+"",bc_map | bc_blue;
+		end;
 		
 }
 sec_in02,161,162,0	duplicate(Teste)	Testebinos	631

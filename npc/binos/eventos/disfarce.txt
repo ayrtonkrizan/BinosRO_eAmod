@@ -1,0 +1,170 @@
+prontera,155,220,4	script	Mestre dos Disfarces	795,{
+	if (getgmlevel() == 99) {
+		menu "Ligar/Desligar", LigaDesliga, "Continuar para Menu", GoToMenu, "Cancelar", Cancelar;
+	}
+	callsub GoToMenu;
+	
+	OnClock0130:
+	OnClock0330:
+	OnClock0530:
+	OnClock0730:
+	OnClock0930:
+	OnClock1130:
+	OnClock1330:
+	OnClock1530:
+	OnClock1730:
+	OnClock1930:
+	OnClock2130:
+	OnClock2330:
+		callsub S_CallBegin;
+		end;
+		
+	// ---> Timers .. em milisegundos
+	OnTimer10000: 
+		announce "[Mestre dos Disfarces] O Evento começou!! prontera 155 220!!!", bc_all|bc_blue; 
+		callsub S_CallStart; 
+		end;
+		
+	OnTimer330000: 
+		callsub S_Disguise;
+		end;
+		
+	
+	LigaDesliga:
+		mes "Pronto!";
+		close2;
+		if (!$disguise_isOpen)
+			callsub S_CallBegin;
+		else
+			callsub S_CallFinish;
+		end;
+	
+	GoToMenu:
+		mes "[Mestre dos Disfarces]";
+		mes "Os eventos acontecem nos seguintes horários:";
+		mes "^0000FF01:30, 03:30, 05:30, 07:30, 09:30^000000";
+		mes "^0000FF11:30, 13:30, 15:30, 17:30, 19:30^000000";
+		mes "^0000FF21:30, 23:30^000000";
+		mes "Como posso te ajudar?";
+		
+		menu "O que é esse evento?", HistoryEvent, "Cancelar", Cancelar;
+		
+		end;
+	
+	Cancelar:
+		close;
+		end;
+	
+	S_CallBegin:
+		set .BlackList$, "1003,1006,1017,1021,1022,1027,1043,1075,1136,1137,1168," + 
+			"1171,1172,1173,1181,1187,1210,1217,1218,1222,1223,1224,1225,1226,1227,1228," + 
+			"1233,1284,1407,1411,1414,1495,1501,1900,1996,2000,2001,2002,2003,2004," + 
+			"2005,2006,2007,2011,2012,2025,2028,2029,2030,2031,2032,2033,2034,2035," + 
+			"2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049," + 
+			"2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063," + 
+			"2064,2065,2066,2067,2075,2076,2077,2078,2079,2080,2081,2083,2084,2085," + 
+			"2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099," + 
+			"2100,2101,2012,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113," + 
+			"2114,2115,2116,2117,2118,2119,2120,2121,2123,2124,2125,1496,";
+
+		announce "[Mestre dos disfarces] O Evento começa em 1 minutos. prontera, 155, 220", bc_all|bc_blue;
+		setnpctimer 0; 
+		startnpctimer; 
+		end;
+	
+	S_CallStart:
+		set $disguise_isOpen, 1;
+		set .rounds, 0;
+		setnpctimer 325000;
+		end;
+		
+	S_Disguise:
+		if(.rounds >= 30){
+			callsub S_CallFinish;
+			end;
+		}
+		set .Winner,0;
+		set .@monster, 0;
+		
+		npctalk "5 segundos para o disfarce ficar pronto, se prepare!";
+		specialeffect EF_DETECT2;
+		setnpcdisplay strnpcinfo(3), 795;
+		sleep(5000);
+		
+		while(.@monster == 0){
+			set .@monster, 1000 + rand(1, 995);
+			if (compare(","+.BlackList$+"," , ","+.@monster+",")){
+				set .@monster, 0;
+			}
+		}
+		specialeffect EF_DETECT2;
+		setnpcdisplay strnpcinfo(3), .@monster;
+		set $MonsterName$,getmonsterinfo(.@monster,0);
+		
+		if(1 == 0){ //teste
+			announce "GM o monstro é: "+ $MonsterName$, bc_all|bc_blue;
+		}
+		deletepset 1;
+		defpattern 1,"([^:]+):.\\s*"+$MonsterName$+".*", "S_Correct";
+		activatepset 1;
+		
+		set .rounds, .rounds +1;
+		setnpctimer 300000, strnpcinfo(3);
+		startnpctimer;
+		end;
+	
+	S_Correct:
+		if(@won == null)
+			set @won, 0;
+			
+		if(.Winner != 1){
+			set .Winner, 1;
+			announce strcharinfo(0)+" Acertou!! Eu me desfarcei como: "+$MonsterName$+"",bc_map | bc_blue;
+			set @won, @won + 1;
+			
+			if(@won >= 3){
+				setarray .@RandItems[0], 7283, 7283, 7283, 7283, 7283, 7283, 7283, 7283, 7283, 7283, 5474, 5086, 5137, 5389, 5132, 5490, 5110, 5042, 5199, 2296, 5057, 2295, 5040, 5349, 5075, 5080, 5081, 5107, 5104, 5091, 5254, 5058, 5252, 2286, 2255, 5170, 5124, 5111, 2246, 5022, 5094, 5002, 5020, 5069, 5069, 5130, 5006, 5027, 5141, 5226, 5214, 5117, 5151, 5315, 5043, 5030, 2286, 5332, 5033, 2275, 5083, 5108, 5206, 2280, 5078, 5535, 5085, 5064, 5067, 2258, 5029, 2272, 5062, 5049, 5395, 5066, 5032, 5351, 2202, 5119, 2245, 5059, 5164, 5485, 5090, 5123, 5256, 5171, 5289, 2248, 5115, 5121, 2263, 5277, 5242, 5294, 5197, 5557, 5074, 5153, 5076, 5236, 5233, 5052, 5241, 5404, 5235, 5231, 5240, 5378, 5304, 5307;
+				set .@prace_prize, .@RandItems[rand(0, (getarraysize(.@RandItems)-1))];
+		
+				dispbottom "Você venceu! Prêmio: 1 "+getitemname(.@prace_prize); 
+				announce " Parabéns! "+strcharinfo(0)+" venceu!", bc_all|bc_blue;
+				getitem .@prace_prize,1; 
+				emotion 21,1;
+				
+				set @won, 0;
+				
+				callsub S_CallFinish;
+			}
+			deletepset 1;
+			setnpctimer 325000, strnpcinfo(3);
+			startnpctimer;
+			
+		}
+		else {
+			dispbottom "Alguém já havia acertado antes!!";
+		}
+		end;
+		
+	
+	S_CallFinish:
+		announce "[Mestre dos Disfarces] O evento terminou. Parabéns a todos os participantes!", bc_all|bc_blue;
+		set $disguise_isOpen, 0;
+		specialeffect EF_DETECT2;
+		setnpcdisplay strnpcinfo(3), 795;
+		stopnpctimer;
+		
+		end;
+	
+	HistoryEvent:
+		mes "[Mestre dos Disfarces]";
+		mes "O evento é anunciado e eu espero 1 minuto para os participantes chegarem perto de mim.";
+		next;
+		mes "Após esse tempo eu começo a me disfarçar aleatoriamente como um monstro de nosso mundo";
+		next;
+		mes "O primeiro a digitar o nome corretamente, tanto faz letras maisculas ou minusculas, faz um ponto";
+		next;
+		mes "Ganha quem fizer 5 pontos!";
+		close;
+		end;
+	
+}
