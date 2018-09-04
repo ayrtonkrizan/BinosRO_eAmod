@@ -49,6 +49,13 @@ prontera,156,185,4	duplicate(Curandeira)	Curandeira#prt	91
 		bindatcmd "buffs",strnpcinfo(3)+"::OnAtcommand";
 		end;
 	OnAtcommand:
+		set .@material, 7284;
+		if(countitem(.@material) < 1{
+			dispbottom "Bino é cilada!! Você não tem mais tickets de buffs.";
+			dispbottom "Continue marcando seus pontos de presença para fugir dessa enrascada!";
+			end;
+		}
+		delitem .@material, 1;
 		sc_start 32,300000,10;
 		sc_start 30,300000,10;
 		if(isPremium()> 0){ ///VIPS

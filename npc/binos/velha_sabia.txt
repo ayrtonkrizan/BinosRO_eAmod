@@ -12,7 +12,7 @@ set .@vip, 1;  // Verifica se o usuario tem que ser vip [1=sim/0=não]
 		mes "[Velha Sábia]";
 	
 		case 1:
-			if(getgmlevel() <1 && .@vip){ //Verifica se eh VIP
+			if(isPremium() <1 && .@vip){ //Verifica se eh VIP
 				callsub F_MesThenClose, "Meus serviços são muito cansativos por isso só posso faze-los para um grupo seleto de pessoas. Para entrar nesse grupo visite o site www.binosro.com.br";
 			}
 			mes "Então, qual item você quer que eu examine?";

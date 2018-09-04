@@ -7,7 +7,7 @@
 //===== Current Version: =====================================
 
 //Prontera Arena ===============
-prt_are_in	mapflag	noskill
+//prt_are_in	mapflag	noskill
 
 //The Sign Quest ===============
 himinn	mapflag	noskill

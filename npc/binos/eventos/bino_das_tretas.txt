@@ -335,10 +335,10 @@ prt_are_in,140,14,0	script	Petiscos#01	-1,{
 
 			
 // Flags
-prt_are_in	mapflag	loadevent
+//prt_are_in	mapflag	loadevent
 prt_are_in	mapflag	nowarpto
 prt_are_in	mapflag	nowarp
-prt_are_in	mapflag	noicewall
+//prt_are_in	mapflag	noicewall
 prt_are_in	mapflag	noteleport
 prt_are_in	mapflag	noreturn
 prt_are_in	mapflag	nomemo	SavePoint

@@ -3938,7 +3938,7 @@
 7282,Ticket_VIP_30,Ticket Vip 30 dias,2,1500,,150,,,,,0xFFF7FEEF,7,2,,,1,,,{ if(isPremium() == 1) set #Premium_Tick, #Premium_Tick + 2592000; else set #Premium_Tick, gettimetick(2) + 2592000; },{},{}
 //7282,Ticket Vip 30 dias,3rd Quiz Entry,2,0,,10,,,,,,,,,,,,,{ if(isPremium() == 1) set #Premium_Tick, #Premium_Tick + 2592000; else set #Premium_Tick, gettimetick(2) + 2592000; },{},{}
 7283,Ticket_Troca_Visual,Ticket troca visual,3,0,,10,,,,,,,,,,,,,{},{},{}
-7284,Quiz_Ticket05,5th Quiz Entry,3,0,,10,,,,,,,,,,,,,{},{},{}
+7284,Troca_Buff,Ticket de buff,3,0,,10,,,,,,,,,,,,,{},{},{}
 7285,Thread_Skein,Linha Sagrada,3,2,,10,,,,,,,,,,,,,{},{},{}
 7286,Chilli,Pimenta Vermelha,3,20,,10,,,,,,,,,,,,,{},{},{}
 7287,Thread_Skein_,Linha Abençoada,3,2,,10,,,,,,,,,,,,,{},{},{}

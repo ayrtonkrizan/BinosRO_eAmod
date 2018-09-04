@@ -1411,7 +1411,7 @@
 1639,115,100	// N_Rod
 1742,115,100	// N_Composite_Bow
 2393,115,100	// N_Adventurer's_Suit
-12323,123,100	// N_Fly_Wing
+12323,83,100	// N_Fly_Wing
 12324,123,100	// N_Butterfly_Wing
 12325,123,100	// N_Magnifier
 13040,115,100	// N_Cutter
