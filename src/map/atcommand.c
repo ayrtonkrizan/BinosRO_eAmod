@@ -564,7 +564,7 @@ ACMD_FUNC(move) {
 		//Man qq coisa
 		{ "man_fild01", 35, 236, 1 },
 		{ "man_fild02", 35, 262, 1 },
-		{ "man_fild03", 84, 365, 1 },
+		{ "man_fild03", 84, 365, 2 },
 
 		//Mjolnir
 		{ "mjolnir_01", 204, 120, 1 },
@@ -709,6 +709,9 @@ ACMD_FUNC(move) {
 		{ "beach_dun", 266, 67, 2 }, //Tao Gunka
 		{ "beach_dun2", 255, 244, 1 },
 		{ "beach_dun3", 23, 260, 1 },
+
+		{ "bra_dun01", 128, 135, 0 },
+		{ "bra_dun02", 260, 260, 2 },
 
 		{ "c_tower1", 199, 159, 0 },
 		{ "c_tower2", 148, 283, 1 },
