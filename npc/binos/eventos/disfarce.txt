@@ -20,8 +20,7 @@ prontera,155,220,4	script	Mestre dos Disfarces	795,{
 		end;
 		
 	// ---> Timers .. em milisegundos
-	OnTimer60000: 
-		announce "[Mestre dos Disfarces] O Evento começou!! prontera 155 220!!!", bc_all|bc_blue; 
+	OnTimer40000: 
 		callsub S_CallStart; 
 		end;
 		
@@ -75,13 +74,12 @@ prontera,155,220,4	script	Mestre dos Disfarces	795,{
 		end;
 	
 	S_CallStart:
+		announce "[Mestre dos Disfarces] O Evento começou!! prontera 155 220!!!", bc_all|bc_blue; 
 		set $disguise_isOpen, 1;
-		if(.eventTime == null || .eventTime >= 50)
+		if(.eventTime >= 50)
 			set .eventTime, 1;
 		set .eventTime, .eventTime +1;
 		set .rounds, 0;
-		if(.Debug == null)
-			set .Debug, 0;
 		setnpctimer 325000;
 		end;
 		
@@ -187,6 +185,10 @@ prontera,155,220,4	script	Mestre dos Disfarces	795,{
 		next;
 		mes "Ganha quem fizer 5 pontos!";
 		close;
+		end;
+	
+	OnInit:
+		set .eventTime, 0;
 		end;
 	
 }
