@@ -1,4 +1,4 @@
-prontera,150,150,5	script	Presença	811,{
+prontera,146,180,5	script	Presença	626,{
 
 set @npc$,"[^ff9900 "+StrNpcInfo(1)+" ^000000]";
 
