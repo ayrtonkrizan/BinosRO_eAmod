@@ -586,7 +586,7 @@ ACMD_FUNC(move) {
 
 		//Niflheim
 		{ "nif_fild01", 215, 229, 1 },
-		{ "nif_fild02", 167, 234, 1 },
+		{ "nif_fild02", 167, 234, 2 }, //Cavaleiro 
 
 
 		//Payon
@@ -600,7 +600,7 @@ ACMD_FUNC(move) {
 		{ "pay_fild08", 137, 189, 1 },
 		{ "pay_fild09", 201, 224, 1 },
 		{ "pay_fild10", 160, 205, 1 },
-		{ "pay_fild11", 194, 150, 1 },
+		{ "pay_fild11", 194, 150, 2 }, //Eddga
 
 
 		//Prontera
@@ -615,7 +615,7 @@ ACMD_FUNC(move) {
 		{ "prt_fild09", 187, 218, 1 },
 		{ "prt_fild10", 210, 183, 1 },
 		{ "prt_fild11", 195, 149, 1 },
-		{ "prt_fild11", 198, 164, 1 },
+		{ "prt_fild12", 198, 164, 2 },
 
 
 		//Rachel
@@ -648,7 +648,7 @@ ACMD_FUNC(move) {
 		{ "moc_fild19", 85, 97, 1 },
 		{ "moc_fild20", 207, 202, 1 },
 		{ "moc_fild21", 31, 195, 1 },
-		{ "moc_fild22", 38, 195, 1 },
+		{ "moc_fild22", 38, 195, 2 }, //Satã
 
 		//Spleinder
 		{ "spl_fild01", 175, 186, 1 },
@@ -672,15 +672,15 @@ ACMD_FUNC(move) {
 
 
 		//Yuno - Juno
-		{ "yuno_fild0", 189, 224, 1 },
-		{ "yuno_fild0", 192, 207, 1 },
-		{ "yuno_fild0", 221, 157, 1 },
-		{ "yuno_fild0", 226, 199, 1 },
-		{ "yuno_fild0", 223, 177, 1 },
-		{ "yuno_fild0", 187, 232, 1 },
-		{ "yuno_fild0", 231, 174, 1 },
-		{ "yuno_fild0", 196, 203, 1 },
-		{ "yuno_fild0", 183, 214, 1 },
+		{ "yuno_fild01", 189, 224, 1 },
+		{ "yuno_fild02", 192, 207, 1 },
+		{ "yuno_fild03", 221, 157, 1 },
+		{ "yuno_fild04", 226, 199, 1 },
+		{ "yuno_fild05", 223, 177, 1 },
+		{ "yuno_fild06", 187, 232, 1 },
+		{ "yuno_fild07", 231, 174, 1 },
+		{ "yuno_fild08", 196, 203, 1 },
+		{ "yuno_fild09", 183, 214, 1 },
 		{ "yuno_fild10", 200, 124, 1 },
 		{ "yuno_fild11", 195, 226, 1 },
 		{ "yuno_fild12", 210, 304, 1 },
@@ -802,6 +802,13 @@ ACMD_FUNC(move) {
 
 		{ "nyd_dun01", 61, 239, 0 },
 		{ "nyd_dun02", 60, 271, 1 },
+
+		{ "nyd_dun01", 61, 239, 0 },
+		{ "nyd_dun02", 60, 271, 1 },
+		
+		{ "1@nyd", 179, 142, 0 },
+		{ "2@nyd", 179, 142, 2 },
+		
 		/*{ "nyd_dun01", 0 },
 		{ "nyd_dun02", 0 },
 		{ "1@nyd", 0 },
@@ -1634,7 +1641,10 @@ ACMD_FUNC(storage)
 
 	if( sd->npc_id || sd->state.vending || sd->state.buyingstore || sd->state.trading || sd->state.storage_flag )
 		return -1;
-
+	if (!map[sd->bl.m].flag.town){
+		clif_displaymessage(fd, "Storage só permitido em cidades");
+		return -1;
+	}
 	if( premium_usage && map_flag_gvg(sd->bl.m) )
 		return -1;
 
@@ -2741,6 +2751,7 @@ ACMD_FUNC(go)
 		{ MAP_RACHEL,      130, 110, "Rachel" }, // 23
 		{ MAP_VEINS,       216, 123, "Veins" }, // 24
 		{ MAP_MOSCOVIA,    223, 184, "Moscovia" }, // 25
+		{ MAP_MANUK,		265, 194, "Manuk" }, // 26
 	};
 
 	static const struct {
@@ -2786,6 +2797,7 @@ ACMD_FUNC(go)
 		{ MAP_RACHEL,      "rachel" },
 		{ MAP_VEINS,       "veins" },
 		{ MAP_MOSCOVIA,    "moscovia" },
+		{ MAP_MANUK, "manuk" },
 	};
 
 	nullpo_retr(-1, sd);

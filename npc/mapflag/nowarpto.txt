@@ -112,8 +112,8 @@ bat_a02	mapflag	nowarpto
 
 // Episode 13 ====================
 mid_campin	mapflag	nowarpto
-man_fild01	mapflag	nowarpto
-man_fild03	mapflag	nowarpto
+//man_fild01	mapflag	nowarpto
+//man_fild03	mapflag	nowarpto
 spl_fild02	mapflag	nowarpto
 spl_fild03	mapflag	nowarpto
 moc_fild22b	mapflag	nowarpto
@@ -125,8 +125,8 @@ arug_que01	mapflag	nowarpto
 arug_dun01	mapflag	nowarpto
 nyd_dun01	mapflag	nowarpto
 nyd_dun02	mapflag	nowarpto
-manuk	mapflag	nowarpto
-man_fild02	mapflag	nowarpto
+//manuk	mapflag	nowarpto
+//man_fild02	mapflag	nowarpto
 man_in01	mapflag	nowarpto
 splendide	mapflag	nowarpto
 spl_fild01	mapflag	nowarpto
@@ -137,7 +137,7 @@ spl_in01	mapflag	nowarpto
 2@orcs	mapflag	nowarpto
 
 // Nidhoggr's Instance ===========
-1@nyd	mapflag	nowarpto
+//1@nyd	mapflag	nowarpto
 2@nyd	mapflag	nowarpto
 
 // Poring War ====================
