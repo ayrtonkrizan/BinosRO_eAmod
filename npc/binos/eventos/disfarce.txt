@@ -76,7 +76,9 @@ prontera,155,220,4	script	Mestre dos Disfarces	795,{
 	
 	S_CallStart:
 		set $disguise_isOpen, 1;
-		set .eventTime, gettimetick(0);
+		if(.eventTime == null || .eventTime >= 50)
+			set .eventTime, 1;
+		set .eventTime, .eventTime +1;
 		set .rounds, 0;
 		if(.Debug == null)
 			set .Debug, 0;

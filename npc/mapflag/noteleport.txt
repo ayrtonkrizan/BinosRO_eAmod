@@ -79,12 +79,12 @@ airport	mapflag	noteleport
 airplane	mapflag	noteleport
 airplane_01	mapflag	noteleport
 // New areas
-lighthalzen	mapflag	noteleport
-yuno	mapflag	noteleport
+//lighthalzen	mapflag	noteleport
+//yuno	mapflag	noteleport
 yuno_pre	mapflag	noteleport
 y_airport	mapflag	noteleport
 lhz_airport	mapflag	noteleport
-einbroch	mapflag	noteleport
+//einbroch	mapflag	noteleport
 einbech	mapflag	noteleport
 lhz_que01	mapflag	noteleport
 lhz_cube	mapflag	noteleport
