@@ -1,4 +1,4 @@
--	script	Resetadora	-1,{
+-	script	Resetador	-1,{
 	if(isPremium() <1){
 		set .@ResetStat, 75000;	// Zeny requeridos para resetar atributos.
 		set .@ResetSkill,75000;	// Zeny requeridos para resetar habilidades.
@@ -8,8 +8,8 @@
 		set .@ResetSkill, 7000;	// Zeny requeridos para resetar habilidades.
 		set .@ResetBoth, 10000;	// Zeny requeridos para resetar ambos.
 	}
-	mes "[Resetadora]";
-	mes "Olá "+strcharinfo(0)+", eu sou a Resetadora.";
+	mes "[Resetador]";
+	mes "Olá "+strcharinfo(0)+", eu sou a Resetador.";
 	mes "Resetar Atributos: "+ .@ResetStat +"z";
 	mes "Resetar Habilidades: "+ .@ResetSkill +"z";
 	mes "Resetar Ambos: "+ .@ResetBoth +"z";
@@ -17,7 +17,7 @@
 	next;
 	switch(select("^FF3355Resetar Habilidades:Resetar Atributos:Resetar Ambos^000000:Cancelar")) {
 	case 1:
-		mes "[Resetadora]";
+		mes "[Resetador]";
 		if (Zeny < .@ResetSkill) {
 			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
 			close;
@@ -28,7 +28,7 @@
 		mes "Pronto Atributos resetados, volte quando precisar de algum serviço.";
 		close;
 	case 2:
-		mes "[Resetadora]";
+		mes "[Resetador]";
 		if (Zeny < .@ResetStat) {
 			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
 			close;
@@ -38,7 +38,7 @@
 		mes "Pronto Habilidades resetadas, volte quando precisar de algum serviço.";
 		close;
 	case 3:
-		mes "[Resetadora]";
+		mes "[Resetador]";
 		if (Zeny < .@ResetBoth) {
 			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
 			close;
@@ -50,11 +50,11 @@
 		mes "Pronto seus Atributos e suas Habilidades foram resetadas, volte quando precisar de algum serviço.";
 		close;
 	case 4:
-		mes "[Resetadora]";
+		mes "[Resetador]";
 		mes "Tudo bem, volte quando precisar de algum serviço.";
 		close;
 	}
 }
 
-sec_in02,145,168,4	duplicate(Resetadora)	Resetadora#vip	412
-prontera,148,191,5	duplicate(Resetadora)	Resetadora#prt	412
+sec_in02,145,168,4	duplicate(Resetador)	Resetador#vip	412
+prontera,148,191,5	duplicate(Resetador)	Resetador#prt	412

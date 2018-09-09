@@ -31,3 +31,8 @@ louyang	mapflag	town
 hugel	mapflag	town
 rachel	mapflag	town
 veins	mapflag	town
+
+
+//Novos Binos RO
+morocc	mapflag	town
+sec_in02	mapflag	town

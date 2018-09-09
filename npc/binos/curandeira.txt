@@ -43,6 +43,7 @@
 
 sec_in02,135,168,4	duplicate(Curandeira)	Curandeira#vip	91
 prontera,156,185,4	duplicate(Curandeira)	Curandeira#prt	91
+morocc,158,94,4	duplicate(Curandeira)	Curandeira#moc	91
 
 -	script	CommandsCurandeira	-1,{
 	OnInit:
