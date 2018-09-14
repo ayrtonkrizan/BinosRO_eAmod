@@ -647,7 +647,7 @@ ACMD_FUNC(move) {
 		{ "moc_fild18", 209, 223, 1 },
 		{ "moc_fild19", 85, 97, 1 },
 		{ "moc_fild20", 207, 202, 1 },
-		{ "moc_fild21", 31, 195, 1 },
+		{ "moc_fild21", 31, 195, 2 }, //Satã
 		{ "moc_fild22", 38, 195, 2 }, //Satã
 
 		//Spleinder
@@ -1675,8 +1675,14 @@ ACMD_FUNC(guildstorage)
 		return -1;
 	}
 
+
 	if (sd->npc_id || sd->state.vending || sd->state.buyingstore || sd->state.trading)
 		return -1;
+
+	if (!map[sd->bl.m].flag.town){
+		clif_displaymessage(fd, "Storage só permitido em cidades");
+		return -1;
+	}
 
 	if (sd->state.storage_flag == 1 || sd->state.storage_flag == 3) {
 		clif_displaymessage(fd, msg_txt(250));
@@ -2755,6 +2761,7 @@ ACMD_FUNC(go)
 		{ MAP_VEINS,       216, 123, "Veins" }, // 24
 		{ MAP_MOSCOVIA,    223, 184, "Moscovia" }, // 25
 		{ MAP_MANUK,		265, 194, "Manuk" }, // 26
+		{ MAP_SPLENDIDE,	189, 170, "Splendide" }, // 27
 	};
 
 	static const struct {
@@ -2801,6 +2808,7 @@ ACMD_FUNC(go)
 		{ MAP_VEINS,       "veins" },
 		{ MAP_MOSCOVIA,    "moscovia" },
 		{ MAP_MANUK, "manuk" },
+		{ MAP_SPLENDIDE, "splendide" },
 	};
 
 	nullpo_retr(-1, sd);
