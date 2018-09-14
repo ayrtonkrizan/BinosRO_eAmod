@@ -701,7 +701,7 @@ ACMD_FUNC(move) {
 		{ "ama_dun03", 120, 12, 2 },  //(Samurai Encarnado)
 
 		{ "ayo_dun01", 275, 19, 0 },
-		{ "ayo_dun02", 24, 26, 1 },
+		{ "ayo_dun02", 24, 26, 2 }, //mvp 
 
 		{ "anthell01", 37, 362, 0 },
 		{ "anthell02", 169, 170, 2 },// (Maya)
