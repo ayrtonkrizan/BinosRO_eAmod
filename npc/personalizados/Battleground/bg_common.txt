@@ -188,6 +188,7 @@ OnDoHappyHour:
 //OnClock1600:
 //OnClock1800:
 OnClock2000:
+OnClock2200:
 	switch( gettime(4) )
 	{
 	case 1:
