@@ -1,0 +1,66 @@
+prontera,144,182,5	script	Bino das Quests#prt	549,{
+		setarray .arrayItens[0], 711, 511, 909;
+		setarray .arrayQts[0], 100, 100, 20;
+		
+		set .name$, "[Bino das Quests]";
+		
+		mes .name$;
+		mes "Oi "+ strcharinfo(0) +", blz?";
+		mes "O que deseja?";
+		
+		S_GoToMenu:
+			menu "Oi blz, Quem é você?", S_WhoAreU, "Qual quest você tem hoje?", S_GoToInfo, "Entregar a quest", S_DoQuest, "Cancelar", Cancelar;
+			end;
+			
+		S_WhoAreU:
+			next;
+			mes .name$;
+			mes "Eu sou o responsável por controlar as quests especiais aqui!";
+			mes "Mensalmente vou mudar o prêmio por você me trazer o que eu pedir";
+			next;
+			callsub S_GoToMenu;
+			end;
+		
+		S_GoToInfo:
+			next;
+			mes .name$;
+			mes "Esse primeiro mês quero:";
+			set .@Size,getarraysize(.arrayItens);
+			for(set .@num, 0; .@num < .@Size; set .@num, .@num + 1){
+				mes "^00CC00"+.arrayQts[.@num] + "x^000000 " + getitemname(.arrayItens[.@num]);
+			}
+			mes "Em troca vou te dar um pouco de XP";
+			callsub S_GoToMenu;
+			end;
+		
+		S_DoQuest:
+			next;
+			mes "Ok, vamos ver se você tem tudo o que eu pedi...";
+			set .@ok, 1;
+			set .@Size,getarraysize(.arrayItens);
+			for(set .@num, 0; .@num < .@Size; set .@num, .@num + 1){
+				set .@comp, .arrayQts[.@num] - countitem(.arrayItens[.@num]);
+				//mes " " +.@comp;
+				if(.@comp > 0){
+					mes "faltam ^00CC00" + .@comp + "x^000000 "+ getitemname(.arrayItens[.@num]);
+					set .@ok, 0;
+				}
+			}
+			if(.@ok == 0) close;
+			mes "Posso finalizar a quest?";
+			if(select("Sim:Não")==2) close;
+			set .@Size,getarraysize(.arrayItens);
+			for(set .@num, 0; .@num < .@Size; set .@num, .@num + 1){
+				delitem .arrayItens[.@num], .arrayQts[.@num];
+			}
+			getexp 100000,2500000;
+			
+			mes "Volte quantas vezes precisar!!";
+			close;
+		
+		Cancelar:
+			close;
+			end;
+		
+		close;
+}

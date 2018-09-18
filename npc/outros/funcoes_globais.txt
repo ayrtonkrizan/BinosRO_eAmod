@@ -327,3 +327,22 @@ function	script	Time2Str	{
 
 	return .@Time$;
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+// eAmod Base Scripts and Functions
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+-	script	Graveyard::Graveyard_Base	-1,{
+	mes "[ ^FF0000" + graveyard_info(0) + "^000000 ]";
+	mes "Tomatinho vermelho, pela estrada rolou, ROLOU! veio o caminhão grande ...";
+	mes "Hora da morte: ^0000FF" + graveyard_info(2) + "^000000";
+	mes "Quem passo o caminhão...";
+	mes "[ ^FF0000" + graveyard_info(1) + "^000000 ]";
+
+	close;
+
+}

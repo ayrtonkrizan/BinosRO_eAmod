@@ -82,6 +82,8 @@ prontera,145,201,5	script	Bino das Tretas	730,{
 	
 	GoToEvent:
 		if (getcharid(1)) {
+			next;
+			mes "[Bino das Treta]";
 			mes "^FF0000Você não pode estar em uma party para participar desse evento.!^000000";
 			close;
 		}
@@ -232,6 +234,22 @@ prontera,145,201,5	script	Bino das Tretas	730,{
 
 		}
 		end;
+	
+	OnPCDieEvent:
+		sleep2 1000;
+		getmapxy @map$,@x,@y,0;
+		if ( @map$ == "prt_are_in" ) {
+			atcommand "@alive";
+			set .@spoint$, getsavepoint(0);
+			set .@x, getsavepoint(1);
+			set .@y, getsavepoint(2);
+			warp .@spoint$, .@x, .@y;
+			end;
+		}
+		else{ 
+			end; 
+		}
+		end;
 }
 
 
@@ -346,3 +364,5 @@ prt_are_in	mapflag	nomemo	SavePoint
 prt_are_in	mapflag	nodrop
 prt_are_in	mapflag	noloot
 prt_are_in	mapflag	partylock
+prt_are_in	mapflag	pvp_noguild
+prt_are_in	mapflag	pvp_noparty

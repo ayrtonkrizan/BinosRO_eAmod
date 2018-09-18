@@ -168,7 +168,7 @@ prontera,167,203,4	script	Segurança do Calabouço	867,{
 		sleep2 1000;
 		getmapxy @map$,@x,@y,0;
 		if ( @map$ == "job3_rune02" ) {
-			recovery;
+			atcommand "@alive";
 			set .@spoint$, getsavepoint(0);
 			set .@x, getsavepoint(1);
 			set .@y, getsavepoint(2);
