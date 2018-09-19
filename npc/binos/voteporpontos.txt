@@ -1,0 +1,73 @@
+//  _______________________________________________________
+// /                                                       \
+// |      _           _   _   _                            |
+// |     | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |     | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |     | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |     |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                       |
+// |                    brAthena Script                    |
+// |-------------------------------------------------------|
+// | Nome do Script: Sistema de Votos			           |
+// |-------------------------------------------------------|
+// | Criado por: Autor Desconhecido                        |
+// |-------------------------------------------------------|
+// | Versões brA 2015 ~                  	               |
+// |-------------------------------------------------------|
+// | Descrição: Script adaptado para ser utilizado no Flux |
+// | do brAthena com o sistema de vote por pontos do mesmo.|                                             
+// \_______________________________________________________/
+
+prontera,142,184,5	script	Sistema de Votos	556,{
+
+	setarray @vote_item[0],			20002, 20004; // ID dos Itens
+	setarray @vote_item_count[0],	1, 1; // Quantidade de item que será entregue
+	setarray @vote_cost[0],			12, 30; // preço dos itens em pontos de votos
+	set @min_vote, 0; // contagem mínima de pontos de votos para ver a lista de itens
+	set @npcname$,"[^ff0000Vote por Pontos^000000]";
+
+	query_sql ("SELECT `points` FROM `cp_v4p_voters` WHERE `account_id` = '"+getcharid(3)+"'", @vote);
+
+	mes @npcname$;
+	mes "Você tem ^ff0000"+@vote+"^000000 Pontos de votos!";
+	if( @vote < @min_vote ) {
+		mes "^ff0000É preciso ter pelo menos "+@min_vote+" ou mais pontos de votos para trocá-los comigo!^000000";
+		close;
+	}
+	if (select("Trocar meus pontos!","Cancela") == 2)
+		close;
+
+	next;
+	mes "[^ff0000Lista^000000]";
+	mes "^0000ffItem^000000 = ^00aa00Preço^000000";
+	for( set .@i, 0; .@i < getarraysize(@vote_item); set .@i, .@i + 1 ) {
+		mes "^0000ff"+@vote_item_count[.@i]+"x "+getitemname(@vote_item[.@i])+"^000000 = ^00aa00"+@vote_cost[.@i]+"^000000";
+		if( .@i < 1 )
+			set .@menu$, getitemname(@vote_item[.@i]);
+		else
+			set .@menu$, .@menu$+":"+getitemname(@vote_item[.@i]);
+	}
+
+	next;
+	select(.@menu$);
+	set @choice, @menu - 1;
+
+	mes @npcname$;
+	if( @vote_cost[@choice] > @vote ) {
+		mes "^ff0000Você não tem pontos de votos suficiente para concluir a troca.^000000";
+		close;
+	}
+	mes "Deseja adquirir "+@vote_item_count[@choice]+" '^ff0000"+getitemname(@vote_item[@choice])+"^000000' por ^00aa00"+@vote_cost[@choice]+"^000000 Ponto?";
+	if(select("Não! Cancela!:Sim, Troque!") == 1 ) {
+		mes "^ff0000A troca foi cancelada^000000";
+		close;
+	}
+
+	set .@new, @vote - @vote_cost[@choice];
+	if( .@new < 0 )
+	set .@new, 0;
+	query_sql("UPDATE `cp_v4p_voters` SET `points` = '"+.@new+"' WHERE `account_id` = '"+getcharid(3)+"'");
+	getitem @vote_item[@choice], @vote_item_count[@choice];
+	mes "^00aa00Troca realizada. Obrigado por votar no servidor.^000000";
+	close;
+}

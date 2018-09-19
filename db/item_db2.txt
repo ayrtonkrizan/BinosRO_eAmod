@@ -32,7 +32,7 @@
 20001,Vale_VIP_30_dias,Vale VIP 30 dias,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "addpremium30"; },{},{}
 20002,Vale_VIP_voto,Vale VIP 1 dia,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "addpremiumvoto"; },{},{}
 20003,Vale_VIP_5_dias,Vale VIP 5 dias,18,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "addpremium5"; },{},{}
-20004,Dark_Moon,Dark Moon,0,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS,#CASHPOINTS+1000; dispbottom "Você acaba de ganhar 1000 ROPs!"; },{},{}
+20004,Cash1000,Vale Cash 1000 pontos,0,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS,#CASHPOINTS+1000; dispbottom "Você acaba de ganhar 1000 ROPs!"; },{},{}
 20005,Carta_de_Lideranca,Carta de Liderança,6,10,,1,,,,,,,,16,,,,,{ bonus bAllStats,1; bonus2 bSubRace,7,1; bonus2 bAddRace,7,1; },{},{}
 20006,Ticket_Up,Ticket Up,18,10,,1,,,,,,,,16,,,,,{callfunc "OddFuncKalif"; },{},{}
 20007,Ticket Presença,Ticket Presença,0,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "presença"; },{},{}
